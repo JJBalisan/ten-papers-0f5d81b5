@@ -1,7 +1,22 @@
 {
   "title": "Ten Papers",
   "description": "Ten papers on AI safety, alignment, governance and their neighbours, read and summarised each morning. Written and narrated by Claude.",
-  "categories": ["Science"],
-  "guid_prefix": "ten-papers",
-  "badge": {"x": 1180, "y": 1190, "fill": [178, 34, 34], "ink": [250, 248, 243]}
+  "categories": [
+    "Science"
+  ],
+  "guid_prefix": "ten-papers-dated",
+  "badge": {
+    "x": 1180,
+    "y": 1190,
+    "fill": [
+      178,
+      34,
+      34
+    ],
+    "ink": [
+      250,
+      248,
+      243
+    ]
+  }
 }
