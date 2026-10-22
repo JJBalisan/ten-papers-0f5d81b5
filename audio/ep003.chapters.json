@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 65,
+      "title": "Open problems in risk modeling"
+    },
+    {
+      "startTime": 339,
+      "title": "Monitoring rogue AI progression"
+    },
+    {
+      "startTime": 584,
+      "title": "Punctuation as a defence"
+    },
+    {
+      "startTime": 760,
+      "title": "Alignment in the representations"
+    },
+    {
+      "startTime": 1003,
+      "title": "Reward learning with a filter"
+    },
+    {
+      "startTime": 1129,
+      "title": "Simulating policy outcomes"
+    },
+    {
+      "startTime": 1332,
+      "title": "Three ways to teach refusal"
+    },
+    {
+      "startTime": 1527,
+      "title": "Squeezing a seventy billion model"
+    },
+    {
+      "startTime": 1673,
+      "title": "A small reranker, distilled"
+    },
+    {
+      "startTime": 1808,
+      "title": "Beyond prediction accuracy"
+    }
+  ]
+}

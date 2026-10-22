@@ -22,5 +22,17 @@
     "music": true,
     "chapters": "audio/ep002.chapters.json",
     "cover": "covers/ep002.jpg"
+  },
+  {
+    "no": 3,
+    "date": "2026-09-07",
+    "title": "Risk modelling, representational alignment, refusal circuits",
+    "summary": "A workshop agenda on open problems in AI risk modelling, a study where preference optimisation raises jailbreak success while representational alignment lowers it, and a controlled comparison of post-training objectives finding a refusal trilemma.",
+    "file": "audio/ep003.mp3",
+    "bytes": 15567151,
+    "duration": "00:32:00",
+    "music": true,
+    "chapters": "audio/ep003.chapters.json",
+    "cover": "covers/ep003.jpg"
   }
 ]
