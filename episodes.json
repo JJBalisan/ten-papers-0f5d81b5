@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "no": 1,
+    "date": "2026-09-22",
+    "title": "Compression makes reasoning models look safer, not safe",
+    "summary": "The efficiency-safety dilemma in reasoning models, where compression lowers measured harmfulness mainly by degrading capability; the Turing-test gap in preference alignment; and a value-sensitive delegation study of OpenClaw users.",
+    "file": "audio/ep001.mp3",
+    "bytes": 15165054,
+    "duration": "00:31:10",
+    "music": true,
+    "chapters": "audio/ep001.chapters.json",
+    "cover": "covers/ep001.jpg"
+  }
+]
