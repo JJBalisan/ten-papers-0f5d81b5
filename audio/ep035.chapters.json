@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 49,
+      "title": "Auditing hosted models"
+    },
+    {
+      "startTime": 236,
+      "title": "When humans and AI beat both"
+    },
+    {
+      "startTime": 393,
+      "title": "Hackers in the safety net"
+    },
+    {
+      "startTime": 522,
+      "title": "Leaking images through the loss"
+    },
+    {
+      "startTime": 642,
+      "title": "Patching rewards does not hold"
+    },
+    {
+      "startTime": 795,
+      "title": "A values test with traps"
+    },
+    {
+      "startTime": 919,
+      "title": "Maths and language, apart"
+    },
+    {
+      "startTime": 1035,
+      "title": "Skimming long documents"
+    },
+    {
+      "startTime": 1147,
+      "title": "A small grader exploited"
+    },
+    {
+      "startTime": 1244,
+      "title": "Scoring a database's causes"
+    }
+  ]
+}
