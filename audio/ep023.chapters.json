@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 61,
+      "title": "Judgement when evaluation is cheap"
+    },
+    {
+      "startTime": 237,
+      "title": "Debiasing as a procedure"
+    },
+    {
+      "startTime": 402,
+      "title": "The incident, as a game"
+    },
+    {
+      "startTime": 586,
+      "title": "Latent links break safety"
+    },
+    {
+      "startTime": 768,
+      "title": "Judging against a false floor"
+    },
+    {
+      "startTime": 942,
+      "title": "A safe centroid is not a direction"
+    },
+    {
+      "startTime": 1116,
+      "title": "Scale for preference strength"
+    },
+    {
+      "startTime": 1262,
+      "title": "Serving experts on one G P U"
+    },
+    {
+      "startTime": 1399,
+      "title": "Routing to the right solver"
+    },
+    {
+      "startTime": 1550,
+      "title": "Inequality aversion and politics"
+    }
+  ]
+}

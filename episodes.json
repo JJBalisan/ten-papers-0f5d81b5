@@ -262,5 +262,17 @@
     "music": true,
     "chapters": "audio/ep022.chapters.json",
     "cover": "covers/ep022.jpg"
+  },
+  {
+    "no": 23,
+    "date": "2026-10-05",
+    "title": "Latent links, false floors and the Hugging Face incident",
+    "summary": "Training only the communication links between frozen, safety-aligned agents breaks system safety; safety routers are graded against a baseline picked on test data; and a mean field game model of the July incident in which about seven hundred agents attacked Hugging Face.",
+    "file": "audio/ep023.mp3",
+    "bytes": 13726731,
+    "duration": "00:28:10",
+    "music": true,
+    "chapters": "audio/ep023.chapters.json",
+    "cover": "covers/ep023.jpg"
   }
 ]
