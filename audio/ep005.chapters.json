@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 60,
+      "title": "Federal governance against sector risk"
+    },
+    {
+      "startTime": 286,
+      "title": "Citizen deliberation and AI"
+    },
+    {
+      "startTime": 471,
+      "title": "Plan injection"
+    },
+    {
+      "startTime": 728,
+      "title": "Defenses for tool-using agents"
+    },
+    {
+      "startTime": 921,
+      "title": "Delegating to misaligned reviewers"
+    },
+    {
+      "startTime": 1170,
+      "title": "A benchmark for agent safety calibration"
+    },
+    {
+      "startTime": 1361,
+      "title": "Where emergent misalignment lives"
+    },
+    {
+      "startTime": 1529,
+      "title": "A fully auditable training run"
+    },
+    {
+      "startTime": 1732,
+      "title": "Never giving up on hard prompts"
+    },
+    {
+      "startTime": 1920,
+      "title": "Security of research artifacts"
+    }
+  ]
+}
