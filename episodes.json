@@ -334,5 +334,17 @@
     "music": true,
     "chapters": "audio/ep028.chapters.json",
     "cover": "covers/ep028.jpg"
+  },
+  {
+    "no": 29,
+    "date": "2026-10-12",
+    "title": "Risk ceilings, organisational pressure, judge trust",
+    "summary": "A feasibility model linking risk ceilings to development deadlines, the Workerville benchmark of organisational pressure on agents, and an audit of LLM judge reliability.",
+    "file": "audio/ep029.mp3",
+    "bytes": 11908389,
+    "duration": "00:24:23",
+    "music": true,
+    "chapters": "audio/ep029.chapters.json",
+    "cover": "covers/ep029.jpg"
   }
 ]

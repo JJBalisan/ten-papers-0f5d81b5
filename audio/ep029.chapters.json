@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 57,
+      "title": "Ceilings and deadlines"
+    },
+    {
+      "startTime": 278,
+      "title": "Handover readiness"
+    },
+    {
+      "startTime": 454,
+      "title": "Forgotten obligations"
+    },
+    {
+      "startTime": 611,
+      "title": "Organisational pressure on agents"
+    },
+    {
+      "startTime": 751,
+      "title": "Training model organisms"
+    },
+    {
+      "startTime": 889,
+      "title": "Judges that agree with themselves"
+    },
+    {
+      "startTime": 1029,
+      "title": "Predicting vision transformers"
+    },
+    {
+      "startTime": 1144,
+      "title": "Pruning for decoding"
+    },
+    {
+      "startTime": 1257,
+      "title": "Context for offline agents"
+    },
+    {
+      "startTime": 1357,
+      "title": "Priors and posteriors"
+    }
+  ]
+}
