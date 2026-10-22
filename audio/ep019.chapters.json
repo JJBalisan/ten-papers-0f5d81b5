@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 51,
+      "title": "Concentration and rights"
+    },
+    {
+      "startTime": 266,
+      "title": "Code as a jailbreak blind spot"
+    },
+    {
+      "startTime": 456,
+      "title": "Unlearning that actually erases"
+    },
+    {
+      "startTime": 633,
+      "title": "Training against probes"
+    },
+    {
+      "startTime": 844,
+      "title": "Removing shared annotator bias"
+    },
+    {
+      "startTime": 1012,
+      "title": "Agent benchmarks that score claims"
+    },
+    {
+      "startTime": 1229,
+      "title": "Saying what they think"
+    },
+    {
+      "startTime": 1418,
+      "title": "Speculation as parallelism"
+    },
+    {
+      "startTime": 1548,
+      "title": "Many framings, few calls"
+    },
+    {
+      "startTime": 1660,
+      "title": "How we weigh probabilities"
+    }
+  ]
+}

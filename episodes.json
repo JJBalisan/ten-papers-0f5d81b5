@@ -214,5 +214,17 @@
     "music": true,
     "chapters": "audio/ep018.chapters.json",
     "cover": "covers/ep018.jpg"
+  },
+  {
+    "no": 19,
+    "date": "2026-10-01",
+    "title": "Training against probes, and benchmarks that grade claims",
+    "summary": "A study of training against interpretability probes while keeping monitorability, an executable-contract audit of agent benchmarks that finds MedAgentBench crediting writes that never happen, and an EU rights analysis of AI concentration.",
+    "file": "audio/ep019.mp3",
+    "bytes": 14527303,
+    "duration": "00:29:50",
+    "music": true,
+    "chapters": "audio/ep019.chapters.json",
+    "cover": "covers/ep019.jpg"
   }
 ]
