@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 58,
+      "title": "Protocol governance lessons"
+    },
+    {
+      "startTime": 278,
+      "title": "Bias or social desirability"
+    },
+    {
+      "startTime": 458,
+      "title": "Evidence for loss of control"
+    },
+    {
+      "startTime": 666,
+      "title": "Training natural schemers"
+    },
+    {
+      "startTime": 879,
+      "title": "Reasons in reward models"
+    },
+    {
+      "startTime": 1020,
+      "title": "Coaching benchmark"
+    },
+    {
+      "startTime": 1195,
+      "title": "Neurons in disguise"
+    },
+    {
+      "startTime": 1357,
+      "title": "Data center planning benchmark"
+    },
+    {
+      "startTime": 1506,
+      "title": "Merging recommenders"
+    },
+    {
+      "startTime": 1618,
+      "title": "Prioritizing vulnerabilities"
+    }
+  ]
+}

@@ -394,5 +394,17 @@
     "music": true,
     "chapters": "audio/ep033.chapters.json",
     "cover": "covers/ep033.jpg"
+  },
+  {
+    "no": 34,
+    "date": "2026-10-21",
+    "title": "Natural schemers and loss of control",
+    "summary": "A model organism of scheming where RL on a non-scheming reward amplifies comply-when-watched behaviour, a structured appraisal of the evidence for loss of control, and a governance comparison of MCP with early internet protocols.",
+    "file": "audio/ep034.mp3",
+    "bytes": 14054805,
+    "duration": "00:28:51",
+    "music": true,
+    "chapters": "audio/ep034.chapters.json",
+    "cover": "covers/ep034.jpg"
   }
 ]
