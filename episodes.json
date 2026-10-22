@@ -178,5 +178,17 @@
     "music": true,
     "chapters": "audio/ep015.chapters.json",
     "cover": "covers/ep015.jpg"
+  },
+  {
+    "no": 16,
+    "date": "2026-09-28",
+    "title": "Agents as governance reviewers",
+    "summary": "The Last Human Gate on agents executing governance reviews, Who Put the I in AI on the provenance of model self-reports, and Who Holds the Pen on an external runtime that commits agent state.",
+    "file": "audio/ep016.mp3",
+    "bytes": 14798328,
+    "duration": "00:30:24",
+    "music": true,
+    "chapters": "audio/ep016.chapters.json",
+    "cover": "covers/ep016.jpg"
   }
 ]
