@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 62,
+      "title": "Taxing delegated work"
+    },
+    {
+      "startTime": 291,
+      "title": "Simulated groups agree too much"
+    },
+    {
+      "startTime": 448,
+      "title": "A model that fingerprints its host"
+    },
+    {
+      "startTime": 631,
+      "title": "Harm laundering"
+    },
+    {
+      "startTime": 786,
+      "title": "Steering without the tuning"
+    },
+    {
+      "startTime": 933,
+      "title": "When agents say they finished"
+    },
+    {
+      "startTime": 1112,
+      "title": "Alien representations"
+    },
+    {
+      "startTime": 1262,
+      "title": "Verifiable private training"
+    },
+    {
+      "startTime": 1411,
+      "title": "A small embodied model"
+    },
+    {
+      "startTime": 1528,
+      "title": "Growing a mind"
+    }
+  ]
+}
