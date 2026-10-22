@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 64,
+      "title": "Who can say no"
+    },
+    {
+      "startTime": 335,
+      "title": "Plural chatbot voices"
+    },
+    {
+      "startTime": 537,
+      "title": "Reward hacking spreads"
+    },
+    {
+      "startTime": 783,
+      "title": "Monitoring agent runs"
+    },
+    {
+      "startTime": 969,
+      "title": "Humans and models lie differently"
+    },
+    {
+      "startTime": 1138,
+      "title": "Deception in software work"
+    },
+    {
+      "startTime": 1350,
+      "title": "Narrative circuits"
+    },
+    {
+      "startTime": 1521,
+      "title": "Distilling small models"
+    },
+    {
+      "startTime": 1668,
+      "title": "Hints for failed rollouts"
+    },
+    {
+      "startTime": 1810,
+      "title": "A map of elections"
+    }
+  ]
+}

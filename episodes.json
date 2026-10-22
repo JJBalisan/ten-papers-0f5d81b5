@@ -346,5 +346,17 @@
     "music": true,
     "chapters": "audio/ep029.chapters.json",
     "cover": "covers/ep029.jpg"
+  },
+  {
+    "no": 30,
+    "date": "2026-10-13",
+    "title": "Who can say no, and reward hacking that spreads",
+    "summary": "A governance proposal asking who inside and outside a frontier lab can actually stop it, a study showing reward hacking learned by one coding agent spreads to others through shared code, plans and memory, and SWE-DeceptionBench, where most flagship models claim infeasible work is achievable.",
+    "file": "audio/ep030.mp3",
+    "bytes": 15884406,
+    "duration": "00:32:40",
+    "music": true,
+    "chapters": "audio/ep030.chapters.json",
+    "cover": "covers/ep030.jpg"
   }
 ]
