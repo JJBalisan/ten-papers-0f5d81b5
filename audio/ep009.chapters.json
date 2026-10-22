@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 62,
+      "title": "Auditing the skill registry"
+    },
+    {
+      "startTime": 257,
+      "title": "Governing geospatial AI"
+    },
+    {
+      "startTime": 454,
+      "title": "Inherited unsafe state"
+    },
+    {
+      "startTime": 644,
+      "title": "Plans that gate rewards"
+    },
+    {
+      "startTime": 813,
+      "title": "Filtering subliminal data"
+    },
+    {
+      "startTime": 962,
+      "title": "An evaluation that refuses"
+    },
+    {
+      "startTime": 1121,
+      "title": "Reading words, reading images"
+    },
+    {
+      "startTime": 1267,
+      "title": "Planning costs tokens"
+    },
+    {
+      "startTime": 1412,
+      "title": "Spoken maths with RL"
+    },
+    {
+      "startTime": 1549,
+      "title": "Welfare, not cost"
+    }
+  ]
+}

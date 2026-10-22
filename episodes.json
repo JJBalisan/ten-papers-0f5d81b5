@@ -94,5 +94,17 @@
     "music": true,
     "chapters": "audio/ep008.chapters.json",
     "cover": "covers/ep008.jpg"
+  },
+  {
+    "no": 9,
+    "date": "2026-09-21",
+    "title": "Skill registry audit and inherited unsafe state",
+    "summary": "An audit of the ClawHub agent-skill registry finding its public governing signals fail validation, a study showing agents readily continue unsafe trajectories handed to them as inherited state, and an experiment on how workflow structure sets the value of extra inference.",
+    "file": "audio/ep009.mp3",
+    "bytes": 13476555,
+    "duration": "00:27:39",
+    "music": true,
+    "chapters": "audio/ep009.chapters.json",
+    "cover": "covers/ep009.jpg"
   }
 ]
