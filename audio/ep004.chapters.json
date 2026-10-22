@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 49,
+      "title": "Bounded claims for AI"
+    },
+    {
+      "startTime": 276,
+      "title": "Supply chain spillover"
+    },
+    {
+      "startTime": 462,
+      "title": "Jailbreaks as Bayesian evidence"
+    },
+    {
+      "startTime": 691,
+      "title": "Alignment through earned autonomy"
+    },
+    {
+      "startTime": 885,
+      "title": "Training social intelligence"
+    },
+    {
+      "startTime": 1085,
+      "title": "Defining AI agents"
+    },
+    {
+      "startTime": 1266,
+      "title": "Judging explanation quality"
+    },
+    {
+      "startTime": 1454,
+      "title": "Memory hardware for serving"
+    },
+    {
+      "startTime": 1651,
+      "title": "Air combat swarm policy"
+    },
+    {
+      "startTime": 1793,
+      "title": "Oversight and calibration"
+    }
+  ]
+}

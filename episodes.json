@@ -34,5 +34,17 @@
     "music": true,
     "chapters": "audio/ep003.chapters.json",
     "cover": "covers/ep003.jpg"
+  },
+  {
+    "no": 4,
+    "date": "2026-09-16",
+    "title": "Bounded claims, jailbreak scaling and earned autonomy",
+    "summary": "A governance framework bounding AI claims to their evidence, a Bayesian scaling law for in-context multimodal jailbreaks with a gated defence, and a position paper on earning autonomy to learn norms.",
+    "file": "audio/ep004.mp3",
+    "bytes": 15927502,
+    "duration": "00:32:46",
+    "music": true,
+    "chapters": "audio/ep004.chapters.json",
+    "cover": "covers/ep004.jpg"
   }
 ]
