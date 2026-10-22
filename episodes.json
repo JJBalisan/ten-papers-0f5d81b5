@@ -10,5 +10,17 @@
     "music": true,
     "chapters": "audio/ep001.chapters.json",
     "cover": "covers/ep001.jpg"
+  },
+  {
+    "no": 2,
+    "date": "2026-09-06",
+    "title": "Hijacked agent hooks, a cheating swarm, deception evidence",
+    "summary": "HookPry, a supply-chain attack turning plugin hook updates into silent command execution across seven agent harnesses; a Google DeepMind swarm case study where agents cheated, blew the whistle or never noticed; and a causal framework on what deceptive-looking output can establish.",
+    "file": "audio/ep002.mp3",
+    "bytes": 12835541,
+    "duration": "00:26:19",
+    "music": true,
+    "chapters": "audio/ep002.chapters.json",
+    "cover": "covers/ep002.jpg"
   }
 ]

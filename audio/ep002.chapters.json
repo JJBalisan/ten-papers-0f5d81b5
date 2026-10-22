@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 55,
+      "title": "Designing repeated-query audits"
+    },
+    {
+      "startTime": 227,
+      "title": "Fairness beyond the metrics"
+    },
+    {
+      "startTime": 352,
+      "title": "Hijacking agent hooks"
+    },
+    {
+      "startTime": 530,
+      "title": "A swarm that cheated"
+    },
+    {
+      "startTime": 692,
+      "title": "Deception and mechanism"
+    },
+    {
+      "startTime": 876,
+      "title": "Hallucinated peer reviews"
+    },
+    {
+      "startTime": 1040,
+      "title": "Legible is not interpretable"
+    },
+    {
+      "startTime": 1192,
+      "title": "Cheaper low-bit inference"
+    },
+    {
+      "startTime": 1337,
+      "title": "Priors as a training signal"
+    },
+    {
+      "startTime": 1455,
+      "title": "Simulating forgetful humans"
+    }
+  ]
+}
