@@ -58,5 +58,17 @@
     "music": true,
     "chapters": "audio/ep005.chapters.json",
     "cover": "covers/ep005.jpg"
+  },
+  {
+    "no": 6,
+    "date": "2026-09-18",
+    "title": "Grading audit independence, probing reward hacking",
+    "summary": "An independence-graded audit protocol for agentic AI where a same-family internal audit can find nothing in the worst case, activation probes that catch reward hacking about as well as an LLM monitor, and a pricing-agent study where chain-of-thought monitoring misses collusion.",
+    "file": "audio/ep006.mp3",
+    "bytes": 14949192,
+    "duration": "00:30:43",
+    "music": true,
+    "chapters": "audio/ep006.chapters.json",
+    "cover": "covers/ep006.jpg"
   }
 ]

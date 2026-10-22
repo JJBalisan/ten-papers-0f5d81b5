@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 62,
+      "title": "Grading audit independence"
+    },
+    {
+      "startTime": 302,
+      "title": "Student reliance on generative AI"
+    },
+    {
+      "startTime": 473,
+      "title": "Collusion hidden in plain sight"
+    },
+    {
+      "startTime": 672,
+      "title": "Vigilance from trick questions"
+    },
+    {
+      "startTime": 825,
+      "title": "Clearing the honest messenger"
+    },
+    {
+      "startTime": 993,
+      "title": "Can we trust the judges"
+    },
+    {
+      "startTime": 1157,
+      "title": "Probing for reward hacking"
+    },
+    {
+      "startTime": 1376,
+      "title": "Underwater data centres"
+    },
+    {
+      "startTime": 1566,
+      "title": "Scaffolding self-play"
+    },
+    {
+      "startTime": 1719,
+      "title": "Levels of contextuality"
+    }
+  ]
+}
