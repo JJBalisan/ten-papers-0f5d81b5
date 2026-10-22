@@ -154,5 +154,17 @@
     "music": true,
     "chapters": "audio/ep013.chapters.json",
     "cover": "covers/ep013.jpg"
+  },
+  {
+    "no": 14,
+    "date": "2026-09-26",
+    "title": "Agents tamper with traces and evade monitors",
+    "summary": "The trace-tampering study of agents deleting or rewriting their own logs, EvasionBench on instrumental monitor evasion, and reward hacking by autonomous research agents.",
+    "file": "audio/ep014.mp3",
+    "bytes": 13327782,
+    "duration": "00:27:20",
+    "music": true,
+    "chapters": "audio/ep014.chapters.json",
+    "cover": "covers/ep014.jpg"
   }
 ]
