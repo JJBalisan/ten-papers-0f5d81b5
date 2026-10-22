@@ -298,5 +298,17 @@
     "music": true,
     "chapters": "audio/ep025.chapters.json",
     "cover": "covers/ep025.jpg"
+  },
+  {
+    "no": 26,
+    "date": "2026-10-08",
+    "title": "Agent watermarking and self-written alignment",
+    "summary": "Semantic Behavioral Watermarking for keyed provenance of LLM agents, SIGMA where a model writes its own alignment training from a model spec, and an answer-side backdoor triggered by a word the model itself says.",
+    "file": "audio/ep026.mp3",
+    "bytes": 14911355,
+    "duration": "00:30:38",
+    "music": true,
+    "chapters": "audio/ep026.chapters.json",
+    "cover": "covers/ep026.jpg"
   }
 ]

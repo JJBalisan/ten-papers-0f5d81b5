@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 58,
+      "title": "Watermarking agent behavior"
+    },
+    {
+      "startTime": 267,
+      "title": "Hakka and algorithmic marginalization"
+    },
+    {
+      "startTime": 453,
+      "title": "A backdoor the model plants"
+    },
+    {
+      "startTime": 660,
+      "title": "Alignment scaling laws"
+    },
+    {
+      "startTime": 859,
+      "title": "Self-written alignment"
+    },
+    {
+      "startTime": 1056,
+      "title": "Over-defensive coding agents"
+    },
+    {
+      "startTime": 1246,
+      "title": "Does steering break models"
+    },
+    {
+      "startTime": 1401,
+      "title": "Ternary matrix kernels"
+    },
+    {
+      "startTime": 1544,
+      "title": "Strategy collapse in RLVR"
+    },
+    {
+      "startTime": 1700,
+      "title": "LLMs and mathematical explanation"
+    }
+  ]
+}
