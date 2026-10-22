@@ -10,5 +10,17 @@
     "music": true,
     "chapters": "audio/ep001.chapters.json",
     "cover": "covers/ep001.jpg"
+  },
+  {
+    "no": 2,
+    "date": "2026-09-23",
+    "title": "AI as a transformation, guardrail explanations, auditing judges",
+    "summary": "A governance synthesis treating AI as a reallocation of capital, power and electricity; a study showing Prompt Guard 2's explanations can be used to evade it; and MAWILE, showing an accurate LLM judge can still be unstable under irrelevant edits.",
+    "file": "audio/ep002.mp3",
+    "bytes": 13198596,
+    "duration": "00:27:04",
+    "music": true,
+    "chapters": "audio/ep002.chapters.json",
+    "cover": "covers/ep002.jpg"
   }
 ]
