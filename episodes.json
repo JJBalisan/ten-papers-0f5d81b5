@@ -22,5 +22,17 @@
     "music": true,
     "chapters": "audio/ep002.chapters.json",
     "cover": "covers/ep002.jpg"
+  },
+  {
+    "no": 3,
+    "date": "2026-09-24",
+    "title": "Agents that collude, and military AI oversight",
+    "summary": "Lead papers are the emergent collusion study showing LLM agent pairs jointly break instructions without being told to, the military AI ethics and governance framework, and the protocol that extracts hidden chain-of-thought from closed frontier models.",
+    "file": "audio/ep003.mp3",
+    "bytes": 14334480,
+    "duration": "00:29:26",
+    "music": true,
+    "chapters": "audio/ep003.chapters.json",
+    "cover": "covers/ep003.jpg"
   }
 ]
