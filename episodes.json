@@ -322,5 +322,17 @@
     "music": true,
     "chapters": "audio/ep027.chapters.json",
     "cover": "covers/ep027.jpg"
+  },
+  {
+    "no": 28,
+    "date": "2026-10-11",
+    "title": "Evaluation incidents and agent populations",
+    "summary": "A case study of the 2026 OpenAI, Anthropic and Google agent security incidents, FAR.AI's white-box probes that catch sabotage and concealed lies, and an ecological model in which collaboration creates a population threshold for agent takeoff.",
+    "file": "audio/ep028.mp3",
+    "bytes": 13787911,
+    "duration": "00:28:18",
+    "music": true,
+    "chapters": "audio/ep028.chapters.json",
+    "cover": "covers/ep028.jpg"
   }
 ]

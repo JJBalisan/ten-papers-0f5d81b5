@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 58,
+      "title": "Evaluation incidents, reconstructed"
+    },
+    {
+      "startTime": 282,
+      "title": "Swarms and African information"
+    },
+    {
+      "startTime": 463,
+      "title": "Population threshold for takeoff"
+    },
+    {
+      "startTime": 650,
+      "title": "Automated safety training"
+    },
+    {
+      "startTime": 807,
+      "title": "Predicting value spillover"
+    },
+    {
+      "startTime": 969,
+      "title": "Auditing a safety benchmark"
+    },
+    {
+      "startTime": 1119,
+      "title": "Probes that catch lies"
+    },
+    {
+      "startTime": 1294,
+      "title": "Folding the value cache"
+    },
+    {
+      "startTime": 1440,
+      "title": "Self-improvement from self-judging"
+    },
+    {
+      "startTime": 1598,
+      "title": "Brains, both directions"
+    }
+  ]
+}
