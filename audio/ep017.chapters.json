@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 59,
+      "title": "Unowned judgment"
+    },
+    {
+      "startTime": 256,
+      "title": "Tokens that remember"
+    },
+    {
+      "startTime": 479,
+      "title": "Prefilling the reasoning"
+    },
+    {
+      "startTime": 652,
+      "title": "Shadows on unrelated choices"
+    },
+    {
+      "startTime": 886,
+      "title": "Honesty is not enough"
+    },
+    {
+      "startTime": 1060,
+      "title": "Cheap behavioural assays"
+    },
+    {
+      "startTime": 1279,
+      "title": "Absorption phase boundary"
+    },
+    {
+      "startTime": 1453,
+      "title": "Splitting prefill and decode"
+    },
+    {
+      "startTime": 1632,
+      "title": "A natural product agent"
+    },
+    {
+      "startTime": 1732,
+      "title": "Bayes or Heisenberg"
+    }
+  ]
+}

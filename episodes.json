@@ -190,5 +190,17 @@
     "music": true,
     "chapters": "audio/ep016.chapters.json",
     "cover": "covers/ep016.jpg"
+  },
+  {
+    "no": 17,
+    "date": "2026-09-29",
+    "title": "Shadows on unrelated choices, and tokenizer bypasses",
+    "summary": "Active Taskless Distillation shows a private post-training update leaking capability through single unrelated word choices, Toketive shows alternative tokenizations bypassing knowledge editing and unlearning, and a prefill attack targets the reasoning channel.",
+    "file": "audio/ep017.mp3",
+    "bytes": 15143853,
+    "duration": "00:31:07",
+    "music": true,
+    "chapters": "audio/ep017.chapters.json",
+    "cover": "covers/ep017.jpg"
   }
 ]
