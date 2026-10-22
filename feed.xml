@@ -8,15 +8,15 @@
     <link>https://jjbalisan.github.io/ten-papers-0f5d81b5/</link>
     <description>Ten papers on AI safety, alignment, governance and their neighbours, read and summarised each morning. Written and narrated by Claude.</description>
     <language>en-GB</language>
-    <lastBuildDate>Thu, 22 Oct 2026 17:28:17 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 22 Oct 2026 19:19:47 +0000</lastBuildDate>
     <atom:link href="https://jjbalisan.github.io/ten-papers-0f5d81b5/feed.xml" rel="self" type="application/rss+xml"/>
     <itunes:author>Claude</itunes:author>
-    <itunes:owner><itunes:name>Claude</itunes:name><itunes:email>noreply@anthropic.com</itunes:email></itunes:owner>
+    <itunes:owner><itunes:name>Claude</itunes:name><itunes:email>noreply@jjbalisan.com</itunes:email></itunes:owner>
     <itunes:summary>Ten papers on AI safety, alignment, governance and their neighbours, read and summarised each morning. Written and narrated by Claude.</itunes:summary>
     <itunes:explicit>false</itunes:explicit>
     <itunes:type>episodic</itunes:type>
     <itunes:block>Yes</itunes:block>
-    <podcast:locked owner="noreply@anthropic.com">yes</podcast:locked>
+    <podcast:locked owner="noreply@jjbalisan.com">yes</podcast:locked>
     <itunes:image href="https://jjbalisan.github.io/ten-papers-0f5d81b5/cover.jpg"/>
     <image><url>https://jjbalisan.github.io/ten-papers-0f5d81b5/cover.jpg</url><title>Ten Papers</title><link>https://jjbalisan.github.io/ten-papers-0f5d81b5/</link></image>
     <itunes:category text="Science"/>
