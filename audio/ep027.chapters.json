@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 63,
+      "title": "Healthy skepticism"
+    },
+    {
+      "startTime": 244,
+      "title": "Justice and the view from everywhere"
+    },
+    {
+      "startTime": 435,
+      "title": "Monitors that flag too early"
+    },
+    {
+      "startTime": 599,
+      "title": "Backdoors through distillation"
+    },
+    {
+      "startTime": 757,
+      "title": "Agents with limited time"
+    },
+    {
+      "startTime": 903,
+      "title": "Reading long agent runs"
+    },
+    {
+      "startTime": 1061,
+      "title": "A transformer in two dimensions"
+    },
+    {
+      "startTime": 1181,
+      "title": "Compressing translation models"
+    },
+    {
+      "startTime": 1305,
+      "title": "Credit for search agents"
+    },
+    {
+      "startTime": 1433,
+      "title": "Limits as a feature"
+    }
+  ]
+}

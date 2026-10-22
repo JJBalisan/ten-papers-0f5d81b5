@@ -310,5 +310,17 @@
     "music": true,
     "chapters": "audio/ep026.chapters.json",
     "cover": "covers/ep026.jpg"
+  },
+  {
+    "no": 27,
+    "date": "2026-10-09",
+    "title": "Monitors that flag too early",
+    "summary": "A misuse-monitoring benchmark where top monitors place their first flag inside the harm window only about half the time, a study showing on-policy distillation for safety can pass a backdoor to a student that looks safer, and a viewpoint on over-reliance on AI that disclosure tools miss.",
+    "file": "audio/ep027.mp3",
+    "bytes": 12503326,
+    "duration": "00:25:37",
+    "music": true,
+    "chapters": "audio/ep027.chapters.json",
+    "cover": "covers/ep027.jpg"
   }
 ]
