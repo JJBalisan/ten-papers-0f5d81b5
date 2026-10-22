@@ -274,5 +274,17 @@
     "music": true,
     "chapters": "audio/ep023.chapters.json",
     "cover": "covers/ep023.jpg"
+  },
+  {
+    "no": 24,
+    "date": "2026-10-06",
+    "title": "Language drift, culture-blind evals, evolving harnesses",
+    "summary": "The RLVR language-drift paper showing outcome-only reward permits unbounded drift and limits monitorability, CuBEs where a culture-blind baseline can invert a model's safety verdict, and HASTE, evolving agent harnesses from sparse threat evidence.",
+    "file": "audio/ep024.mp3",
+    "bytes": 15552609,
+    "duration": "00:31:58",
+    "music": true,
+    "chapters": "audio/ep024.chapters.json",
+    "cover": "covers/ep024.jpg"
   }
 ]

@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 66,
+      "title": "Routing models to cut bias"
+    },
+    {
+      "startTime": 291,
+      "title": "Records that should exist"
+    },
+    {
+      "startTime": 479,
+      "title": "Evolving agent defences"
+    },
+    {
+      "startTime": 711,
+      "title": "Overwriting a person's data"
+    },
+    {
+      "startTime": 874,
+      "title": "Drift in reasoning traces"
+    },
+    {
+      "startTime": 1069,
+      "title": "Culture and behaviour evals"
+    },
+    {
+      "startTime": 1260,
+      "title": "Concepts inside clinical models"
+    },
+    {
+      "startTime": 1445,
+      "title": "Sixteen bits at eight-bit cost"
+    },
+    {
+      "startTime": 1611,
+      "title": "Adapting to other drivers"
+    },
+    {
+      "startTime": 1757,
+      "title": "Python package vulnerabilities"
+    }
+  ]
+}
