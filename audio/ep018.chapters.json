@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 69,
+      "title": "One image fools many"
+    },
+    {
+      "startTime": 316,
+      "title": "Failures become policies"
+    },
+    {
+      "startTime": 549,
+      "title": "Bias is common but scattered"
+    },
+    {
+      "startTime": 780,
+      "title": "Doxxing under real-name rules"
+    },
+    {
+      "startTime": 999,
+      "title": "Context without direction"
+    },
+    {
+      "startTime": 1188,
+      "title": "Checking the image judges"
+    },
+    {
+      "startTime": 1353,
+      "title": "Comparing without curves"
+    },
+    {
+      "startTime": 1498,
+      "title": "Pruning and quantizing together"
+    },
+    {
+      "startTime": 1631,
+      "title": "Self-play without data"
+    },
+    {
+      "startTime": 1752,
+      "title": "Pricing capped access"
+    }
+  ]
+}

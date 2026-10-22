@@ -202,5 +202,17 @@
     "music": true,
     "chapters": "audio/ep017.chapters.json",
     "cover": "covers/ep017.jpg"
+  },
+  {
+    "no": 18,
+    "date": "2026-09-30",
+    "title": "One image fools many, plus self-evolving agent defence",
+    "summary": "A transferable adversarial image attack on twenty-four multimodal models, where extra reasoning effort gives no protection; a failure-driven, training-free agent defence; and a ten-model gender bias audit.",
+    "file": "audio/ep018.mp3",
+    "bytes": 14791838,
+    "duration": "00:30:23",
+    "music": true,
+    "chapters": "audio/ep018.chapters.json",
+    "cover": "covers/ep018.jpg"
   }
 ]
