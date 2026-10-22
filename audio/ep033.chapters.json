@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 61,
+      "title": "Causal claims and authority"
+    },
+    {
+      "startTime": 297,
+      "title": "A people-first AI stack"
+    },
+    {
+      "startTime": 506,
+      "title": "Dormant poisoning defence"
+    },
+    {
+      "startTime": 744,
+      "title": "Evolving jailbreak skills"
+    },
+    {
+      "startTime": 977,
+      "title": "Constitution from community"
+    },
+    {
+      "startTime": 1160,
+      "title": "An image test that resists saturation"
+    },
+    {
+      "startTime": 1355,
+      "title": "A dictionary of concept vectors"
+    },
+    {
+      "startTime": 1523,
+      "title": "Sharing bits for speculation"
+    },
+    {
+      "startTime": 1679,
+      "title": "Reinforcement learning for diffusion"
+    },
+    {
+      "startTime": 1819,
+      "title": "Symmetry in neural decoding"
+    }
+  ]
+}

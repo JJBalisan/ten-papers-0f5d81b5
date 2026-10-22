@@ -382,5 +382,17 @@
     "music": true,
     "chapters": "audio/ep032.chapters.json",
     "cover": "covers/ep032.jpg"
+  },
+  {
+    "no": 33,
+    "date": "2026-10-20",
+    "title": "Dormant poisoning, evolving jailbreaks and causal authority",
+    "summary": "The Lookahead defence against dormant poisoning in language and multimodal agents, RedDarwin's evolved jailbreak skills reaching near-total success on frontier models, and Causal Humility on the authority of causal fairness claims.",
+    "file": "audio/ep033.mp3",
+    "bytes": 15572668,
+    "duration": "00:32:01",
+    "music": true,
+    "chapters": "audio/ep033.chapters.json",
+    "cover": "covers/ep033.jpg"
   }
 ]
