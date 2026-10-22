@@ -286,5 +286,17 @@
     "music": true,
     "chapters": "audio/ep024.chapters.json",
     "cover": "covers/ep024.jpg"
+  },
+  {
+    "no": 25,
+    "date": "2026-10-07",
+    "title": "Watermarking duty, compliance versus stoppability, early deception",
+    "summary": "A measurement framework for the EU Article 50 text-watermarking duty, a two-probe benchmark of exploitability and stoppability across twelve models, and a hidden-state detector that predicts agent deception before it appears.",
+    "file": "audio/ep025.mp3",
+    "bytes": 13461261,
+    "duration": "00:27:37",
+    "music": true,
+    "chapters": "audio/ep025.chapters.json",
+    "cover": "covers/ep025.jpg"
   }
 ]

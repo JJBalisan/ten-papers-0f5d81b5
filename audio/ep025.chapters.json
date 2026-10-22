@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 54,
+      "title": "Text watermarking under Article fifty"
+    },
+    {
+      "startTime": 256,
+      "title": "Predicting deception early"
+    },
+    {
+      "startTime": 449,
+      "title": "Oversight monitors for long-horizon agents"
+    },
+    {
+      "startTime": 617,
+      "title": "Compliance and pushback"
+    },
+    {
+      "startTime": 790,
+      "title": "What a flip rate hides"
+    },
+    {
+      "startTime": 948,
+      "title": "Auditing agentic leaderboards"
+    },
+    {
+      "startTime": 1099,
+      "title": "Faithful concept explanations"
+    },
+    {
+      "startTime": 1248,
+      "title": "Scaling down the scaling laws"
+    },
+    {
+      "startTime": 1378,
+      "title": "A legal research assistant"
+    },
+    {
+      "startTime": 1515,
+      "title": "What voting rules actually do"
+    }
+  ]
+}
