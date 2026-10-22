@@ -358,5 +358,17 @@
     "music": true,
     "chapters": "audio/ep030.chapters.json",
     "cover": "covers/ep030.jpg"
+  },
+  {
+    "no": 31,
+    "date": "2026-10-15",
+    "title": "Factuality methods fail reproduction",
+    "summary": "Eleven papers. An independent reproduction finds none of five published factuality alignment methods beats the untrained base model; a multi-turn jailbreak framework still breaks a protected model about seven times in ten; and early-exit depth changes jailbreak robustness.",
+    "file": "audio/ep031.mp3",
+    "bytes": 14158716,
+    "duration": "00:29:04",
+    "music": true,
+    "chapters": "audio/ep031.chapters.json",
+    "cover": "covers/ep031.jpg"
   }
 ]

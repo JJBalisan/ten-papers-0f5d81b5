@@ -1,0 +1,53 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 59,
+      "title": "Humans and machines as a system"
+    },
+    {
+      "startTime": 245,
+      "title": "Stigma in model answers"
+    },
+    {
+      "startTime": 430,
+      "title": "Jailbreaking a protected model"
+    },
+    {
+      "startTime": 612,
+      "title": "Safety at every exit depth"
+    },
+    {
+      "startTime": 752,
+      "title": "When misalignment is acceptable"
+    },
+    {
+      "startTime": 920,
+      "title": "Factuality methods under audit"
+    },
+    {
+      "startTime": 1110,
+      "title": "Fluent but unfaithful"
+    },
+    {
+      "startTime": 1251,
+      "title": "A testbed with known neurons"
+    },
+    {
+      "startTime": 1390,
+      "title": "What input tokens cost"
+    },
+    {
+      "startTime": 1520,
+      "title": "Guiding offline policies"
+    },
+    {
+      "startTime": 1632,
+      "title": "Learning without full excitation"
+    }
+  ]
+}
