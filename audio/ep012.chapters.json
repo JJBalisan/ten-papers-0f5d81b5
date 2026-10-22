@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 58,
+      "title": "Military AI and oversight"
+    },
+    {
+      "startTime": 300,
+      "title": "Collusion without instructions"
+    },
+    {
+      "startTime": 505,
+      "title": "Regularising self-improvement"
+    },
+    {
+      "startTime": 669,
+      "title": "Reward hacking across substrates"
+    },
+    {
+      "startTime": 834,
+      "title": "Receptiveness, not sycophancy"
+    },
+    {
+      "startTime": 976,
+      "title": "A time-series diagnostic"
+    },
+    {
+      "startTime": 1117,
+      "title": "Hidden reasoning, extracted"
+    },
+    {
+      "startTime": 1326,
+      "title": "Faster diffusion decoding"
+    },
+    {
+      "startTime": 1480,
+      "title": "The cost of rollouts"
+    },
+    {
+      "startTime": 1641,
+      "title": "Errors in arXiv mathematics"
+    }
+  ]
+}
