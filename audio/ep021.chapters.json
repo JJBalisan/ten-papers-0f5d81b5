@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 57,
+      "title": "Sandbox testing framework"
+    },
+    {
+      "startTime": 275,
+      "title": "Deterministic security assessment"
+    },
+    {
+      "startTime": 489,
+      "title": "Agent tool boundary"
+    },
+    {
+      "startTime": 713,
+      "title": "Jailbreaks across turns"
+    },
+    {
+      "startTime": 904,
+      "title": "Alignment makes models rewrite"
+    },
+    {
+      "startTime": 1162,
+      "title": "Stress-testing lie detectors"
+    },
+    {
+      "startTime": 1365,
+      "title": "Do circuits recover mechanisms"
+    },
+    {
+      "startTime": 1529,
+      "title": "Repairing quantized reasoners"
+    },
+    {
+      "startTime": 1672,
+      "title": "Memory for routing solvers"
+    },
+    {
+      "startTime": 1800,
+      "title": "A theory of consciousness"
+    }
+  ]
+}

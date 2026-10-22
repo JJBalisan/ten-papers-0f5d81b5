@@ -238,5 +238,17 @@
     "music": true,
     "chapters": "audio/ep020.chapters.json",
     "cover": "covers/ep020.jpg"
+  },
+  {
+    "no": 21,
+    "date": "2026-10-03",
+    "title": "Alignment makes models rewrite, agent tool boundaries",
+    "summary": "An alignment-induced unfaithfulness study in which DPO trains away visible hedging and replaces it with silent inversion, the PACE tool-boundary defence for agents, and the AI Assessment Sandbox Configurator for EU regulatory sandboxes.",
+    "file": "audio/ep021.mp3",
+    "bytes": 15618312,
+    "duration": "00:32:07",
+    "music": true,
+    "chapters": "audio/ep021.chapters.json",
+    "cover": "covers/ep021.jpg"
   }
 ]
