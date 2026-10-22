@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "no": 1,
+    "date": "2026-09-04",
+    "title": "Causal graphs, long-context guardrails and agent conflicts",
+    "summary": "Causal Evidentiary Governance, where lenders commit to a causal graph and ship signed evidence per decision; LongGuard, finding safety guardrails lose half their unsafe recall on long inputs; and KC-Bench, showing agents accepting false premises and mismatched identities.",
+    "file": "audio/ep001.mp3",
+    "bytes": 13389428,
+    "duration": "00:27:28",
+    "music": true,
+    "chapters": "audio/ep001.chapters.json",
+    "cover": "covers/ep001.jpg"
+  }
+]

@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 60,
+      "title": "Committing to a causal graph"
+    },
+    {
+      "startTime": 305,
+      "title": "Guardrails and long inputs"
+    },
+    {
+      "startTime": 506,
+      "title": "Leakage gauges"
+    },
+    {
+      "startTime": 660,
+      "title": "Retrievable oversight"
+    },
+    {
+      "startTime": 811,
+      "title": "Agents under conflicting evidence"
+    },
+    {
+      "startTime": 991,
+      "title": "Provenance density"
+    },
+    {
+      "startTime": 1129,
+      "title": "Workspace in looped models"
+    },
+    {
+      "startTime": 1292,
+      "title": "Compression without text"
+    },
+    {
+      "startTime": 1442,
+      "title": "Lucky guesses in GRPO"
+    },
+    {
+      "startTime": 1564,
+      "title": "Quantum circuits in SQL"
+    }
+  ]
+}
