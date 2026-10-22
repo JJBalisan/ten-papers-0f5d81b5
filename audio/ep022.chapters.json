@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 57,
+      "title": "Checking compliance with abstention"
+    },
+    {
+      "startTime": 273,
+      "title": "Chaining skills to hijack agents"
+    },
+    {
+      "startTime": 475,
+      "title": "Over-reaching on private data"
+    },
+    {
+      "startTime": 674,
+      "title": "Oversight without revealing data"
+    },
+    {
+      "startTime": 834,
+      "title": "Best-of-n meets K L-constrained RL"
+    },
+    {
+      "startTime": 985,
+      "title": "Agents as configurable systems"
+    },
+    {
+      "startTime": 1159,
+      "title": "Self-repair as a standing coupling"
+    },
+    {
+      "startTime": 1318,
+      "title": "Training for four-bit deployment"
+    },
+    {
+      "startTime": 1496,
+      "title": "A better greedification operator"
+    },
+    {
+      "startTime": 1655,
+      "title": "Collective intelligence as computation"
+    }
+  ]
+}

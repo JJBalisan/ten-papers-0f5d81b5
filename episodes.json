@@ -250,5 +250,17 @@
     "music": true,
     "chapters": "audio/ep021.chapters.json",
     "cover": "covers/ep021.jpg"
+  },
+  {
+    "no": 22,
+    "date": "2026-10-04",
+    "title": "Skill-chain hijacking and private oversight",
+    "summary": "APEX, a skill-chaining attack that hijacks agents while task scores barely move; a proof that AI oversight over confidential data needs a trusted signer; and OVERACT, showing every tested model over-reaches on private data.",
+    "file": "audio/ep022.mp3",
+    "bytes": 14503485,
+    "duration": "00:29:47",
+    "music": true,
+    "chapters": "audio/ep022.chapters.json",
+    "cover": "covers/ep022.jpg"
   }
 ]
