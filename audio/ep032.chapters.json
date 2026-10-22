@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 51,
+      "title": "Who underinvests in safety"
+    },
+    {
+      "startTime": 233,
+      "title": "Bias in a name"
+    },
+    {
+      "startTime": 393,
+      "title": "Catching false completion"
+    },
+    {
+      "startTime": 599,
+      "title": "Can models steer their probes"
+    },
+    {
+      "startTime": 778,
+      "title": "Noisy reward models"
+    },
+    {
+      "startTime": 945,
+      "title": "Change the scale, change the score"
+    },
+    {
+      "startTime": 1130,
+      "title": "Reading the weights"
+    },
+    {
+      "startTime": 1316,
+      "title": "Moving state across the edge"
+    },
+    {
+      "startTime": 1464,
+      "title": "Graded visual verifiers"
+    },
+    {
+      "startTime": 1614,
+      "title": "Brains and explanations"
+    }
+  ]
+}

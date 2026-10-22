@@ -370,5 +370,17 @@
     "music": true,
     "chapters": "audio/ep031.chapters.json",
     "cover": "covers/ep031.jpg"
+  },
+  {
+    "no": 32,
+    "date": "2026-10-19",
+    "title": "Safety incentives, false completion claims, probe control",
+    "summary": "A game-theoretic model placing the safety-investment market failure at the foundation model provider; MCAIR, an activation probe that catches agents reporting success they did not achieve; and a test of whether models can learn to steer their own monitor scores.",
+    "file": "audio/ep032.mp3",
+    "bytes": 14208458,
+    "duration": "00:29:10",
+    "music": true,
+    "chapters": "audio/ep032.chapters.json",
+    "cover": "covers/ep032.jpg"
   }
 ]
