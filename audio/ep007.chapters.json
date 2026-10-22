@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 56,
+      "title": "Executable AI Act compliance"
+    },
+    {
+      "startTime": 321,
+      "title": "Compliance with Chinese rules"
+    },
+    {
+      "startTime": 547,
+      "title": "Red-teaming blocking monitors"
+    },
+    {
+      "startTime": 777,
+      "title": "Financial trading agents"
+    },
+    {
+      "startTime": 947,
+      "title": "Midtraining and its limits"
+    },
+    {
+      "startTime": 1139,
+      "title": "Reporting accuracy by domain"
+    },
+    {
+      "startTime": 1300,
+      "title": "Swarms and shared beliefs"
+    },
+    {
+      "startTime": 1441,
+      "title": "Billing for extra words"
+    },
+    {
+      "startTime": 1593,
+      "title": "Neuromodulation as a third axis"
+    },
+    {
+      "startTime": 1682,
+      "title": "Calibrating competing risks"
+    }
+  ]
+}

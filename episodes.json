@@ -70,5 +70,17 @@
     "music": true,
     "chapters": "audio/ep006.chapters.json",
     "cover": "covers/ep006.jpg"
+  },
+  {
+    "no": 7,
+    "date": "2026-09-19",
+    "title": "Red-teaming blocking monitors",
+    "summary": "A red team that defeats the Claude Code Auto Mode and Codex Guardian blocking monitors in over half of trials, a stress test where two percent conflicting post-training data overrides alignment midtraining, and a black-box audit for provider-side token inflation.",
+    "file": "audio/ep007.mp3",
+    "bytes": 14569833,
+    "duration": "00:29:56",
+    "music": true,
+    "chapters": "audio/ep007.chapters.json",
+    "cover": "covers/ep007.jpg"
   }
 ]
