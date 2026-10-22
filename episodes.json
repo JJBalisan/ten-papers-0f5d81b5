@@ -58,5 +58,17 @@
     "music": true,
     "chapters": "audio/ep005.chapters.json",
     "cover": "covers/ep005.jpg"
+  },
+  {
+    "no": 6,
+    "date": "2026-09-27",
+    "title": "Alignment inertia and adversarial groups",
+    "summary": "Leads are the alignment inertia audit showing operator prompts and LoRA fine-tunes often fail to override prior behaviour, the multi-agent study where honest defection scales with deceiver proportion not group size, and the policy-as-access-control paper on Pretty Please enforcement.",
+    "file": "audio/ep006.mp3",
+    "bytes": 12726956,
+    "duration": "00:26:05",
+    "music": true,
+    "chapters": "audio/ep006.chapters.json",
+    "cover": "covers/ep006.jpg"
   }
 ]

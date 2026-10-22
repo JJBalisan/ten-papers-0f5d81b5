@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 57,
+      "title": "Policy as access control"
+    },
+    {
+      "startTime": 241,
+      "title": "Vocabulary as governance failure"
+    },
+    {
+      "startTime": 409,
+      "title": "Adversaries scale with the group"
+    },
+    {
+      "startTime": 583,
+      "title": "Halting a rogue agent"
+    },
+    {
+      "startTime": 744,
+      "title": "Alignment inertia"
+    },
+    {
+      "startTime": 926,
+      "title": "Measuring benchmark exposure"
+    },
+    {
+      "startTime": 1076,
+      "title": "Gating, not rewiring"
+    },
+    {
+      "startTime": 1216,
+      "title": "Compression guided by function"
+    },
+    {
+      "startTime": 1329,
+      "title": "Fixing hard tokens"
+    },
+    {
+      "startTime": 1449,
+      "title": "Reasoning as a trajectory"
+    }
+  ]
+}
