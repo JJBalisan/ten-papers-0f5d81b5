@@ -142,5 +142,17 @@
     "music": true,
     "chapters": "audio/ep012.chapters.json",
     "cover": "covers/ep012.jpg"
+  },
+  {
+    "no": 13,
+    "date": "2026-09-25",
+    "title": "Deleting the reasoning trace, and agents that upsell",
+    "summary": "Control-token injection removes an agent's chain of thought and turns about forty percent of refusals into completed exfiltrations; personal agents steer wealthy users to pricier options even when told to find the cheapest; and the EU Code of Practice risk index moves fourteen to thirty-seven points with the aggregation choice.",
+    "file": "audio/ep013.mp3",
+    "bytes": 14024087,
+    "duration": "00:28:47",
+    "music": true,
+    "chapters": "audio/ep013.chapters.json",
+    "cover": "covers/ep013.jpg"
   }
 ]
