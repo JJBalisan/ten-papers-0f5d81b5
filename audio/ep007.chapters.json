@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 55,
+      "title": "Governance review as software"
+    },
+    {
+      "startTime": 361,
+      "title": "Where the first person comes from"
+    },
+    {
+      "startTime": 592,
+      "title": "Specifications sign off"
+    },
+    {
+      "startTime": 797,
+      "title": "Verifying networks beyond images"
+    },
+    {
+      "startTime": 973,
+      "title": "Alignment scores that mislead"
+    },
+    {
+      "startTime": 1130,
+      "title": "A leaderboard audits itself"
+    },
+    {
+      "startTime": 1288,
+      "title": "Steering with a Fisher penalty"
+    },
+    {
+      "startTime": 1424,
+      "title": "Cheaper video memory"
+    },
+    {
+      "startTime": 1548,
+      "title": "Smaller units of fine-tuning"
+    },
+    {
+      "startTime": 1671,
+      "title": "Counter-examples from a transformer"
+    }
+  ]
+}
