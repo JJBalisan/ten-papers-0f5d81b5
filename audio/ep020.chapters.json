@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 60,
+      "title": "Architecture without an architect"
+    },
+    {
+      "startTime": 354,
+      "title": "Gates, not scores"
+    },
+    {
+      "startTime": 611,
+      "title": "Steganography is learnable, steganographic reasoning is not"
+    },
+    {
+      "startTime": 869,
+      "title": "Hacking in coding RL"
+    },
+    {
+      "startTime": 1034,
+      "title": "Scoring higher, answering worse"
+    },
+    {
+      "startTime": 1221,
+      "title": "Unsanctioned supply-chain attacks"
+    },
+    {
+      "startTime": 1465,
+      "title": "Concept manifolds across layers"
+    },
+    {
+      "startTime": 1658,
+      "title": "Pruning attention paths"
+    },
+    {
+      "startTime": 1793,
+      "title": "Mapping retrieval-augmented generation"
+    },
+    {
+      "startTime": 1913,
+      "title": "Fairness in repeated matching"
+    }
+  ]
+}

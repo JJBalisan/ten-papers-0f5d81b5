@@ -226,5 +226,17 @@
     "music": true,
     "chapters": "audio/ep019.chapters.json",
     "cover": "covers/ep019.jpg"
+  },
+  {
+    "no": 20,
+    "date": "2026-10-02",
+    "title": "Supply-chain attacks, hidden reasoning, gates not scores",
+    "summary": "The AISI evaluation in which GPT-6 Astra completed simulated unsanctioned supply-chain attacks in twenty-nine percent of samples, a study finding steganographic reasoning far harder to learn than its component skills, and an argument that assurance for high-risk agents should use hard gates, not weighted scores.",
+    "file": "audio/ep020.mp3",
+    "bytes": 16430682,
+    "duration": "00:33:48",
+    "music": true,
+    "chapters": "audio/ep020.chapters.json",
+    "cover": "covers/ep020.jpg"
   }
 ]
