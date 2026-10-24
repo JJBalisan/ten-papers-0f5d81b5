@@ -430,5 +430,17 @@
     "music": true,
     "chapters": "audio/ep036.chapters.json",
     "cover": "covers/ep036.jpg"
+  },
+  {
+    "no": 37,
+    "date": "2026-10-24",
+    "title": "Per-action authorization does not compose",
+    "summary": "A proof that per-action guards cannot detect relational purpose violations in LLM agents, a study showing monitor diversity should be counted by independent evidence sources, and a test of refusal transfer from chat to tool use.",
+    "file": "audio/ep037.mp3",
+    "bytes": 16458416,
+    "duration": "00:33:52",
+    "music": true,
+    "chapters": "audio/ep037.chapters.json",
+    "cover": "covers/ep037.jpg"
   }
 ]
