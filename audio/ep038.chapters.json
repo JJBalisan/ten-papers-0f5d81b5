@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 63,
+      "title": "Simulated control evaluations"
+    },
+    {
+      "startTime": 574,
+      "title": "Risk ontologies for the AI Act"
+    },
+    {
+      "startTime": 769,
+      "title": "Diffusion jailbreak templates"
+    },
+    {
+      "startTime": 970,
+      "title": "Who defers to whom"
+    },
+    {
+      "startTime": 1217,
+      "title": "Instrumental convergence in training"
+    },
+    {
+      "startTime": 1388,
+      "title": "Limits of behavioural evaluation"
+    },
+    {
+      "startTime": 1583,
+      "title": "Scaling laws for probes"
+    },
+    {
+      "startTime": 1748,
+      "title": "Quantizing mixture of experts"
+    },
+    {
+      "startTime": 1877,
+      "title": "Forgetting and generative models"
+    },
+    {
+      "startTime": 2000,
+      "title": "Attention when you need"
+    }
+  ]
+}

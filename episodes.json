@@ -442,5 +442,17 @@
     "music": true,
     "chapters": "audio/ep037.chapters.json",
     "cover": "covers/ep037.jpg"
+  },
+  {
+    "no": 38,
+    "date": "2026-10-25",
+    "title": "Simulating control evaluations",
+    "summary": "Simulated Control Evaluations, which predict deployment safety from simulated tool outputs; a partition theory of what behavioural evaluation cannot certify; and a human study finding people adopt confident falsehoods at the same rate however unreliable the assistant.",
+    "file": "audio/ep038.mp3",
+    "bytes": 16902481,
+    "duration": "00:34:47",
+    "music": true,
+    "chapters": "audio/ep038.chapters.json",
+    "cover": "covers/ep038.jpg"
   }
 ]
