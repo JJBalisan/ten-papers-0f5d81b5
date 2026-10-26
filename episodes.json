@@ -454,5 +454,17 @@
     "music": true,
     "chapters": "audio/ep038.chapters.json",
     "cover": "covers/ep038.jpg"
+  },
+  {
+    "no": 39,
+    "date": "2026-10-26",
+    "title": "Missing evidence, email phishing and audit guarantees",
+    "summary": "EpiSEM-Bench, where tool agents act on prohibited operations when a safety-relevant fact is silently missing; a no-assumption guarantee on the share of AI errors that escape human review; and AgentPhishing, where email agents perfect on public phishing corpora fail under adaptive persuasion attacks.",
+    "file": "audio/ep039.mp3",
+    "bytes": 14877832,
+    "duration": "00:30:34",
+    "music": true,
+    "chapters": "audio/ep039.chapters.json",
+    "cover": "covers/ep039.jpg"
   }
 ]

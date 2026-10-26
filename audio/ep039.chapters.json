@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 46,
+      "title": "Missing evidence in tool agents"
+    },
+    {
+      "startTime": 667,
+      "title": "Auditing the EU AI Act"
+    },
+    {
+      "startTime": 878,
+      "title": "Governance that scales with capability"
+    },
+    {
+      "startTime": 1037,
+      "title": "Email agents under adaptive attack"
+    },
+    {
+      "startTime": 1226,
+      "title": "Selective auditing guarantees"
+    },
+    {
+      "startTime": 1365,
+      "title": "State integrity collapse"
+    },
+    {
+      "startTime": 1475,
+      "title": "Natural language autoencoders for diffing"
+    },
+    {
+      "startTime": 1585,
+      "title": "Muting audio tokens"
+    },
+    {
+      "startTime": 1662,
+      "title": "A shared memory buffer"
+    },
+    {
+      "startTime": 1742,
+      "title": "Agnosticism about machine consciousness"
+    }
+  ]
+}
