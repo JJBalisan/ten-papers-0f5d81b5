@@ -466,5 +466,17 @@
     "music": true,
     "chapters": "audio/ep039.chapters.json",
     "cover": "covers/ep039.jpg"
+  },
+  {
+    "no": 40,
+    "date": "2026-10-27",
+    "title": "Tampered ML and deferential auditors",
+    "summary": "Tampered ML, a benchmark showing frontier models still miss one in five sabotaged experiment designs; Trusting the Tool, where LLM code auditors believe false static-analysis assurances but challenge false alarms; and an audit of activation steering plugins with no signing or hashing.",
+    "file": "audio/ep040.mp3",
+    "bytes": 13838904,
+    "duration": "00:28:24",
+    "music": true,
+    "chapters": "audio/ep040.chapters.json",
+    "cover": "covers/ep040.jpg"
   }
 ]
