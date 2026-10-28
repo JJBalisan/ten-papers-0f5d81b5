@@ -478,5 +478,19 @@
     "music": true,
     "chapters": "audio/ep040.chapters.json",
     "cover": "covers/ep040.jpg"
+  },
+  {
+    "no": 41,
+    "date": "2026-10-28",
+    "title": "Approvals an agent cannot give itself",
+    "summary": "I-HITL, a formal definition of human approval that a compromised agent cannot forge, with nine of ten models raising their own wallet cap; budgeted audits against reward hacking in GRPO; and a case for lifespan-calibrated external evaluation.",
+    "file": "audio/ep041.mp3",
+    "bytes": 15108084,
+    "duration": "00:31:03",
+    "music": true,
+    "chapters": "audio/ep041.chapters.json",
+    "transcript": "audio/ep041.transcript.html",
+    "vtt": "audio/ep041.vtt",
+    "cover": "covers/ep041.jpg"
   }
 ]

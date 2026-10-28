@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 54,
+      "title": "Inalienable human in the loop"
+    },
+    {
+      "startTime": 593,
+      "title": "Trust in AI across two countries"
+    },
+    {
+      "startTime": 757,
+      "title": "What shapes attitudes to AI"
+    },
+    {
+      "startTime": 902,
+      "title": "Privacy in quantized networks"
+    },
+    {
+      "startTime": 1030,
+      "title": "Spending audits against reward hacking"
+    },
+    {
+      "startTime": 1244,
+      "title": "Lifespan-calibrated evaluation"
+    },
+    {
+      "startTime": 1399,
+      "title": "Steering several traits at once"
+    },
+    {
+      "startTime": 1529,
+      "title": "Planning data centre build-out"
+    },
+    {
+      "startTime": 1655,
+      "title": "Scaling laws for reinforcement learning"
+    },
+    {
+      "startTime": 1765,
+      "title": "A generalised voter model"
+    }
+  ]
+}
