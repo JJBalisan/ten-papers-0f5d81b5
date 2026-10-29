@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 57,
+      "title": "Shutdown on replay"
+    },
+    {
+      "startTime": 695,
+      "title": "Verifying agents on the web"
+    },
+    {
+      "startTime": 918,
+      "title": "Cheap reverse engineering and the law"
+    },
+    {
+      "startTime": 1172,
+      "title": "DeepSeek V four point one audit"
+    },
+    {
+      "startTime": 1489,
+      "title": "Alignment from agent chatter"
+    },
+    {
+      "startTime": 1663,
+      "title": "Measuring rare failures"
+    },
+    {
+      "startTime": 1815,
+      "title": "Explaining document models"
+    },
+    {
+      "startTime": 1912,
+      "title": "A sparse ternary accelerator"
+    },
+    {
+      "startTime": 2017,
+      "title": "Self-improving optimizer agents"
+    },
+    {
+      "startTime": 2120,
+      "title": "Rationalism, empiricism and language models"
+    }
+  ]
+}

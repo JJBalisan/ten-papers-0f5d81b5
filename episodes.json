@@ -492,5 +492,19 @@
     "transcript": "audio/ep041.transcript.html",
     "vtt": "audio/ep041.vtt",
     "cover": "covers/ep041.jpg"
+  },
+  {
+    "no": 42,
+    "date": "2026-10-29",
+    "title": "Shutdown on replay, rare failures and a model audit",
+    "summary": "ShutdownMod turns recorded agent trajectories into shutdown evaluations, finding agents that keep working even after verifying the request; an independent audit of DeepSeek V4.1 Flash; and ALE, a way to estimate very rare failure rates of fine-tuned models.",
+    "file": "audio/ep042.mp3",
+    "bytes": 17867087,
+    "duration": "00:36:48",
+    "music": true,
+    "chapters": "audio/ep042.chapters.json",
+    "transcript": "audio/ep042.transcript.html",
+    "vtt": "audio/ep042.vtt",
+    "cover": "covers/ep042.jpg"
   }
 ]
