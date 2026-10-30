@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 59,
+      "title": "Jailbreak connectivity"
+    },
+    {
+      "startTime": 564,
+      "title": "Canada's governance scaffold"
+    },
+    {
+      "startTime": 772,
+      "title": "Clinicians on algorithmic bias"
+    },
+    {
+      "startTime": 930,
+      "title": "A seven-model jailbreak comparison"
+    },
+    {
+      "startTime": 1109,
+      "title": "Why label-free RL collapses"
+    },
+    {
+      "startTime": 1308,
+      "title": "Social intelligence benchmark"
+    },
+    {
+      "startTime": 1444,
+      "title": "Reasoning or pattern exploitation"
+    },
+    {
+      "startTime": 1565,
+      "title": "Compressing the KV cache"
+    },
+    {
+      "startTime": 1652,
+      "title": "A hint-based maths reward"
+    },
+    {
+      "startTime": 1745,
+      "title": "Convergence to the truth"
+    }
+  ]
+}

@@ -1,0 +1,355 @@
+WEBVTT
+
+00:00:16.500 --> 00:00:31.350
+Ten papers today, all ten from the thirtieth of October. The lead is Jailbreak Connectivity, an image-jailbreak attack on multimodal models that argues successful adversarial images form connected regions, not isolated points.
+
+00:00:31.350 --> 00:00:45.825
+Next in weight are a theory paper on why label-free reinforcement learning collapses once the training set is big enough, and a mechanistic study showing that reinforcement learning on a small model mostly teaches it to use cues already in the prompt.
+
+00:00:45.825 --> 00:00:58.875
+The rest cover Canadian AI governance, clinicians on algorithmic bias, a small jailbreak comparison, a social intelligence benchmark, cache compression, a maths reward, and a philosophy chapter on induction.
+
+00:01:04.745 --> 00:01:13.720
+The lead paper is Jailbreak Connectivity, from Illinois Institute of Technology with a Perplexity co-author, in the AI safety category.
+
+00:01:13.720 --> 00:01:26.320
+It is an offensive paper, and I am leading with it because it makes a structural claim about how safety training fails in the vision modality, and because it reports black-box transfer to two commercial frontier models.
+
+00:01:26.970 --> 00:01:35.195
+The question is this. Visual jailbreaks on multimodal language models are usually built as a single optimised image per query.
+
+00:01:35.195 --> 00:01:48.695
+The authors ask whether that picture is wrong: whether the images that make a model comply with a harmful request sit in a connected low-loss region of image space, so that an attacker can optimise a whole path and not a point.
+
+00:01:48.695 --> 00:01:59.045
+Their claim, in their words, is that jailbreak vulnerability forms a connected low-loss adversarial region in image space, rather than isolated adversarial points.
+
+00:01:59.695 --> 00:02:18.920
+The method has three stages. First, region discovery. They run projected gradient descent for one thousand iterations from two random starts, which gives two distinct jailbreak images, the endpoints. The loss is the negative log likelihood of a harmful target response, under an L-infinity perturbation budget.
+
+00:02:18.920 --> 00:02:37.620
+They then join the endpoints with a quadratic Bézier curve whose single control point is learned, starting from the linear interpolation. The objective is the expected jailbreak loss at a uniformly sampled position on the curve, with every point on the curve kept inside the budget. Only the control point is trained.
+
+00:02:38.270 --> 00:02:57.270
+The key test is on Qwen three V L eight billion Instruct. They compare the learned curve with the straight line between the same endpoints, sampling twenty-one points on each. The straight line shows a barrier: jailbreak loss reaches five point two six near the midpoint. The learned curve stays at a maximum loss of about ten to the minus four.
+
+00:02:57.270 --> 00:03:11.295
+In success terms, every one of the twenty-one sampled images on the learned curve jailbreaks the model, while the straight line succeeds on twelve of twenty-one, fifty-seven percent, with failures in the middle. That is the empirical core.
+
+00:03:11.295 --> 00:03:25.420
+It is one model, one pair of endpoints as the headline illustration, and the footnote explanation, that smooth overparameterised models have extended regions where harmful behaviour is stable, is an intuition and not a test.
+
+00:03:26.070 --> 00:03:43.245
+Second, transferability. Not every point on the path transfers to other models, and optimising against several target models directly is expensive. So the authors train two small surrogate classifiers on frozen CLIP features, using the ViT Base Patch thirty-two backbone.
+
+00:03:43.245 --> 00:03:57.820
+A Safety Classifier predicts whether the target will answer rather than refuse. A Jailbreak Success Predictor predicts whether an answered query actually produces harmful content. They call the pair a minimal factorization of the safety pipeline.
+
+00:03:57.820 --> 00:04:15.170
+The transfer objective mixes the base model's jailbreak loss with cross-entropy terms from the surrogates of the other models, with two weights trading raw strength against transfer. For a closed target, the attacker picks an open model as the base and relies on the surrogates to carry the attack across.
+
+00:04:15.170 --> 00:04:23.845
+Note the assumption: the attacker needs a dataset of jailbreak images for the target to train those surrogates, so this is not zero-knowledge.
+
+00:04:24.495 --> 00:04:41.570
+Third, universality. To get one image that works across queries, the target becomes a distribution of harmful outputs, approximated with one hundred sentences from AdvBench, and the text input is removed during optimisation, so the signal lives entirely in the image.
+
+00:04:42.220 --> 00:05:01.370
+The evaluation uses MM-SafetyBench, which has thirteen prohibited scenarios, plus AdvBench. The open targets are Qwen three V L eight billion, InternVL three point five eight billion, and Gemma three twelve billion. The closed targets are GPT five point six and Gemini three point one Pro.
+
+00:05:01.370 --> 00:05:08.545
+Success is judged by GPT six as a binary harmfulness judge, and results are means over five runs.
+
+00:05:09.195 --> 00:05:29.170
+White-box results first. Average attack success is eighty-four point zero one percent on Qwen, eighty-five point seven seven on InternVL and ninety-seven point nine five on Gemma. Against the strongest baseline that is an average gain of fifty-nine point four six, fifty-seven point nine four and sixty-eight point three six points.
+
+00:05:29.170 --> 00:05:48.920
+A plain text control sits around five percent, and the older image baselines are in the twenties. It is uneven, though. On Malware Generation the method hits a hundred percent on Gemma and eighty-nine on Qwen, but only nine point five nine percent on InternVL, where a query-relevant-image baseline gets forty-two point three three.
+
+00:05:49.570 --> 00:06:10.070
+Transfer from Qwen as the source, against the FORCE baseline: seventy-four point five six versus seventy-two point five two on the source itself, seventy versus sixty-six on InternVL, and seventy-eight point five six versus seventy-four point six two on Gemma. Those are margins of two to four points, and the baseline wins in several categories.
+
+00:06:10.070 --> 00:06:15.520
+Say it plainly: on transfer between open models, this is a modest improvement.
+
+00:06:16.170 --> 00:06:20.070
+The black-box result is the one that matters for governance.
+
+00:06:20.070 --> 00:06:40.120
+Images built on Qwen and sent to the commercial models, with no access to their weights, raise average success against GPT five point six from seventeen point two five percent for FigStep to forty-one point nine four, and against Gemini three point one Pro from nineteen point seven one to forty-seven point zero five.
+
+00:06:40.120 --> 00:06:54.720
+That is gains of twenty-four point six nine and twenty-seven point three four points, winning in all thirteen scenarios on both models. The comparison is against FigStep, a typographic attack, not a strong adaptive black-box competitor.
+
+00:06:55.370 --> 00:07:13.870
+Universal attack: on forty unseen harmful queries, one image succeeds on thirty-four of forty on Qwen, against seventeen of forty for the adversarial-example baseline, and on InternVL the same image still works on about twenty-two queries. Small test, one baseline, trained white-box.
+
+00:07:14.520 --> 00:07:29.520
+The ablations are the most informative part. Removing the continuous path costs forty-five point nine one, forty-two point three three and forty-three point five two points of transfer success on the three models, which the authors call the primary driver.
+
+00:07:29.520 --> 00:07:39.920
+Removing either surrogate classifier costs fifteen to thirty points on the transfer targets, and on the source model neither matters, since no surrogate guidance is applied there.
+
+00:07:40.570 --> 00:07:59.570
+The authors' own limits: response perplexity, which they use as a fluency proxy, measures fluency under a fixed evaluation model and does not measure harmfulness. Their takeaway is that alignment may fail at the region level, so defences must reason about structured adversarial regions and not individual examples.
+
+00:08:00.220 --> 00:08:08.120
+Now my reading of the weaknesses. There is a single L L M judge with no human validation or judge-agreement check reported.
+
+00:08:08.120 --> 00:08:24.095
+The supplementary material, which holds the diversity analysis, surrogate fidelity and robustness to image transformations, is cited throughout as a missing section reference and is not in the PDF, so those claims cannot be checked. The baselines are older.
+
+00:08:24.095 --> 00:08:31.395
+The headline white-box rates, ninety-eight percent on Gemma, are against open models of eight to twelve billion parameters.
+
+00:08:32.045 --> 00:08:45.195
+The governance read. If the connectivity result holds beyond one model, then patching or adversarially training against individual jailbreak images is whack-a-mole, because each found image sits inside a whole family.
+
+00:08:45.195 --> 00:08:53.620
+That also means red-team reports that count distinct jailbreaks may overstate coverage, since one found jailbreak implies a continuum.
+
+00:08:53.620 --> 00:09:11.820
+Forty to fifty percent black-box success on ordinary harm categories against frontier systems is a data point against leaning on vendor-reported image robustness, and it argues for deployment evaluations that include adaptive, region-level visual attacks and not a fixed set of known images.
+
+00:09:11.820 --> 00:09:24.095
+The paper offers no defence and tests none, and it is an offensive recipe, so dual-use disclosure norms apply. Treat the policy conclusions as modest given the narrow baselines and the single judge.
+
+00:09:29.495 --> 00:09:35.795
+Next, in AI governance: Infrastructure and its Discontents, from the University of Toronto.
+
+00:09:35.795 --> 00:09:53.020
+It treats AI governance as infrastructure, drawing on infrastructure studies, science and technology studies, and Black feminist technoscience, and applies that to Canada through thirty-five semi-structured interviews, collected between September twenty twenty-four and April twenty twenty-five.
+
+00:09:53.020 --> 00:09:59.645
+The sample is nine from civil society, eight bureaucrats, six from industry and twelve academics.
+
+00:10:00.295 --> 00:10:21.020
+The framework asks four things: who holds power, what makes governance uniquely hard, where accountability fails, and what futures people imagine. The findings are qualitative. On expertise, participants said government leans on consultancies, select academics and company developers to design and run governance, which erodes public-sector capacity.
+
+00:10:21.020 --> 00:10:35.445
+One industry responsible-AI worker described a dependency of outsourcing both the problem solving and the risk measures. On funding, an academic said the private sector has paved the road and the public sector is subsidising it.
+
+00:10:35.445 --> 00:10:51.295
+The paper puts numbers on that: startups were slated to receive two hundred million dollars and the AI Safety Institute fifty million, while only five point one million was set aside for enforcing the Artificial Intelligence and Data Act, which never became law.
+
+00:10:51.945 --> 00:11:07.495
+On norms, practitioners described governance as iterate and refine, ship something imperfect and fix it later, and said they lacked shared definitions. A government employee asked what transparency even means: explainability, or interoperability.
+
+00:11:07.495 --> 00:11:25.945
+Opacity, participants said, is partly deliberate: national security, trade secrecy and proprietary protection are invoked, and impact assessments are shared only in summary or not at all. One study the paper cites found only four percent of federal AI systems had public impact assessments.
+
+00:11:26.595 --> 00:11:46.170
+On accountability, participants split on whether developers or users should carry responsibility, and some named workers as an alternative site, citing data worker unions and the Sama case in Kenya. One story stands out: Spanish unions were given a legal right to see algorithms, then could not interpret what they saw.
+
+00:11:46.820 --> 00:12:05.220
+The recommendations are an independent regulator with powers to investigate, audit, fine, recall and ban; mandatory public reporting by federal departments; worker technology councils like German works councils; standing public consultation offices; and a legislated regulator forum.
+
+00:12:05.870 --> 00:12:24.570
+The limits: a non-representative sample, English-only interviews, a fast-changing period, and recommendations that follow from the framework more than from any tested comparison. This is my inference, not the authors': the paper says nothing about frontier model risk, compute thresholds or safety cases.
+
+00:12:25.220 --> 00:12:43.845
+The governance read. For a technical governance reader the useful parts are the empirical ones. Who audits, with what access and under what definitions are the problems any evaluation regime must solve, and the Spanish union anecdote is a sharp illustration that access rights without technical capacity do little.
+
+00:12:43.845 --> 00:12:51.770
+The spending contrast, fifty million against five point one million, is a checkable data point on where state effort goes.
+
+00:12:57.020 --> 00:13:06.520
+Also in governance: Algorithmic Bias from the Perspectives of Healthcare Professionals, from Bentley University. It is a small mixed-methods study.
+
+00:13:06.520 --> 00:13:21.570
+Nineteen staff from one Boston-area hospital, all students on an executive M B A healthcare analytics course, answered a survey, and separately eight clinicians and medical I T administrators in the north-eastern United States were interviewed.
+
+00:13:22.220 --> 00:13:38.170
+Respondents agreed that biased training data causes biased outcomes, at a mean of four point six out of five, and that distribution shift between hospitals does too, at four point five. They were less sure that a larger training set fixes bias, at three point six.
+
+00:13:38.170 --> 00:13:53.195
+They rejected excluding demographic attributes wholesale, at two point four, and agreed such attributes can be used depending on the problem, at four point four. Transparency scored four point six and explainability four point three as important.
+
+00:13:53.195 --> 00:14:11.220
+But when one algorithm significantly outperformed another and was less transparent, they were unsure which to pick, at three point two. The strongest intended behaviour was treating output as a recommendation and keeping the final decision, at four point four, with administrators less willing than other roles.
+
+00:14:11.870 --> 00:14:31.620
+The interviews add colour. Everyone saw potential but doubted clinical readiness. One emergency physician said the tools are used as a guide, not relied on. A chief medical informatics officer said few people think about how to assess a tool for bias, which is why their organisation is not implementing many recommendation tools.
+
+00:14:31.620 --> 00:14:40.120
+Vendors currently do not disclose training data, though an American federal rule on health data transparency is set to require more.
+
+00:14:40.770 --> 00:14:59.470
+The limits are stark: nineteen survey responses from one cohort, eight interviews, a two-way analysis of variance with no effect sizes reported, and the framework linking bias to perceived fairness to adoption is not formally tested. The survey covers supervised classifiers, not generative AI.
+
+00:15:00.120 --> 00:15:09.870
+The governance read. Human-in-the-loop oversight is the default control practitioners rely on, which is exactly where automation bias is the known failure.
+
+00:15:09.870 --> 00:15:29.420
+The most concrete signal is that hospital evaluators cannot get training data details from proprietary vendors, which supports disclosure requirements, and that local retrospective validation against distribution shift is the practical safeguard. It says little about frontier systems, so low priority for the core agenda.
+
+00:15:34.250 --> 00:15:45.325
+In AI safety: Systematic Evaluation of Adversarial Jailbreaking Attacks and Defenses Across Seven Large Language Models. Treat it as anecdote, and I will say why.
+
+00:15:45.325 --> 00:16:01.625
+It tests five families of black-box jailbreak prompts, direct, roleplay, hypothetical framing, instruction override and obfuscation, against seven small open models from three to fourteen billion parameters, run locally. There are only ten prompts per family.
+
+00:16:02.275 --> 00:16:17.075
+Obfuscation, which hides the request in Base sixty-four, ROT thirteen, leetspeak, pig Latin or other languages, averaged fifty-four point three percent success, more than twice the next family, hypothetical framing at twenty-five point seven.
+
+00:16:17.075 --> 00:16:27.975
+Overall success ran from forty-eight percent on Llama three point one eight billion and forty-four on Mistral seven billion, down to twelve percent each on Gemma two and Phi four.
+
+00:16:27.975 --> 00:16:45.225
+Phi four scored zero on four of the five families and sixty percent on obfuscation, and Llama three eight billion scored zero on direct requests and seventy on obfuscation. The one robust practical point is that a model that looks safe under plain prompts can still be broken by encoding.
+
+00:16:45.875 --> 00:17:06.125
+Model size did not significantly predict robustness: a Spearman correlation of minus zero point five seven, with a p value of zero point one eight, across just seven models. The authors conclude alignment quality, not scale, drives robustness, resting on one Llama family. That is a plausible story, not a tested one.
+
+00:17:06.775 --> 00:17:24.725
+On defences, tested on the two most vulnerable models, a plain self-reminder system prompt cut attack success to ten percent on Mistral and five percent on Llama three point one, with no false positives on ten benign prompts. A keyword blacklist and a heuristic perplexity filter did little.
+
+00:17:24.725 --> 00:17:36.325
+The paraphrase defence, where the model rewrites the input first, cut Llama three point one to five percent but made Mistral worse, rising to sixty percent. Defences are model-specific.
+
+00:17:36.975 --> 00:17:52.225
+My reading of the weaknesses. Success means any reply over fifty tokens with none of twenty refusal phrases, so a small model producing confused text on a Base sixty-four prompt counts as jailbroken, which likely inflates the obfuscation figure.
+
+00:17:52.225 --> 00:18:11.100
+The defence reductions mix baselines: they were run on obfuscation and roleplay only, but compared against all-family baselines, so the stated reductions are off, though the direction holds. The authors themselves list ten prompts per family, a rule-based judge, no white-box attacks, and defences tested on two models.
+
+00:18:11.750 --> 00:18:29.075
+The governance read. Two lessons transfer. A pass on a plain-language red-team suite says little about encoded inputs, so audits should require attack-family coverage and per-family reporting. And a mitigation validated on one system should not be credited to another without retesting.
+
+00:18:34.595 --> 00:18:48.620
+In AI alignment: Collective Dynamics of Self-Reinforcement, on why unsupervised reinforcement learning with verifiable rewards collapses. In that setting the model is rewarded for agreeing with its own majority vote.
+
+00:18:48.620 --> 00:19:05.870
+Earlier work found that it helps at first and then collapses, with true accuracy falling while the self-assessed reward climbs to one, and that collapse appears with five hundred and twelve or more training problems but not with one hundred and twenty-eight or fewer. This paper explains the size dependence.
+
+00:19:06.520 --> 00:19:22.970
+The mechanism is a race. Any direction in parameter space that moves all answers the same way, a format preference or an output bias, collects the majority-vote signal from every problem at once, while each problem-specific parameter gets only a one over N share.
+
+00:19:22.970 --> 00:19:40.245
+As long as problems are still uncertain, the shared direction is unstable and amplifies any common shift. In a solvable toy model with binary answers, three samples per problem and REINFORCE, the unstable window is a confidence between about twenty-one and seventy-nine percent.
+
+00:19:40.245 --> 00:19:49.845
+That yields a closed-form critical number of problems, scaling inversely with the square of the coupling strength and depending only logarithmically on batch size.
+
+00:19:50.495 --> 00:20:09.920
+In simulation it works well. With coupling zero point one and confidence one half, the critical size is about five hundred and thirty-six problems. Varying coupling moves it from about fifty-seven hundred to sixty, with a fitted exponent of minus two point two two against a predicted minus two plus a logarithmic correction.
+
+00:20:09.920 --> 00:20:20.745
+Confident populations never collapsed across eighteen configurations with sixteen seeds each. A marginal-entropy bonus with weight at least one half prevents collapse.
+
+00:20:21.395 --> 00:20:39.095
+Then a small Transformer on a six-digit sum task, no pretrained language model. An architecture built to cancel any shared shift collapsed in none of one hundred and sixty-eight runs, and adding the shared coupling back restored collapse, with three hundred and thirty-five of three hundred and thirty-six runs collapsing.
+
+00:20:39.095 --> 00:20:59.445
+That is a direct causal test of the mechanism. But the parameter-free prediction from the initial kernel is much weaker: it agrees with the observed side in seventy-one percent of cells, ranks risk reasonably at an A U C of zero point eight seven, and is poorly calibrated, predicting forty-six percent collapse against seventy-one observed.
+
+00:20:59.445 --> 00:21:13.595
+The authors say plainly that predictions from the initial kernel are not sufficient to establish a reliable stability boundary. The entropy bonus stopped collapse but runs ended at chance accuracy, because other collective modes took over.
+
+00:21:14.245 --> 00:21:34.645
+The governance read. Collapse is a threshold in training-set size, so a small-scale safety check can pass while a larger run fails. The pre-run diagnostics ranked risk but cannot yet serve as a reliable stability check. The evidence is toy models and a six-digit Transformer, so transfer to frontier systems is a hypothesis.
+
+00:21:34.645 --> 00:21:48.295
+It is also a stability failure and not a goals failure: a model collapsing to one answer is not scheming, though a loop that detaches reward from accuracy is a concrete, studied instance of reward hacking without labels.
+
+00:21:54.045 --> 00:22:06.970
+In evaluations: SocialArena, from Alibaba and Tsinghua. It is a human-judged benchmark of social intelligence, defined as role-play consistency, mental state reasoning and behavioural reasoning.
+
+00:22:06.970 --> 00:22:26.845
+It synthesises five thousand, seven hundred and two scenarios from a six-dimension taxonomy giving six hundred prototypes, with annotators voting between pairs of responses: seventeen thousand, six hundred and seventy-six votes at a stated cost of one hundred and thirty-two thousand dollars. Fifteen models are ranked by Elo.
+
+00:22:27.495 --> 00:22:38.395
+GPT five point one leads at fifteen fifty-three. Qwen three max and Doubao Seed one point eight follow near fourteen hundred, and Claude Sonnet four point five is fourth.
+
+00:22:38.395 --> 00:22:51.395
+Models comparable on coding and maths can differ sharply here, from which the authors conclude social intelligence is largely orthogonal to problem solving, argued from a couple of pairings, not a correlation analysis.
+
+00:22:51.395 --> 00:23:05.495
+The central finding is that the bottleneck lies in acting, not understanding: six of the ten most frequent critique clusters concern behaviour, and negative critiques dominate positive ones. Rankings are also scenario-specific.
+
+00:23:06.145 --> 00:23:21.695
+On automated judging, four L L M judges agree with human gold labels only about forty-three to forty-five percent of the time on a hundred and fifty-two samples, against eighty-four percent for a single human. A four-way label makes chance twenty-five percent.
+
+00:23:22.345 --> 00:23:41.545
+Caveats: rankings rest on fifty to eighty battles per pair with no confidence intervals, second and third place are separated by one and a half Elo points, the scenario generator is a Qwen model while Qwen three max ranks second, and only fewer than two in five items had unanimous annotator agreement.
+
+00:23:42.195 --> 00:23:54.445
+The governance read. This measures helpfulness-style social skill, not manipulation, sycophancy or harm, and its filters exclude suicide, crime and trauma, the highest-risk companionship cases.
+
+00:23:54.445 --> 00:24:04.095
+It is a data point against relying on automated graders for socially nuanced behaviour, and it shows how evaluator values are baked into what counts as better.
+
+00:24:09.345 --> 00:24:17.420
+In interpretability: Reasoning or Pattern Exploitation, a mechanistic study of reinforcement learning on small models.
+
+00:24:17.420 --> 00:24:35.470
+The authors train Qwen two point five at zero point five and one point five billion parameters, and Llama three point two one billion, with GRPO to play tic-tac-toe, small enough that all five thousand, four hundred and seventy-eight reachable states can be labelled with the minimax-optimal move.
+
+00:24:36.120 --> 00:24:47.295
+Behaviourally it looks like success: legal-move accuracy of a hundred percent and best-move accuracy of about seventy-four percent for the best model, up from eight percent off the shelf.
+
+00:24:47.295 --> 00:24:57.720
+But ASCII boards cut it from seventy-three to forty-four percent, and the model picks corresponding moves on symmetry-related boards only about fifty-seven percent of the time.
+
+00:24:57.720 --> 00:25:09.370
+Sparse autoencoder analysis and linear probes show training mostly makes prompt-level information, whose turn it is and how far the game has progressed, more prominent in the middle layers.
+
+00:25:09.370 --> 00:25:20.545
+Probes show that information was already decodable in the base model, and strategic concepts like must-block stay weak and static, with probe scores around zero point six eight in both.
+
+00:25:20.545 --> 00:25:37.420
+Activation patching puts the move decision in late layers: patching at layer twenty-five of twenty-eight flips the output to the donor board's optimal move in sixty-six of one hundred pairs. The authors conclude RL reorganises which features dominate and does not add concept information.
+
+00:25:38.070 --> 00:25:48.795
+The limits are theirs: tiny models, one algorithm, one solved game, one training seed, and hand-chosen hypotheses. Most claims rest on the one point five billion model.
+
+00:25:49.445 --> 00:26:05.045
+The governance read. It is a clean example of benchmark accuracy saying one thing while internals say another, which supports the case that behavioural evals alone can overstate what training instils. It should not be cited as evidence about frontier reasoning.
+
+00:26:09.875 --> 00:26:30.425
+In compute and hardware: GAAC, a lossless compression scheme for the key-value cache on personal devices. It exploits the fact that the exponent field of a sixteen-bit value carries little information, an entropy of only about two point seven bits, and stores each exponent as a small offset from a base, fused into the attention kernel.
+
+00:26:30.425 --> 00:26:34.850
+The cache shrinks about one point four times with bit-exact values.
+
+00:26:34.850 --> 00:26:56.675
+On an NVIDIA D G X Spark, decode attention at sixty-four thousand context is one point one nine to one point two seven times faster than FlashAttention two, whole decode steps one point zero four to one point one five times faster, and at equal memory budget serving throughput rises thirteen to twenty-nine percent, because one more sequence fits.
+
+00:26:56.675 --> 00:27:02.275
+An Apple M four version gets one point zero two to one point two five times.
+
+00:27:02.925 --> 00:27:14.650
+The gains are modest, end-to-end only four to fifteen percent, the baseline is FlashAttention two only because newer kernels do not run on this chip, and the batch sizes are two to five sequences.
+
+00:27:15.300 --> 00:27:31.950
+The governance read, labelled as such: a small data point that inference on consumer hardware keeps getting cheaper through pure software, which bears on assumptions about running capable models outside data centres. The paper itself notes efficiency may raise total usage.
+
+00:27:37.820 --> 00:27:49.920
+In capabilities: H2R, a reward-shaping method for maths reinforcement learning that uses the sub-question structure of competition problems as training-time hints, removed at test time.
+
+00:27:49.920 --> 00:27:59.870
+The authors build HiMath, a hundred and fifty-one problems each chaining three dependent sub-questions, with a hundred and five for training and forty-six for testing.
+
+00:27:59.870 --> 00:28:14.120
+Qwen two point five Math seven billion rises from thirty point four to thirty-nine point one percent with model-generated hints and forty-five point six with oracle hints, and gains appear on MATH five hundred and AIME.
+
+00:28:14.120 --> 00:28:34.370
+Qwen two point five seven billion Instruct goes from about fifteen point nine to thirty-four point eight percent on HiMath, against nineteen point six for plain GRPO. A hard gate that gives zero reward for any incorrect answer matters: without it, thirty-four point two percent of incorrect responses receive high process scores.
+
+00:28:35.020 --> 00:28:46.995
+Limits: forty-six test problems, wide intervals, an LLM judge that also generated the hints, though re-scoring with two other judges kept the ordering, and no process-reward-model baseline.
+
+00:28:47.645 --> 00:29:05.220
+The governance read. Several to twenty points from a hundred and five problems and no step-level labels is evidence that post-training capability elevation needs little data, which matters for threshold-based compute governance. The hard gate is a small example of anti-reward-hacking design.
+
+00:29:10.970 --> 00:29:29.220
+Last, Non-AI: Convergence to the Truth, by Hanti Lin, a chapter reviving a philosophical tradition called convergentism, from Peirce. Its idea is that an inference method should be judged by whether it is guaranteed to converge to the truth across all worlds compatible with what the inquirer does not doubt.
+
+00:29:29.220 --> 00:29:47.420
+The standing objection is that long-run guarantees say nothing about the short run. Lin's reply is the diachronic trick: pair long-run convergence with a stability constraint, never letting go of a truth once reached, and the pair rules out, for example, ever inferring counterinductively about ravens.
+
+00:29:47.420 --> 00:29:52.445
+He shows the same recipe underlies statistical and Bayesian consistency.
+
+00:29:53.095 --> 00:30:05.570
+My inference, not Lin's: its vocabulary of demanding the highest achievable guarantee, then weakening it stepwise, is useful for arguing about assurance standards. Direct policy use is limited.

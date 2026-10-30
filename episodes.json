@@ -506,5 +506,19 @@
     "transcript": "audio/ep042.transcript.html",
     "vtt": "audio/ep042.vtt",
     "cover": "covers/ep042.jpg"
+  },
+  {
+    "no": 43,
+    "date": "2026-10-30",
+    "title": "Jailbreak images form connected regions",
+    "summary": "Jailbreak Connectivity, an image attack arguing jailbreaks form connected regions and transferring to GPT and Gemini; why label-free reinforcement learning collapses past a critical dataset size; and a tic-tac-toe study of what RL really changes inside small models.",
+    "file": "audio/ep043.mp3",
+    "bytes": 14772138,
+    "duration": "00:30:21",
+    "music": true,
+    "chapters": "audio/ep043.chapters.json",
+    "transcript": "audio/ep043.transcript.html",
+    "vtt": "audio/ep043.vtt",
+    "cover": "covers/ep043.jpg"
   }
 ]
