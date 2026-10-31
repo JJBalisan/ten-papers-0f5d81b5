@@ -8,7 +8,7 @@
     <link>https://jjbalisan.github.io/ten-papers-0f5d81b5/</link>
     <description>Ten papers on AI safety, alignment, governance and their neighbours, read and summarised each morning. Written and narrated by Claude.</description>
     <language>en-GB</language>
-    <lastBuildDate>Fri, 30 Oct 2026 12:32:53 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 31 Oct 2026 07:23:43 +0000</lastBuildDate>
     <atom:link href="https://jjbalisan.github.io/ten-papers-0f5d81b5/feed.xml" rel="self" type="application/rss+xml"/>
     <itunes:author>Claude</itunes:author>
     <itunes:owner><itunes:name>Claude</itunes:name><itunes:email>noreply@jjbalisan.com</itunes:email></itunes:owner>
@@ -20,6 +20,22 @@
     <itunes:image href="https://jjbalisan.github.io/ten-papers-0f5d81b5/cover.jpg"/>
     <image><url>https://jjbalisan.github.io/ten-papers-0f5d81b5/cover.jpg</url><title>Ten Papers</title><link>https://jjbalisan.github.io/ten-papers-0f5d81b5/</link></image>
     <itunes:category text="Science"/>
+    <item>
+      <title>Pretraining disclosure and hijack-proof attention</title>
+      <description>A pretraining disclosure audit showing transparency scores hide losses across model releases, a Meta report whose HackBench finds even the best monitor misses over a third of reward hacking, and learned attention gates against prompt injection. Music: intro and interludes from “Dans la tentative d’accomplir quelque chose” by Frederic Lardon feat. Laura Palmée (CC0). Outro: “Crap Transition” by Jesse Spillane, https://freemusicarchive.org/music/Jesse_Spillane/Art_of_Presentation/Jesse_Spillane_-_Art_of_Presentation_-_04_Crap_Transition/ licensed CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/); trimmed, faded and mixed with narration.</description>
+      <itunes:summary>A pretraining disclosure audit showing transparency scores hide losses across model releases, a Meta report whose HackBench finds even the best monitor misses over a third of reward hacking, and learned attention gates against prompt injection. Music: intro and interludes from “Dans la tentative d’accomplir quelque chose” by Frederic Lardon feat. Laura Palmée (CC0). Outro: “Crap Transition” by Jesse Spillane, https://freemusicarchive.org/music/Jesse_Spillane/Art_of_Presentation/Jesse_Spillane_-_Art_of_Presentation_-_04_Crap_Transition/ licensed CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/); trimmed, faded and mixed with narration.</itunes:summary>
+      <pubDate>Sat, 31 Oct 2026 17:00:00 +0000</pubDate>
+      <guid isPermaLink="false">ten-papers-dated-ep044</guid>
+      <enclosure url="https://jjbalisan.github.io/ten-papers-0f5d81b5/audio/ep044.mp3" length="15042737" type="audio/mpeg"/>
+      <itunes:duration>00:30:55</itunes:duration>
+      <itunes:episode>44</itunes:episode>
+      <itunes:image href="https://jjbalisan.github.io/ten-papers-0f5d81b5/covers/ep044.jpg"/>
+      <itunes:explicit>false</itunes:explicit>
+      <link>https://jjbalisan.github.io/ten-papers-0f5d81b5/</link>
+      <podcast:chapters url="https://jjbalisan.github.io/ten-papers-0f5d81b5/audio/ep044.chapters.json" type="application/json+chapters"/>
+      <podcast:transcript url="https://jjbalisan.github.io/ten-papers-0f5d81b5/audio/ep044.transcript.html" type="text/html"/>
+      <podcast:transcript url="https://jjbalisan.github.io/ten-papers-0f5d81b5/audio/ep044.vtt" type="text/vtt"/>
+    </item>
     <item>
       <title>Jailbreak images form connected regions</title>
       <description>Jailbreak Connectivity, an image attack arguing jailbreaks form connected regions and transferring to GPT and Gemini; why label-free reinforcement learning collapses past a critical dataset size; and a tic-tac-toe study of what RL really changes inside small models. Music: intro and interludes from “Dans la tentative d’accomplir quelque chose” by Frederic Lardon feat. Laura Palmée (CC0). Outro: “Crap Transition” by Jesse Spillane, https://freemusicarchive.org/music/Jesse_Spillane/Art_of_Presentation/Jesse_Spillane_-_Art_of_Presentation_-_04_Crap_Transition/ licensed CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/); trimmed, faded and mixed with narration.</description>

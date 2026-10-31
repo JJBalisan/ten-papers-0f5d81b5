@@ -520,5 +520,19 @@
     "transcript": "audio/ep043.transcript.html",
     "vtt": "audio/ep043.vtt",
     "cover": "covers/ep043.jpg"
+  },
+  {
+    "no": 44,
+    "date": "2026-10-31",
+    "title": "Pretraining disclosure and hijack-proof attention",
+    "summary": "A pretraining disclosure audit showing transparency scores hide losses across model releases, a Meta report whose HackBench finds even the best monitor misses over a third of reward hacking, and learned attention gates against prompt injection.",
+    "file": "audio/ep044.mp3",
+    "bytes": 15042737,
+    "duration": "00:30:55",
+    "music": true,
+    "chapters": "audio/ep044.chapters.json",
+    "transcript": "audio/ep044.transcript.html",
+    "vtt": "audio/ep044.vtt",
+    "cover": "covers/ep044.jpg"
   }
 ]

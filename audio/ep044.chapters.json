@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 53,
+      "title": "What carries forward in pretraining disclosure"
+    },
+    {
+      "startTime": 548,
+      "title": "Contextual leakage in chatbot platforms"
+    },
+    {
+      "startTime": 779,
+      "title": "Tracing safety degradation to training data"
+    },
+    {
+      "startTime": 991,
+      "title": "Learned attention gates against prompt injection"
+    },
+    {
+      "startTime": 1198,
+      "title": "Teaching reality, not ethics"
+    },
+    {
+      "startTime": 1349,
+      "title": "Memory fails group decisions"
+    },
+    {
+      "startTime": 1470,
+      "title": "Refusal when the image is not enough"
+    },
+    {
+      "startTime": 1575,
+      "title": "Pruning visual tokens"
+    },
+    {
+      "startTime": 1640,
+      "title": "Aligning autoresearch"
+    },
+    {
+      "startTime": 1787,
+      "title": "Mechanistic models of event comprehension"
+    }
+  ]
+}
