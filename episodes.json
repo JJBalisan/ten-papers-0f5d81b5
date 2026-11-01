@@ -534,5 +534,19 @@
     "transcript": "audio/ep044.transcript.html",
     "vtt": "audio/ep044.vtt",
     "cover": "covers/ep044.jpg"
+  },
+  {
+    "no": 45,
+    "date": "2026-11-01",
+    "title": "Rewinding provers, process evidence, pressured agents",
+    "summary": "Rewindable interactive proofs for scalable oversight without a truthful prover; signed process evidence tying agent sessions to commits; and a probe that reads when a pressured agent is about to leak.",
+    "file": "audio/ep045.mp3",
+    "bytes": 16322875,
+    "duration": "00:33:35",
+    "music": true,
+    "chapters": "audio/ep045.chapters.json",
+    "transcript": "audio/ep045.transcript.html",
+    "vtt": "audio/ep045.vtt",
+    "cover": "covers/ep045.jpg"
   }
 ]
