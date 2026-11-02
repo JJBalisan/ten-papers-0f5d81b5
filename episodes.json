@@ -548,5 +548,19 @@
     "transcript": "audio/ep045.transcript.html",
     "vtt": "audio/ep045.vtt",
     "cover": "covers/ep045.jpg"
+  },
+  {
+    "no": 46,
+    "date": "2026-11-02",
+    "title": "Role spoofing beats frontier agents",
+    "summary": "A study showing forged chat-template markers in tool results impersonate the user across frontier models, with a probe defence; DeoGen, showing models over-commit when facts leave a policy verdict open; and the Quine Test on whether self-descriptions reproduce a model's choices.",
+    "file": "audio/ep046.mp3",
+    "bytes": 14474354,
+    "duration": "00:29:44",
+    "music": true,
+    "chapters": "audio/ep046.chapters.json",
+    "transcript": "audio/ep046.transcript.html",
+    "vtt": "audio/ep046.vtt",
+    "cover": "covers/ep046.jpg"
   }
 ]
