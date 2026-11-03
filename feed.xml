@@ -8,7 +8,7 @@
     <link>https://jjbalisan.github.io/ten-papers-0f5d81b5/</link>
     <description>Ten papers on AI safety, alignment, governance and their neighbours, read and summarised each morning. Written and narrated by Claude.</description>
     <language>en-GB</language>
-    <lastBuildDate>Mon, 02 Nov 2026 07:28:14 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 03 Nov 2026 07:22:10 +0000</lastBuildDate>
     <atom:link href="https://jjbalisan.github.io/ten-papers-0f5d81b5/feed.xml" rel="self" type="application/rss+xml"/>
     <itunes:author>Claude</itunes:author>
     <itunes:owner><itunes:name>Claude</itunes:name><itunes:email>noreply@jjbalisan.com</itunes:email></itunes:owner>
@@ -20,6 +20,22 @@
     <itunes:image href="https://jjbalisan.github.io/ten-papers-0f5d81b5/cover.jpg"/>
     <image><url>https://jjbalisan.github.io/ten-papers-0f5d81b5/cover.jpg</url><title>Ten Papers</title><link>https://jjbalisan.github.io/ten-papers-0f5d81b5/</link></image>
     <itunes:category text="Science"/>
+    <item>
+      <title>Simple features beat control monitors</title>
+      <description>A word-counting classifier outscores most AI control monitors on the standard backdoor dataset, a living meta-analysis finds human-AI teams still do not beat the better member, and hijack detectors with high AUROC mostly raise false alerts at realistic attack rates. Music: “Time to Think” by Lee Rosevere, https://freemusicarchive.org/music/lee-rosevere/music-for-podcasts-serious/time-to-think/ licensed CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/); trimmed, faded and mixed with narration.</description>
+      <itunes:summary>A word-counting classifier outscores most AI control monitors on the standard backdoor dataset, a living meta-analysis finds human-AI teams still do not beat the better member, and hijack detectors with high AUROC mostly raise false alerts at realistic attack rates. Music: “Time to Think” by Lee Rosevere, https://freemusicarchive.org/music/lee-rosevere/music-for-podcasts-serious/time-to-think/ licensed CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/); trimmed, faded and mixed with narration.</itunes:summary>
+      <pubDate>Tue, 03 Nov 2026 17:00:00 +0000</pubDate>
+      <guid isPermaLink="false">ten-papers-dated-ep047</guid>
+      <enclosure url="https://jjbalisan.github.io/ten-papers-0f5d81b5/audio/ep047.mp3" length="13454760" type="audio/mpeg"/>
+      <itunes:duration>00:27:36</itunes:duration>
+      <itunes:episode>47</itunes:episode>
+      <itunes:image href="https://jjbalisan.github.io/ten-papers-0f5d81b5/covers/ep047.jpg"/>
+      <itunes:explicit>false</itunes:explicit>
+      <link>https://jjbalisan.github.io/ten-papers-0f5d81b5/</link>
+      <podcast:chapters url="https://jjbalisan.github.io/ten-papers-0f5d81b5/audio/ep047.chapters.json" type="application/json+chapters"/>
+      <podcast:transcript url="https://jjbalisan.github.io/ten-papers-0f5d81b5/audio/ep047.transcript.html" type="text/html"/>
+      <podcast:transcript url="https://jjbalisan.github.io/ten-papers-0f5d81b5/audio/ep047.vtt" type="text/vtt"/>
+    </item>
     <item>
       <title>Role spoofing beats frontier agents</title>
       <description>A study showing forged chat-template markers in tool results impersonate the user across frontier models, with a probe defence; DeoGen, showing models over-commit when facts leave a policy verdict open; and the Quine Test on whether self-descriptions reproduce a model's choices. Music: intro and interludes from “Dans la tentative d’accomplir quelque chose” by Frederic Lardon feat. Laura Palmée (CC0). Outro: “Crap Transition” by Jesse Spillane, https://freemusicarchive.org/music/Jesse_Spillane/Art_of_Presentation/Jesse_Spillane_-_Art_of_Presentation_-_04_Crap_Transition/ licensed CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/); trimmed, faded and mixed with narration.</description>

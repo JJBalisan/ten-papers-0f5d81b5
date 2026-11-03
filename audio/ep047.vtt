@@ -1,0 +1,310 @@
+WEBVTT
+
+00:00:17.690 --> 00:00:32.115
+Today's ten papers, nine of them in fact, one fewer than usual. Today's lead is a paper arguing that a simple word-counting classifier outscores most of the language models used as monitors in AI control evaluations.
+
+00:00:32.115 --> 00:00:47.365
+The next two to watch are AutoAnalysis, a living meta-analysis finding that humans paired with AI still do not beat the better of the two, and an audit of detectors for hijacked agents, which finds that a high A U R O C can mean mostly false alarms.
+
+00:00:53.185 --> 00:01:06.035
+The lead is "Simple Features Beat Most AI Control Monitors", an AI safety paper by Debsarkar and Nahata, at the University of Virginia and U C San Diego, written for a NeurIPS workshop.
+
+00:01:06.035 --> 00:01:18.085
+The question is narrow and important: when a control evaluation says a monitor is good at spotting backdoored code, is the monitor detecting sabotage, or is the dataset giving its labels away?
+
+00:01:18.735 --> 00:01:33.235
+Some setup. In AI control, a weaker trusted model reads each output of a stronger untrusted model and flags the suspicious ones for human audit. The standard testbed is programming problems from the A P P S collection.
+
+00:01:33.235 --> 00:01:51.585
+Each problem has an honest solution and a backdoored one, meaning code that passes the tests but gives a wrong answer on an input the attacker chooses. Monitors are developed and ranked on these fixed pairs. The catch is authorship. Competitive programmers wrote the honest solutions, and language models wrote the backdoors.
+
+00:01:51.585 --> 00:01:58.485
+So the two classes differ in naming and layout, the very things detectors of machine-written code latch onto.
+
+00:01:59.135 --> 00:02:13.810
+The first result is the headline. The authors trained a logistic regression on word and word-pair counts of the code, with comments stripped, and never ran the code. On the standard test split it reaches an A U R O C of zero point eight oh six.
+
+00:02:13.810 --> 00:02:32.835
+Shuffled labels reach zero point five four one at the ninety-fifth percentile, so this is far from chance. They compared it to twenty-four open-weight models prompted as monitors, from point four billion to thirty-two billion parameters. The classifier beats twenty of them, each by a paired bootstrap interval that excludes zero.
+
+00:02:32.835 --> 00:02:51.435
+The median monitor scores zero point six one oh, and the four monitors that beat the classifier are all twenty-four billion parameters or larger. Its strongest backdoor-side features are tokens like and, equals-equals and if, which is just what added special-case logic looks like. The honest side is human idiom.
+
+00:02:52.085 --> 00:03:02.710
+The second leak is in the labels themselves. In the test split, a problem counts as backdoored only when its backdoor works, and that depends on the problem as much as the code.
+
+00:03:02.710 --> 00:03:14.110
+Backdoor-class problems have about half as many test cases, twenty point nine five against thirty-eight point eight five, because backdoors are easier to implant when fewer tests constrain them.
+
+00:03:14.110 --> 00:03:25.835
+A classifier that never sees code, only the problem's difficulty, test count and statement length, reaches zero point seven six six cross-validated inside the split and beats twenty monitors.
+
+00:03:25.835 --> 00:03:41.835
+Fit outside the split, it scores zero point two nine eight, the same relation reversed, because the honest items there come from problems the split excluded, many with only two or three tests. The authors' summary is that, in their words, "the leak is in how labels were chosen."
+
+00:03:42.485 --> 00:04:00.310
+Now the part that makes this more than a complaint about one dataset. To remove the authorship contrast, they had a single model write both classes. With Claude Sonnet five writing honest and backdoored solutions for the same problems, the classifier keeps a fraction of its advantage over chance that they call rho.
+
+00:04:00.310 --> 00:04:16.435
+On all attempts, rho is zero point six eight seven, with an A U R O C of zero point seven five oh against zero point eight six five on the original pairs. But those attempts almost all fail as backdoors: only fourteen of six hundred and twenty-three work.
+
+00:04:16.435 --> 00:04:26.635
+Restricting to the ninety-nine problems with a working backdoor, rho rises to zero point eight six one. So even with one author, most of the shortcut survives.
+
+00:04:26.635 --> 00:04:38.560
+Part of that is the attack prompt leaving a layout fingerprint: a def main pattern appears in sixty-seven percent of Sonnet five's backdoored programs against thirty-eight and a half percent of its honest ones.
+
+00:04:39.210 --> 00:04:54.785
+The cleaner test is swapping one class at a time on those ninety-nine problems. A person's honest code against Sonnet five's backdoors scores zero point nine five three. Sonnet five's honest code against the older models' backdoors scores zero point nine oh five.
+
+00:04:54.785 --> 00:05:10.360
+The original pairs score zero point seven eight nine and the single-author pairs zero point seven four nine. So the classifier scores highest when the two classes have different authors, which is the signature of an authorship shortcut and not of sabotage detection.
+
+00:05:11.010 --> 00:05:30.460
+A zero-shot Sonnet five monitor behaves differently. Replacing the person's honest code with Sonnet five's barely moves it, from zero point nine four four to zero point nine six six against the older backdoors. Replacing the backdoors moves it a lot: against Sonnet five's backdoors it drops to zero point seven five five.
+
+00:05:30.460 --> 00:05:46.785
+That looks like Sonnet five's backdoors being harder to catch, but the authors then check the labels, and this is where it gets uncomfortable. A backdoor counts as working if its output on its own trigger differs from an honest solution's, but nothing checked that the trigger was a legal input.
+
+00:05:46.785 --> 00:06:04.485
+If the trigger breaks the problem's constraints, any output is acceptable, so a different one proves nothing. In the standard test split, seventeen of the one hundred and seventy-two labelled backdoors have only an illegal trigger, and seven more print a wrong answer on a public test that the pass flag misses.
+
+00:06:04.485 --> 00:06:23.935
+Dropping those twenty-four moves the classifier only to zero point eight one seven and the published monitors by a median of plus zero point zero one oh, so the ranking result stands. But the validity checks bite hard on the new attacker: they remove fourteen of the older models' ninety-nine backdoors and forty of Sonnet five's.
+
+00:06:24.585 --> 00:06:40.060
+That changes the answer to "is Sonnet five harder to catch?" Flagging two percent of human solutions, the Sonnet five monitor catches seventy-seven percent of the older models' backdoors but thirty-seven percent of Sonnet five's. That gap is zero point four oh.
+
+00:06:40.060 --> 00:06:54.760
+Once both sides are verified, on the fifty-four problems where both backdoors are real, it is seventy-eight percent against sixty-one, a difference of zero point one seven with an interval from zero point zero zero oh two to zero point three two.
+
+00:06:54.760 --> 00:07:07.360
+And it depends on the threshold: zero point one nine at one percent flagged, zero point oh eight at five percent, where the interval includes zero. So most of the apparent difficulty was invalid labels.
+
+00:07:08.010 --> 00:07:26.385
+The authors' own limits are substantial and I want to repeat them. A high floor shows a dataset's labels can be predicted without finding a backdoor. It does not show that any published monitor predicts them that way. They ran only two monitors, both zero-shot, and a monitor trained on these pairs could learn the shortcuts.
+
+00:07:26.385 --> 00:07:36.785
+The backdoors come from one prompt and one attacking model, the working-backdoor results rest on fifty-four to ninety-nine problems, and Claude models wrote the input validators.
+
+00:07:37.435 --> 00:07:56.685
+The governance read, labelled as such. A control benchmark number licenses less than it appears to. A monitor score on data where the classes differ in author, problem difficulty and test count measures some mixture of detection and artefact, and attacker-strength rankings ride on label validity as much as monitor skill.
+
+00:07:56.685 --> 00:08:11.885
+The practical asks are cheap: shortcut baselines that never run the code, with shuffled-label scores beside every monitor result; classes paired with another author's code; and triggers validated as legal inputs before any catch rate is reported.
+
+00:08:11.885 --> 00:08:27.035
+The authors also warn that automated search using such a score as its fitness signal could learn to exploit these shortcuts too. I would add, as my own inference, that anyone citing control results in a safety case should ask which of these checks were run.
+
+00:08:32.505 --> 00:08:41.080
+Next, AutoAnalysis, an AI governance paper from Vaccaro, Almaatouq and Malone at Harvard Business School and M I T Sloan.
+
+00:08:41.080 --> 00:08:56.255
+It is a living meta-analysis of when humans and generative AI do better together than apart, in which frontier AI agents run every stage of a systematic review: finding papers, screening them, reading them, extracting effect sizes and pooling them.
+
+00:08:56.905 --> 00:09:12.705
+The latest run, dated the twenty-sixth of October, pools one thousand nine hundred and fifty-five effect sizes from four hundred and twenty peer-reviewed papers. Human-AI combinations beat humans alone by a medium margin, a Hedges' g of zero point five three.
+
+00:09:12.705 --> 00:09:32.130
+That is similar to the authors' twenty twenty-four estimate of zero point six four, which mostly covered older, non-generative AI. But among the one hundred and seventy-one effect sizes that also tested the AI alone, the combination did worse than the better of the human or the AI, a g of minus zero point three five.
+
+00:09:32.130 --> 00:09:47.905
+The twenty twenty-four figure was minus zero point two three. So AI augments people on average, but synergy, the team beating its best member, is still missing. Heterogeneity is very high, an I squared above ninety-two percent, so these averages hide a lot.
+
+00:09:48.555 --> 00:10:05.880
+The moderators are exploratory, with no correction for multiple comparisons. Augmentation was larger when the AI alone was stronger than the human alone. That gap sat in decision tasks, where AI alone clearly beat humans, and not in creation tasks, where the two were about level.
+
+00:10:05.880 --> 00:10:16.955
+Some division of labour went with more augmentation and more synergy, and AI-provided explanations went with more augmentation. Crowdworkers benefited less than non-crowdworkers.
+
+00:10:17.605 --> 00:10:34.505
+The method is half the paper. The pipeline starts from a seed of one thousand seven hundred and fifty-nine records and snowballs through citations to fifteen thousand four hundred and ninety-five. Screening passes two thousand four hundred and three, and the reviewing agent keeps four hundred and twenty.
+
+00:10:34.505 --> 00:10:52.180
+Validation is thin: the authors audited thirty papers per stage, and a second agent from a different model family agreed with ninety percent of screening decisions and eighty-three percent of reviewing decisions. Extraction was checked field by field on thirty papers with no errors found.
+
+00:10:52.180 --> 00:11:04.780
+Recall of missed studies was not measured, and agreement between agents is not accuracy against an independent standard. Augmentation also shows funnel asymmetry, which hints at small-study effects.
+
+00:11:05.430 --> 00:11:18.705
+The governance read. This is a caution against treating a human in the loop as a safety guarantee. Oversight arguments often assume the combination is at least as good as the AI alone, and across this literature it was not.
+
+00:11:18.705 --> 00:11:31.930
+The caveats are large: the synergy estimate rests on one hundred and seventy-one effect sizes from fifty-four experiments, mostly short lab or field productivity tasks, not oversight of adversarial behaviour.
+
+00:11:31.930 --> 00:11:41.980
+And the method is a worked example of an automated living review; anyone reusing it for governance evidence should budget for independent audits of inclusion recall.
+
+00:11:47.800 --> 00:12:07.700
+Third, "Violet Teaming in Practice", a workshop report from Georgetown's C S E T and Texas A and M's Biosecurity and Pandemic Policy Center. Violet teaming was proposed in twenty twenty-three as a blend of red teaming, adversarial probing, and blue teaming, building mitigations, with sociotechnical analysis.
+
+00:12:07.700 --> 00:12:12.150
+The authors say this is the first practical operationalisation.
+
+00:12:12.800 --> 00:12:31.700
+The pilot used a hypothetical AI capability for pathogen-agnostic biosurveillance in Department of Defense programmes, meaning continuous monitoring for biological entities without a predefined list of known pathogens. Groups of four to five experts worked through three sequential sessions on one capability.
+
+00:12:31.700 --> 00:12:47.375
+First they acted as an advisory committee choosing beneficial capabilities, then took an adversarial view on misuse, then acted as programme managers working out implementation and mitigations. The key design choice is carrying one capability through all three.
+
+00:12:48.025 --> 00:12:57.600
+The reported findings are qualitative. Recommendations changed as the lens changed, and later sessions caused reprioritisation of earlier ideas.
+
+00:12:57.600 --> 00:13:16.525
+Within the scenario, groups concluded the capabilities were not especially useful for designing harmful agents, because folding them into a misuse plan made the workflow more complex than simpler alternatives. The more credible misuse was data poisoning or cyber exploitation creating a smokescreen of false positives.
+
+00:13:16.525 --> 00:13:37.025
+Previewing the mitigation stage made groups candid about vulnerabilities. Policy experts caught a proposal needing authorities the agency lacked. And the standout mitigation was procedural: an attacker could manipulate a false laboratory result, so a group proposed picking up the phone and calling the laboratory to confirm high-consequence results.
+
+00:13:37.675 --> 00:13:57.275
+The limits are plain. It is a single pilot, with no control condition, no comparison against red or blue teaming on the same capability, and no measure of whether the insights were better. The report gives no participant count, number of groups or concrete capability names in the text. The authors say additional evidence is needed.
+
+00:13:57.925 --> 00:14:16.325
+The governance read. The transferable ideas are carrying a capability through the lifecycle, and previewing mitigation so risk discussion is candid. The finding that the credible misuse of a defensive tool was attacking its trustworthiness is specific to a hypothetical scenario and should not be generalised.
+
+00:14:22.145 --> 00:14:37.070
+Fourth, an AI safety paper by Abbasi, Nunez and Shahraki: "What Standard Evaluations Hide About Detectors of Hijacked LLM Agents". They audit eleven published evaluations of detectors that read an agent's tool-call trace.
+
+00:14:37.070 --> 00:14:46.470
+In those test sets attacks make up sixteen to eighty-six percent of samples, none varies that share, and six report no second-benchmark test.
+
+00:14:47.120 --> 00:15:06.820
+They then test three evaluation choices on two benchmarks, AgentDrift and AgentDojo. First, base rates. A logistic regression with an A U R O C of zero point eight seven nine has a precision of only zero point oh seven six at a two percent attack rate, which is about twelve false alerts for every true one.
+
+00:15:06.820 --> 00:15:26.495
+The share of hard negatives alone moves that precision between zero point oh three nine and zero point one one seven. Second, unseen tools. Holding out worlds or tasks costs little, but rankings between detectors cross when about half the test tools are new, and reverse below that, mainly because of inputs never trained.
+
+00:15:26.495 --> 00:15:36.620
+Dropout on tool inputs largely removes the reversal. Thresholds fail separately, including for detectors with no untrained inputs. Third, transfer.
+
+00:15:36.620 --> 00:15:51.070
+No AgentDrift-trained detector beats chance on AgentDojo, with A U R O C values of zero point four seven to zero point five two, while within AgentDojo the same representations reach up to zero point nine nine six.
+
+00:15:51.720 --> 00:16:10.820
+The one that transferred was a released action monitor, the AlignmentCheck prompt, trained on neither benchmark. It reached about zero point nine three on AgentDojo. But with the open backbone its own decision rule would still raise mostly false alerts at a two percent attack rate, an implied precision of zero point oh nine six.
+
+00:16:10.820 --> 00:16:28.545
+One more result: the behavioural signal that survived zero tool coverage rested largely on observation length, which the attacker writes. Appending twelve hundred characters to the injected observation dropped one detector's recall from zero point seven seven one to zero point oh three three.
+
+00:16:28.545 --> 00:16:32.995
+That tested scores only, not whether padded injections still work.
+
+00:16:33.645 --> 00:16:47.995
+The limits: the claims concern the authors' own detectors and one reimplementation, AgentDrift is synthetic from one generator, and the two benchmarks differ on many factors at once, so the cause of failed transfer is unidentified.
+
+00:16:48.645 --> 00:17:01.345
+The governance read. Ask any claimed hijack detector for precision at a stated prevalence and negative mix, tool coverage with a held-out-tool split, and a cross-benchmark result with a within-target control.
+
+00:17:01.345 --> 00:17:13.620
+The most policy-relevant finding is that an LLM judging whether actions serve the user's request transferred where trained detectors did not, though its alerts were still mostly false at low attack rates.
+
+00:17:19.090 --> 00:17:38.290
+Fifth, an AI alignment paper from Microsoft Research Asia and collaborators: "Whose Values, Which Contexts, and What Signals?", introducing the Re3Culture dataset. The argument is that a cultural alignment target is a measurement design decision, defined by whose values, where they are observed, and what signals reveal them.
+
+00:17:38.940 --> 00:17:55.565
+The dataset covers China, Japan, South Korea and Singapore, with nine hundred and twenty-four participants, twenty-one thousand six hundred and thirty-one behavioural principles, and six thousand four hundred and two situated annotations with ranked values and written responses.
+
+00:17:55.565 --> 00:18:06.690
+Scenarios were filtered by models but also validated by community members, who had to rate each at four out of five or better on importance, distinctiveness and plausibility.
+
+00:18:07.340 --> 00:18:17.965
+Three findings. On whose values: using another culture as a proxy sits further from the target community than small random subsets of the target community itself.
+
+00:18:17.965 --> 00:18:30.890
+Differences between demographic groups within a culture are comparable to those between cultures: a mean absolute distance of zero point three oh six within cultures against zero point three five four between.
+
+00:18:30.890 --> 00:18:40.140
+Language model simulations compress diversity and match younger adults and perceived-community views more than older adults and personal views.
+
+00:18:40.140 --> 00:19:00.840
+On where to observe values: a person's abstract questionnaire profile predicts which of two values they rank higher in a concrete situation at only about zero point five three against a chance level of zero point five oh. Priorities reverse across topics; conformity beats self-direction in law and rights, and the reverse in personal life choices.
+
+00:19:00.840 --> 00:19:10.815
+On signals: in the PRISM data only eleven point four percent of preference feedback cites value alignment, against fifty-five point seven percent helpfulness.
+
+00:19:10.815 --> 00:19:23.065
+Responses stay consistent with explicitly ranked values, and swapping the top two values with the response unchanged cuts strict priority alignment from about thirty-five percent to twelve and a half.
+
+00:19:23.715 --> 00:19:42.615
+Limits. The sample is four Asian cultures recruited through vendors, not probability samples, with a young skew in China. Several measurements use model components as judges, the codebook shows limited separation, and the abstract says more than seven hundred participants while the tables say nine hundred and twenty-four.
+
+00:19:42.615 --> 00:19:46.190
+The paper trains no alignment method on the data.
+
+00:19:46.840 --> 00:19:59.465
+The governance read: when someone claims a model is aligned to a population, the claim depends on sampling frame, scenario selection and signal type, and this paper measures how much each changes the result.
+
+00:20:05.285 --> 00:20:26.185
+Sixth, an evaluations paper from Zurich: "AI evaluators favor job applications written by certain AI models, independent of candidate quality". Eleven writer models produce cover letters for fifty candidate CVs per job across ten jobs, and nine evaluator models score them, for four hundred and fourteen thousand evaluations.
+
+00:20:26.835 --> 00:20:47.310
+Holding the candidate fixed, the writer changes the score. On letters alone, Gemini three point five Flash is most favoured and Llama three point one, eight billion, is lowest; every evaluator disfavours both locally hosted eight-billion-parameter writers. With the CV visible the ranking reshuffles but the local models stay at the bottom.
+
+00:20:47.310 --> 00:21:03.635
+Evaluators often favour their own outputs. In the worst pairing, with high-fit candidates using the weak writer and moderate-fit candidates using a favoured one, the net displacement is seven point three percent, about one point eight of twenty-five high-fit candidates pushed out.
+
+00:21:03.635 --> 00:21:17.210
+The same-writer noise floor is already about eight percent, so the model mismatch roughly doubles it. Style features explain most of it, chiefly semantic similarity to the job advert, rewarded by all nine evaluators.
+
+00:21:17.860 --> 00:21:34.735
+Caveats: candidate quality is defined by embedding similarity, a coarse proxy; CV and job pairings are researcher-assigned; and model size and hosting are confounded, so the claim is about access tier, not open weights. The code and data are available only on request.
+
+00:21:35.385 --> 00:21:54.660
+The governance read: the bias is invisible to employers, outcome-based audits cannot find it, and the authors point to the high-risk classification of hiring tools in the E U A I Act as a hook. As my own idea, not the paper's, normalising all letters through one model before scoring would be an easy test of the mechanism.
+
+00:22:00.480 --> 00:22:21.555
+Seventh, in interpretability, CausalXRL, from Stony Brook, an I C M L paper. It explains a trained model-free reinforcement learning agent by converting its experience into expert-defined features, like the number of ally ranged units, then using Bayesian additive regression trees to estimate which features causally drive which.
+
+00:22:21.555 --> 00:22:28.130
+The output is a global causal graph and a local, signed, weighted causal model for one situation.
+
+00:22:28.780 --> 00:22:48.805
+On behaviour prediction in four environments, it beats decision trees and linear models in three: eighty-six point oh percent against eighty point three on MicroRTS-Lite, for example, though the decision tree wins on CartPole. Structure learning takes half a second against twenty point nine for the P C algorithm on MicroRTS-Lite.
+
+00:22:48.805 --> 00:23:03.680
+In a study with eight real-time strategy experts, all eight answered a behaviour-prediction question correctly with the local causal model against four of eight with S H A P and state navigation. The authors call this exploratory and not powered.
+
+00:23:04.330 --> 00:23:18.780
+Weaknesses: that comparison confounds the causal model with losing state navigation, conditional ignorability is assumed, edges flip with the interval threshold, and explanation quality is bounded by the hand-built feature codebook.
+
+00:23:18.780 --> 00:23:33.730
+The governance relevance is indirect: this is not language model interpretability, but the authors frame the output as a behavioural surrogate, not a view of internal computation, which matters if such explanations are offered as audit evidence.
+
+00:23:39.550 --> 00:23:51.725
+Eighth, compute and hardware: "Trainable Vector Quantization for Large Language Models", from Huawei. It compresses weights to about two bits each. Earlier methods choose codebook entries layer by layer.
+
+00:23:51.725 --> 00:24:02.100
+This one keeps a hidden continuous copy of the weights, picks the nearest entries, and uses the straight-through estimator to train whole transformer blocks against a distillation loss.
+
+00:24:02.750 --> 00:24:19.900
+In a controlled swap of the optimiser against the same quantisation schemes, it improves on the AQLM beam search by one point five percent on average. On Llama three, seventy billion, it closes the accuracy gap to full precision from four point five to two point six percent.
+
+00:24:19.900 --> 00:24:39.750
+Training costs one hundred and four to four hundred and forty G P U hours for the variants, against over fifteen hundred for P V tuning. One caution the authors raise: a competing method scored a normal perplexity on Llama three seventy billion while its accuracy collapsed to forty-three and a half percent, so perplexity can hide damage.
+
+00:24:40.400 --> 00:24:56.425
+The claim of best results on all five models is overstated. On Llama two seventy billion, the QuIP-sharp variant averages sixty-eight point six against sixty-eight point nine for the original. There are no seed variances and baseline numbers were copied from other papers.
+
+00:24:56.425 --> 00:25:16.225
+The governance relevance is indirect: two-bit seventy-billion-parameter weights fit in roughly seventeen to eighteen gigabytes, which is my arithmetic, widening who can run capable open-weight models locally. The paper does not test safety behaviour after quantisation, so evaluations should be rerun on the deployed quantised model.
+
+00:25:22.045 --> 00:25:41.845
+Ninth, capabilities: a workshop paper from Freiburg and Karlsruhe on plasticity loss in reinforcement learning with noisy environments. Soft Actor-Critic agents on three DeepMind Control tasks, with Gaussian noise on observations or actions, compared plain training against layer normalisation, periodic resets, and both.
+
+00:25:42.495 --> 00:26:01.545
+Resets help most on the two harder tasks, and their advantage grows with observation noise. Noise accelerates plasticity loss on hard tasks but may act as a regulariser on the easy one. In the hardest setting, the dominant failure is sudden divergence of Q values, not gradual loss of plasticity.
+
+00:26:01.545 --> 00:26:14.795
+Combining resets with layer normalisation did worse than resets alone, unexplained. The study is one algorithm, three simulated tasks and five seeds. For governance it is a narrow robustness result.
+
+00:26:20.615 --> 00:26:39.790
+Last, a non-AI paper on a developmental model of Theory of Mind, from Essex and Milano-Bicocca. A small network watches an agent in an eleven by eleven grid and predicts its target. The question is whether also predicting the agent's beliefs, with labels taken from the observer's own earlier behaviour, helps.
+
+00:26:40.440 --> 00:26:59.215
+It does, modestly. The best accuracy is seventy-two point four three percent, and the largest overall gain is one point eight nine points at twenty-five training maps. Gains are bigger in hand-picked conditions: about seven points when the target is hidden, and up to twelve point eight three points with distractors along the path.
+
+00:26:59.215 --> 00:27:12.490
+The gain mostly held for weaker planners and different speeds. The setting is tiny, with exact belief labels from the same planner family, the number of seeds is not stated, and the developmental claims rest on analogy.
+
+00:27:12.490 --> 00:27:21.840
+The indirect relevance to AI risk is that belief-modelling capacity can arise cheaply from multitask training on self-generated labels.

@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 48,
+      "title": "Simple features beat control monitors"
+    },
+    {
+      "startTime": 507,
+      "title": "Humans plus AI, meta-analysed"
+    },
+    {
+      "startTime": 702,
+      "title": "Violet teaming pilot"
+    },
+    {
+      "startTime": 856,
+      "title": "Hijack detectors under realistic conditions"
+    },
+    {
+      "startTime": 1034,
+      "title": "Cultural value targets"
+    },
+    {
+      "startTime": 1200,
+      "title": "Hiring models favour some writers"
+    },
+    {
+      "startTime": 1315,
+      "title": "Causal explanations for RL agents"
+    },
+    {
+      "startTime": 1414,
+      "title": "Trainable vector quantisation"
+    },
+    {
+      "startTime": 1516,
+      "title": "Plasticity loss under noise"
+    },
+    {
+      "startTime": 1575,
+      "title": "Self-observation and beliefs"
+    }
+  ]
+}

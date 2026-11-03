@@ -562,5 +562,20 @@
     "transcript": "audio/ep046.transcript.html",
     "vtt": "audio/ep046.vtt",
     "cover": "covers/ep046.jpg"
+  },
+  {
+    "no": 47,
+    "date": "2026-11-03",
+    "title": "Simple features beat control monitors",
+    "summary": "A word-counting classifier outscores most AI control monitors on the standard backdoor dataset, a living meta-analysis finds human-AI teams still do not beat the better member, and hijack detectors with high AUROC mostly raise false alerts at realistic attack rates.",
+    "file": "audio/ep047.mp3",
+    "bytes": 13454760,
+    "duration": "00:27:36",
+    "music": true,
+    "music_credit": "Music: \u201cTime to Think\u201d by Lee Rosevere, https://freemusicarchive.org/music/lee-rosevere/music-for-podcasts-serious/time-to-think/ licensed CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/); trimmed, faded and mixed with narration.",
+    "chapters": "audio/ep047.chapters.json",
+    "transcript": "audio/ep047.transcript.html",
+    "vtt": "audio/ep047.vtt",
+    "cover": "covers/ep047.jpg"
   }
 ]
