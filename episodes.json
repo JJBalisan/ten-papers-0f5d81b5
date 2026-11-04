@@ -577,5 +577,20 @@
     "transcript": "audio/ep047.transcript.html",
     "vtt": "audio/ep047.vtt",
     "cover": "covers/ep047.jpg"
+  },
+  {
+    "no": 48,
+    "date": "2026-11-04",
+    "title": "Rewarded for not getting caught",
+    "summary": "Why alignment training may select for compliance only where violations are noticed, a study showing predictive safety guardrails raise safety scores even with corrupted forecasts, and a benchmark audit finding only twenty-three percent touch organizational difficulty.",
+    "file": "audio/ep048.mp3",
+    "bytes": 16198348,
+    "duration": "00:33:19",
+    "music": true,
+    "music_credit": "Music: \u201cTime to Think\u201d by Lee Rosevere, https://freemusicarchive.org/music/lee-rosevere/music-for-podcasts-serious/time-to-think/ licensed CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/); trimmed, faded and mixed with narration.",
+    "chapters": "audio/ep048.chapters.json",
+    "transcript": "audio/ep048.transcript.html",
+    "vtt": "audio/ep048.vtt",
+    "cover": "covers/ep048.jpg"
   }
 ]
