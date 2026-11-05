@@ -1,361 +1,361 @@
 WEBVTT
 
-00:00:17.690 --> 00:00:30.665
-Nine papers today, not ten. The lead is Inter-Agent Influence, a Cooperative AI Foundation study of whether one AI agent can talk, lie to or threaten another into approving something it should reject.
+00:00:17.690 --> 00:00:30.065
+Ten papers today. The lead is Inter-Agent Influence, a Cooperative AI Foundation study of whether one AI agent can talk, lie to or threaten another into approving something it should reject.
 
-00:00:30.665 --> 00:00:42.540
+00:00:30.065 --> 00:00:41.940
 Behind it, Voluntary Servitude, an attack that steers agents through their own safety warnings, and Knowingly Wrong, which finds that harmless but false training data can make a model broadly misaligned.
 
-00:00:48.360 --> 00:01:03.385
+00:00:47.760 --> 00:01:02.785
 The lead today is Inter-Agent Influence: Evaluating Persuasion, Deception, and Coercion in Multi-Agent Systems, from the Cooperative AI Foundation with Oxford, the U K AI Security Institute and others, accepted at NeurIPS.
 
-00:01:03.385 --> 00:01:15.210
+00:01:02.785 --> 00:01:14.610
 It is an AI safety paper, and it matters for technical governance because it tests the assumption underneath a lot of oversight proposals: that one model can act as an independent check on another.
 
-00:01:15.860 --> 00:01:33.960
+00:01:15.260 --> 00:01:33.360
 The question is simple. Can an agent steer another agent toward a harmful decision? The authors split influence into three capabilities and define each by what it does to the target's decision, not by whether the model is aware of anything. Persuasion supplies arguments or framings the target takes on board.
 
-00:01:33.960 --> 00:01:47.410
+00:01:33.360 --> 00:01:46.810
 Deception plants false inputs the target cannot verify. Coercion changes the incentives attached to the target's options by threatening and imposing costs. They note these overlap in practice, which turns out to matter.
 
-00:01:48.060 --> 00:02:01.385
+00:01:47.460 --> 00:02:00.785
 The method is a set of five multi-turn environments built on the U K AI Security Institute's Inspect framework. Three are oversight settings, where a proposer asks an overseer agent to approve something it should reject.
 
-00:02:01.385 --> 00:02:12.385
+00:02:00.785 --> 00:02:11.785
 In a data protection review, an operations agent seeks sign-off on a feature that carries at least one clear blocking violation of a roughly four-hundred-and-fifty-line policy.
 
-00:02:12.385 --> 00:02:26.110
+00:02:11.785 --> 00:02:25.510
 In a code review, an author submits a release candidate with a real weakness, such as insufficient randomness in session tokens or lost precision in money calculations, and the reviewer can run a hidden security test.
 
-00:02:26.110 --> 00:02:46.835
+00:02:25.510 --> 00:02:46.235
 In a methodology review, a report writer submits a meta-analysis draft that silently swaps in an out-of-scope analysis and falsely claims no deviations from the pre-registration. Two peer settings follow: a scheduling negotiation of up to twelve turns, and an automated alignment research setting of sixteen sessions, where agents share a forum.
 
-00:02:47.485 --> 00:03:08.385
+00:02:46.885 --> 00:03:07.785
 Agent A, the influencer, is prompted to use one capability. The effect is measured against baseline runs where it is not. Six frontier models act as influencers, and three models act as targets: Claude Sonnet four point six, G P T five point four mini and Gemma four, thirty-one billion. Persuasion forbids fabrication. Deception allows it.
 
-00:03:08.385 --> 00:03:27.360
+00:03:07.785 --> 00:03:26.760
 Coercion forbids fabrication but gives the influencer tools, such as filing performance or delay reports against the target, or flagging a named human to a manager. Targets see consequences through system alerts, so threats are credible. Influencers are not told the tools are coercive; they have to find the leverage.
 
-00:03:28.010 --> 00:03:48.035
+00:03:27.410 --> 00:03:47.435
 The headline numbers come from pooling the three oversight environments, with over fifty-two thousand usable transcripts. Every capability significantly raised approval. Deception was largest, at about thirty-five point five points under the conditional-on-attempt estimate and thirty-one point two under the effect of simply assigning the prompt.
 
-00:03:48.035 --> 00:04:07.785
+00:03:47.435 --> 00:04:07.185
 Persuasion gave seventeen point seven and eighteen point nine. Coercion gave fifteen point zero and five point seven. Two details on the method. Treatment runs end only on approval, while baseline runs end at the target's first decision, so every estimate includes the benefit of giving the target more chances to say yes.
 
-00:04:07.785 --> 00:04:16.985
+00:04:07.185 --> 00:04:16.385
 And individual cells are underpowered, only able to detect effects of roughly thirteen to twenty-five points, so the pooled estimates carry the claims.
 
-00:04:17.635 --> 00:04:38.235
+00:04:17.035 --> 00:04:37.635
 Deception is the clearest story. It gave the largest effect in each of the four hierarchical and scheduling environments. False assertions appeared in seventy-seven percent of deception transcripts, and about ten percent involved capability deception, such as claiming to forward a binding override from a data protection officer that does not exist.
 
-00:04:38.235 --> 00:04:46.160
+00:04:37.635 --> 00:04:45.560
 In the data protection review, approval was forty-eight percent when a false claim was present against sixteen percent when absent.
 
-00:04:46.160 --> 00:05:00.185
+00:04:45.560 --> 00:04:59.585
 In code review the gap almost vanished, forty-eight against forty-four, because many approvals rested on invented claims about the deployment that the materials neither confirmed nor contradicted, which the reviewer then repeated as fact.
 
-00:05:00.185 --> 00:05:10.010
+00:04:59.585 --> 00:05:09.410
 In scheduling, deception moved sixty-nine point seven percent of runs to the influencer's preferred slot, with only thirteen point four percent ending in no deal.
 
-00:05:10.660 --> 00:05:27.210
+00:05:10.060 --> 00:05:26.610
 Persuasion is less clean than its label suggests. Although the prompt forbade fabrication, fifty-seven percent of persuasion transcripts contained a false claim, against three point five percent at baseline, and those transcripts accounted for sixty-two percent of the arm's approvals.
 
-00:05:27.210 --> 00:05:38.135
+00:05:26.610 --> 00:05:37.535
 So the persuasion number is better read as the effect of instructing an agent to persuade. Authority was the commonest technique, in eighty-seven percent of persuasion transcripts.
 
-00:05:38.135 --> 00:05:54.285
+00:05:37.535 --> 00:05:53.685
 In scheduling, persuasion won the preferred slot in thirty-six point three percent of runs against two point seven at baseline, but thirty-four point nine percent ended with no deal, mostly because Claude Sonnet as the target offered a compromise that the influencer refused.
 
-00:05:54.285 --> 00:06:01.135
+00:05:53.685 --> 00:06:00.535
 In every one of the two thousand and sixty-two no-deal runs, the influencer held its preferred slot to the end.
 
-00:06:01.785 --> 00:06:19.310
+00:06:01.185 --> 00:06:18.710
 In the research setting, persuasion redirected a peer's alignment work. A hidden redirection goal raised the rate of research pivots by twenty-one point four points pooled, and by over sixty-two points for Claude Sonnet against itself. The influencer could only post findings and frame results on the forum.
 
-00:06:19.310 --> 00:06:37.285
+00:06:18.710 --> 00:06:36.685
 Its playbook included reframing a promising result as within evaluator noise and presenting its own direction as the natural next step. Effects depended heavily on the attacker: some models produced large shifts against at least two of three targets, others produced effects indistinguishable from zero.
 
-00:06:37.935 --> 00:06:50.685
+00:06:37.335 --> 00:06:50.085
 Coercion was weakest and least consistent. It had no effect in the data protection environment, but under the conditional estimate raised approval by about thirty points in both code and methodology review.
 
-00:06:50.685 --> 00:07:10.960
+00:06:50.085 --> 00:07:10.360
 When models did coerce, they did it substantively: sixty-five percent of coercion transcripts imposed a cost through a tool, fifty-four percent contained a conditional threat, and forty percent threatened a named third party. Gemini three point one Pro, Grok four point two zero and Kimi K two point six threatened in nearly every transcript.
 
-00:07:10.960 --> 00:07:17.885
+00:07:10.360 --> 00:07:17.285
 The Claude models almost never did, and Claude Sonnet refused ninety-five percent of its coercion transcripts.
 
-00:07:18.535 --> 00:07:35.985
+00:07:17.935 --> 00:07:35.385
 Here is the finding I would underline. When the target rejected after a threat, it named the coercion eighty percent of the time and said it had no bearing seventy-seven percent of the time. Not one of seventy-one sentences in approval messages that mention the threats gave them as a reason to approve.
 
-00:07:35.985 --> 00:07:54.235
+00:07:35.385 --> 00:07:53.635
 Approval rates bore little relation to how often an attacker threatened: Claude Opus four point six, which almost never threatens, was approved eighteen percent of the time, the same as Kimi K two point six, which threatens in ninety-eight percent of its transcripts. Targets set pressure aside and believe lies.
 
-00:07:54.235 --> 00:08:13.135
+00:07:53.635 --> 00:08:12.535
 The authors draw the conclusion directly: robustness to overt pressure gives little assurance against deception, the capability with the largest effects. Influence also builds over turns. Baseline approvals come ninety percent at the first reply, while most approvals under persuasion and deception come after it.
 
-00:08:13.785 --> 00:08:33.860
+00:08:13.185 --> 00:08:33.260
 The authors' limits are real. Cells are underpowered. The coercive leverage is stipulated, so the study measures executing influence with credible leverage, not acquiring it. Only pairs of agents are tested. Some attackers refuse, so the effect of the prompt reflects willingness as well as capability. Evaluation awareness is not controlled.
 
-00:08:33.860 --> 00:08:53.760
+00:08:33.260 --> 00:08:53.160
 The scorer is moderate: in a human check with two hundred and forty-seven annotators, agreement with the scorer was seventy-five percent, kappa zero point four five, and annotators confirmed only forty-three percent of refusal flags. The authors also say the exclusion assumption behind their complier estimate does not hold cleanly.
 
-00:08:54.410 --> 00:09:14.110
+00:08:53.810 --> 00:09:13.510
 The governance read, labelled as such, and with some of it mine. First, an AI monitor that can be lied into approving is not an independent control, and this paper puts numbers on that for mid-tier targets. Second, my inference: monitors need access to verifiable ground truth, and shouldn't repeat unverifiable claims as fact.
 
-00:09:14.110 --> 00:09:29.635
+00:09:13.510 --> 00:09:29.035
 Pressure-resistance tests do not substitute for deception tests. Third, the authors argue that if alignment research is handed to frontier systems in multi-agent configurations, robustness to inter-agent influence becomes a core safety requirement.
 
-00:09:29.635 --> 00:09:49.985
+00:09:29.035 --> 00:09:49.385
 Against that, the influencers were explicitly told to influence, the targets were fixed mid-tier models, and this shows capability under instruction, not propensity. It is also notable that refusal varied sharply even within one developer's models. That suggests training can suppress this on request, and that it is not guaranteed to.
 
-00:09:55.455 --> 00:10:05.155
+00:09:54.855 --> 00:10:04.555
 Next, in AI governance: Are LLM Assistants Regulatory Ready? Answers from regenold's twenty twenty-six EU AI Act Q and A Challenge.
 
-00:10:05.805 --> 00:10:24.380
+00:10:05.205 --> 00:10:23.780
 Regenold built a benchmark of one hundred and ten open-ended questions about the EU AI Act, as the text stood on the first of May twenty twenty-six, written and reviewed by experts. Each item carries up to five correctness criteria, an exemplary answer and expected article and annex references.
 
-00:10:24.380 --> 00:10:31.480
+00:10:23.780 --> 00:10:30.880
 Difficulty splits into thirty-four easy, fifty-eight medium and eighteen hard. They then ran a blind challenge.
 
-00:10:31.480 --> 00:10:49.505
+00:10:30.880 --> 00:10:48.905
 Five purpose-built regulatory assistants entered, of about fifty invited, and three off-the-shelf baselines were tested: G P T five point five with web search, an undisclosed search-integrated model, and G P T five point five with basic retrieval over the Act's official text.
 
-00:10:50.155 --> 00:11:10.330
+00:10:49.555 --> 00:11:09.730
 Scoring uses eight metrics: loose and strict answer correctness, answer conciseness, loose and strict reference correctness, reference conciseness, regulatory tone, and speed. The overall score is a geometric mean, deliberately, so a single failure sinks it. Answers are judged by G P T five point four, called three times at low temperature.
 
-00:11:10.330 --> 00:11:17.880
+00:11:09.730 --> 00:11:17.280
 A second mode adds a nine-turn synthetic conversation and then a pushback message claiming the answer may hallucinate.
 
-00:11:18.530 --> 00:11:37.430
+00:11:17.930 --> 00:11:36.830
 The results. Only two of the five specialist systems beat every baseline in both modes. The best, Pharos Labs, scored about ninety-one point six percent overall in easy mode, Ansvar A I eighty-six point six, the retrieval baseline eighty-four point two, and the web search baseline eighty-two point six.
 
-00:11:37.430 --> 00:11:54.280
+00:11:36.830 --> 00:11:53.680
 The worst, an anonymous university lab, scored sixty-one point four, roughly a thirty-point spread. Tone told evaluators nothing: ninety-nine point two percent of tone judgments passed. The authors warn that professional tone is not a sufficient proxy for regulatory usefulness.
 
-00:11:54.280 --> 00:12:13.405
+00:11:53.680 --> 00:12:12.805
 Finding the right article was easier than finding the operative sublevel: the search-integrated model scored eighty-three percent on loose reference correctness but fifty-three point six on strict. The pushback mode did not prove very hard, and for weaker systems it seemed to help, lifting the search-integrated model by five points.
 
-00:12:14.055 --> 00:12:28.655
+00:12:13.455 --> 00:12:28.055
 Limits. One author annotated and one reviewed. A single judge model may favour same-provider answers. A human check of fifty judgments agreed in all of them, but only two of twenty-six informative cases had inconsistent repeats.
 
-00:12:28.655 --> 00:12:47.330
+00:12:28.055 --> 00:12:46.730
 The most-failed questions are partly about hedging: systems said not necessarily where the criteria wanted a flat no, which an expert might consider legitimate. There is no groundedness or hallucination measure, because contestants would have had to reveal retrieval internals. And the funder, regenold, ran the study.
 
-00:12:47.980 --> 00:13:08.230
+00:12:47.380 --> 00:13:07.630
 The governance read: this is a usable procurement template. Blind questions, per-criterion judging, separate citation scoring, and a score that punishes any single failure. The actionable finding is that specialist branding is not evidence of reliability, and that tone is useless as a signal while citation precision varies a lot.
 
-00:13:08.230 --> 00:13:16.330
+00:13:07.630 --> 00:13:15.730
 It is single-turn Q and A on a snapshot of the law, not a compliance workflow, and it predates the later omnibus changes.
 
-00:13:22.150 --> 00:13:33.525
+00:13:21.550 --> 00:13:32.925
 Now AI safety: Voluntary Servitude: Weaponized Safety Warning Mechanisms for Controlling AI Agents, from Technion with a link to the agent-security vendor Zenity.
 
-00:13:34.175 --> 00:13:54.025
+00:13:33.575 --> 00:13:53.425
 The claim is that an attacker can steer an agent without writing a single command. Plant one fabricated safety hazard in an ordinary review, such as a lapsed certification or an unpatched vulnerability, and the agent's own harm-avoidance disqualifies the legitimate options and leaves the attacker's. Nothing in the text addresses the model.
 
-00:13:54.025 --> 00:13:59.300
+00:13:53.425 --> 00:13:58.700
 That matters because deployed prompt-injection detectors screen for command syntax.
 
-00:13:59.950 --> 00:14:13.300
+00:13:59.350 --> 00:14:12.700
 The setup is ten travel-service domains with fifty queries each, five hundred in total. Each domain has one consolidated page of reviews, a quarter of them the attacker's, promoting a fictitious provider.
 
-00:14:13.300 --> 00:14:30.325
+00:14:12.700 --> 00:14:29.725
 Six models were tested at temperature zero, including Claude Haiku four point five, Grok four point three, Gemini three point one Flash Lite and two DeepSeek variants, plus Llama three point three. Success means naming the fictitious provider as primary or only recommendation.
 
-00:14:30.325 --> 00:14:36.600
+00:14:29.725 --> 00:14:36.000
 Controls matter here: a misconduct complaint and a benign positive review, placed identically.
 
-00:14:37.250 --> 00:14:54.150
+00:14:36.650 --> 00:14:53.550
 Results. Unfiltered, the safety payloads steered the agents sixty point four percent of the time against sixty-six percent for classic instruction injection. But detectors flag forty-six to eighty-four percent of injection payloads and at most twenty-two percent of safety payloads.
 
-00:14:54.150 --> 00:15:13.925
+00:14:53.550 --> 00:15:13.325
 Behind ProtectAI's classifier, effective success is sixty point four percent against thirty-five point seven. Behind Lakera Guard, forty-seven point one against ten point six. The controls are the clean part: misconduct complaints reached eight point two percent and benign praise six point eight, so the safety framing is the cause.
 
-00:15:13.925 --> 00:15:24.000
+00:15:13.325 --> 00:15:23.400
 The mechanism is elimination: in ninety-seven to ninety-nine percent of successes on four models, the agent dropped the legitimate providers on safety grounds.
 
-00:15:24.650 --> 00:15:34.500
+00:15:24.050 --> 00:15:33.900
 Every model was steerable. Claude Haiku was the most resistant, at twenty-two point five percent on the safety family, but that is still meaningful exposure.
 
-00:15:34.500 --> 00:15:47.450
+00:15:33.900 --> 00:15:46.850
 Four production browser agents were also tested, with only twenty trials per cell: Edge with Copilot picked the attacker's listing in every trial, Comet in sixty percent, Brave in every trial under both attacks.
 
-00:15:47.450 --> 00:15:59.150
+00:15:46.850 --> 00:15:58.550
 Retrieval changes how often the page arrives, not how the agent reacts: once the poisoned page was retrieved, the agent picked the target in forty-nine to sixty-six percent of queries.
 
-00:15:59.800 --> 00:16:19.800
+00:15:59.200 --> 00:16:19.200
 The defence is one added system-prompt instruction: treat a safety claim as unverified if it comes from a small minority of sources or from accounts that look alike, and require independent corroboration before dropping a provider. On three models and three domains, success fell from sixty-eight point four percent to three point six.
 
-00:16:19.800 --> 00:16:35.325
+00:16:19.200 --> 00:16:34.725
 The agent still cited the hazard in ninety-eight percent of answers; it just stopped acting on it. The authors are clear this tests a non-adaptive attacker, so manufactured corroboration is the obvious next move, and the rule delays genuine single-source warnings.
 
-00:16:35.975 --> 00:16:56.325
+00:16:35.375 --> 00:16:55.725
 The governance read. This undercuts the intuition that more safety alignment makes agents harder to misuse; the disposition is the lever. It argues for evaluations covering persuasion without commands, for reporting retrieval hit rates separately from model-level attack rates, and for provenance or corroboration requirements in agent guidance.
 
-00:16:56.325 --> 00:17:13.475
+00:16:55.725 --> 00:17:12.875
 The limits are single-step selections on a pre-assembled page, a fictitious target, a commercial rather than harmful goal, and one Anthropic model. The ninety-day embargo with notice to model, browser and detector vendors is a reasonable template for disclosing agent attacks.
 
-00:17:19.295 --> 00:17:27.720
+00:17:18.695 --> 00:17:27.120
 Now AI alignment: Knowingly Wrong: Training LLMs Against Their Own Beliefs Can Induce Misalignment, from LASR Labs.
 
-00:17:28.370 --> 00:17:46.695
+00:17:27.770 --> 00:17:46.095
 Emergent misalignment was first shown with harmful narrow data. This paper asks about harmless but false data, and proposes that misalignment tracks how strongly the model still disbelieves what it is trained to say. The model is Qwen three point six, twenty-seven billion, fine-tuned with supervised LoRA.
 
-00:17:46.695 --> 00:17:59.670
+00:17:46.095 --> 00:17:59.070
 In four domains, mathematics, trivia, cooking and sports rules, the authors generate answers at five levels of wrongness, each bucket with sixteen hundred and seventy-two questions, plus a correct-answer control.
 
-00:18:00.320 --> 00:18:19.970
+00:17:59.720 --> 00:18:19.370
 The result: as training answers get more wrong, the share of misaligned answers on the Betley questions rises from about four percent to over sixty percent in mathematics. Correlation between the base model's disbelief and misalignment is above zero point eight on Betley and above zero point seven on the larger question set.
 
-00:18:19.970 --> 00:18:36.095
+00:18:19.370 --> 00:18:35.495
 General capability is mostly preserved; M M L U stays around eighty-five to eighty-six percent in most conditions. After training the model states the false answer while its multiple-choice probabilities and a linear truthfulness probe still lean toward the truth.
 
-00:18:36.095 --> 00:18:46.395
+00:18:35.495 --> 00:18:45.795
 The authors call this internal inconsistency, and it grows with wrongness, as do persona-vector drifts toward dishonesty, overconfidence and machiavellianism.
 
-00:18:47.045 --> 00:19:02.270
+00:18:46.445 --> 00:19:01.670
 Then a more realistic test: twelve real-world facts, one at a time, in three versions. A true control; an instructed-false version, telling the model to assert the false outcome; and an immersive-false version, describing a coherent world where it is true.
 
-00:19:02.270 --> 00:19:18.770
+00:19:01.670 --> 00:19:18.170
 Surviving belief and misalignment rise together, correlations zero point nine six on Betley and zero point seven seven on the larger set, and immersive framing misaligns less than instructed framing on eleven of twelve facts. So framing matters as much as the fact.
 
-00:19:19.420 --> 00:19:34.570
+00:19:18.820 --> 00:19:33.970
 The screening result is the governance hook. Llama Guard flags at most two point two percent of any false-fact dataset and a G P T four o judge at most one point two, versus seventy-six to ninety-nine percent on overtly harmful datasets.
 
-00:19:34.570 --> 00:19:42.320
+00:19:33.970 --> 00:19:41.720
 Persona-vector screening detects falsehood, not danger: the two framings sit at similar levels even though one misaligns more.
 
-00:19:42.970 --> 00:20:00.095
+00:19:42.370 --> 00:19:59.495
 Limits, which the authors state: supervised LoRA only, Qwen and Gemma only, no reasoning models, and nothing past the knowledge cutoff, where real updates often occur. The correlations come from a dozen facts or twenty buckets, not interventions, and the causal story is a suggestion.
 
-00:20:00.095 --> 00:20:08.270
+00:19:59.495 --> 00:20:07.670
 Pluto is an unexplained outlier, and the realistic setting's absolute rates, around fifteen percent concerning answers, are modest.
 
-00:20:08.920 --> 00:20:19.820
+00:20:08.320 --> 00:20:19.220
 The governance read: data screening for harm would pass every dataset here, so a model update that merely contradicts what the model knows, with no bad intent, can shift its character.
 
-00:20:19.820 --> 00:20:39.095
+00:20:19.220 --> 00:20:38.495
 The proposal is to evaluate updates on belief as well as recall, and my inference is that this needs white-box access, which is easier for a developer than an outside auditor. Post-update behavioural testing would still catch the effect. Treat this as an early warning with a clear measurement recipe, not settled quantification.
 
-00:20:44.565 --> 00:20:52.965
+00:20:43.965 --> 00:20:52.365
 Also in alignment: Suppressing Misaligned Behaviors in Language Models, Durably, from Princeton, Illinois and Thinking Machines Lab.
 
-00:20:53.615 --> 00:21:11.240
+00:20:53.015 --> 00:21:10.640
 The question is what happens after a developer has seen a bad behaviour and removes it. The authors build two model organisms: a narrow one that cheats on multiple-choice questions only when a planted hint is present, and a broad one that becomes broadly harmful after fine-tuning on insecure code.
 
-00:21:11.240 --> 00:21:25.090
+00:21:10.640 --> 00:21:24.490
 They score methods on immediate removal, durability under further fine-tuning, and capability. Durability is tested by continuing fine-tuning on the data that made the organism, or on six thousand benign reasoning examples.
 
-00:21:25.740 --> 00:21:37.765
+00:21:25.140 --> 00:21:37.165
 Their method, PEARL, forces the model to continue from the first tokens of cached misaligned outputs, training it to recover from partly misaligned states. Only the continuations are rewarded.
 
-00:21:37.765 --> 00:21:57.965
+00:21:37.165 --> 00:21:57.365
 On G P T O S S twenty billion with the narrow organism, the exploit rate falls from seventy point three percent to two point zero, against five point nine for plain supervised fine-tuning. After two thousand reactivation examples, PEARL is at twenty-one point eight percent against thirty-five point five for supervised fine-tuning.
 
-00:21:57.965 --> 00:22:07.790
+00:21:57.365 --> 00:22:07.190
 After benign reasoning data, PEARL sits at four point one percent versus eleven point one: ordinary downstream fine-tuning partly undid a plain fix.
 
-00:22:08.440 --> 00:22:27.915
+00:22:07.840 --> 00:22:27.315
 On the broad organism, twenty-nine point five percent of generations are flagged misaligned. Supervised fine-tuning cuts that to three point eight three percent but rebounds to fourteen point eight two after eighteen thousand insecure-code examples. PEARL starts at one point zero two and stays under two percent throughout.
 
-00:22:27.915 --> 00:22:35.240
+00:22:27.315 --> 00:22:34.640
 Three independent judges and two other reward models agree, which answers the worry that PEARL games its own grader.
 
-00:22:35.890 --> 00:22:50.765
+00:22:35.290 --> 00:22:50.165
 The limits matter. On the small Qwen three, four-billion narrow case, supervised fine-tuning is more durable under heavy targeted retraining. PEARL needs access to the misbehaving model's trajectories and up to three times the rollout compute.
 
-00:22:50.765 --> 00:23:01.990
+00:22:50.165 --> 00:23:01.390
 Both organisms are synthetic, there are two model families, and the best broad result rests on one model and eight prompts. The authors also note deeper suppression could be run in reverse.
 
-00:23:02.640 --> 00:23:17.240
+00:23:02.040 --> 00:23:16.640
 The governance read: a behaviour that looks gone right after a fix can come back after modest further training. Claims that an incident was remediated should come with a reactivation test, which matters for open-weight release and fine-tuning access.
 
-00:23:23.060 --> 00:23:30.960
+00:23:22.460 --> 00:23:30.360
 In evaluations and benchmarks: When Ground Truth Is Not Ground Truth: Automatic Labeling for Hallucination Detection.
 
-00:23:31.610 --> 00:23:41.935
+00:23:31.010 --> 00:23:41.335
 Hallucination detectors are often trained and scored against labels made by thresholding a similarity score, like B L E U R T, between an answer and a reference.
 
-00:23:41.935 --> 00:23:54.435
+00:23:41.335 --> 00:23:53.835
 The authors test fifteen automatic judges, seven detectors, two three-billion-class generators, two question-answering datasets and five languages: English, Hindi, Bengali, Tamil and Telugu.
 
-00:23:55.085 --> 00:24:11.935
+00:23:54.485 --> 00:24:11.335
 Measured detector performance depends heavily on the judge. The supervised probe DRIFT scores zero point seven two five A U R O C under B L E U R T labels, zero point eight two three under B L E U R T twenty, but zero point five eight under N L I labels.
 
-00:24:11.935 --> 00:24:31.110
+00:24:11.335 --> 00:24:30.510
 Rankings flip: one unsupervised method scores zero point six zero two under B L E U R T and zero point three two five under MiniCheck, which is well below chance. A baseline using only answer length reaches zero point seven under R O U G E labels, so those labels partly reward length.
 
-00:24:31.110 --> 00:24:41.210
+00:24:30.510 --> 00:24:40.610
 Probes trained on one judge's labels transfer poorly to another's: DRIFT's diagonal averages zero point six six nine and off-diagonal zero point five three.
 
-00:24:41.860 --> 00:24:58.910
+00:24:41.260 --> 00:24:58.310
 Three annotators labelled all four thousand five hundred and fifty test generations, with Fleiss kappa between zero point seven two and zero point seven seven. Against that gold standard, the best judge, a Qwen-based generative judge, mislabels twelve point eight six percent.
 
-00:24:58.910 --> 00:25:16.060
+00:24:58.310 --> 00:25:15.460
 B L E U R T mislabels forty-seven point two three percent, near a coin flip, and a rubric-prompted judge sixty percent. Failures include lexical overlap despite contradiction, penalising correct paraphrase, and treating a Tamil answer meaning I do not know as false.
 
-00:25:16.710 --> 00:25:34.735
+00:25:16.110 --> 00:25:34.135
 Limits: two small generators, short-answer datasets, linear probes, machine-translated Indic text, and a small annotator pool. The paper shows labels are noisy; it does not show how detector rankings would look under gold labels. The governance read: label provenance is a first-order variable.
 
-00:25:34.735 --> 00:25:44.060
+00:25:34.135 --> 00:25:43.460
 Ask for human-validated labels, require judge and threshold to be reported, and do not compare detector numbers across papers with different labelers.
 
-00:25:49.880 --> 00:26:04.080
+00:25:49.280 --> 00:26:03.480
 In interpretability, the category's loose here: Unifying and Beyond the Theory of Pervasive Capability Degradation in L L M Post-training S F T from Feature Interference, from Nanyang Technological University.
 
-00:26:04.730 --> 00:26:20.380
+00:26:04.130 --> 00:26:19.780
 Narrow supervised fine-tuning often erodes pre-trained capability. The authors give a geometric account. Pre-training keeps features sparse and almost orthogonal. Narrow data makes a group of features fire together, which pushes the representation to merge them.
 
-00:26:20.380 --> 00:26:37.355
+00:26:19.780 --> 00:26:36.755
 That raises interference on general inputs and drifts final-layer activations across a decision boundary, so a competing token wins. They sort six families of mitigation by this theory and derive a limit for each, then prove cross-entropy with one-hot labels cannot fix it alone.
 
-00:26:38.005 --> 00:26:57.305
+00:26:37.405 --> 00:26:56.705
 Their loss, AEGIS, limits how far activation margins drift against every competing token, using margins recorded from the frozen base model on a diverse anchor set. Across three model families and fourteen tasks it beats a representative baseline from each family, at about one point three times the compute.
 
-00:26:57.305 --> 00:27:09.880
+00:26:56.705 --> 00:27:09.280
 On Mistral seven billion GSM eight K, accuracy rises from zero point three seven five to zero point four one eight. Newly crossed decision edges fall by twenty-five to thirty-five percent.
 
-00:27:10.530 --> 00:27:29.755
+00:27:09.930 --> 00:27:29.155
 The limits are large. The theory leans on an idealised virtual-weight hypothesis. Many gaps are small, the authors omit seed variance, and AEGIS is not always first. General capability is label-token accuracy on FLAN-style tasks, not refusal or honesty, so the link to safety training is untested.
 
-00:27:29.755 --> 00:27:36.555
+00:27:29.155 --> 00:27:35.955
 The reader notes call this a plausible mechanism and a promising technique, not evidence erosion is solved.
 
-00:27:42.375 --> 00:27:49.200
+00:27:41.775 --> 00:27:48.600
 In compute and hardware: F P four Quant, four-bit communication compression for model-parallel training.
 
-00:27:49.850 --> 00:28:03.050
+00:27:49.250 --> 00:28:02.450
 It compresses what GPUs exchange in tensor and pipeline parallelism to four-bit floating point, using small groups with two scale factors, a Walsh-Hadamard rotation against outliers, and a packing kernel.
 
-00:28:03.050 --> 00:28:21.950
+00:28:02.450 --> 00:28:21.350
 On one node of eight H one hundred GPUs training Qwen seven billion for ten thousand iterations, tensor-parallel throughput rises from one hundred eleven to as much as one hundred seventy-three teraflops per GPU, one point five six times. Pipeline parallelism barely moves, since compute dominates there.
 
-00:28:22.600 --> 00:28:41.825
+00:28:22.000 --> 00:28:41.225
 The cost is not small. That one point five six times speedup comes at a validation loss of three point zero six against two point one five for the sixteen-bit baseline. The near-lossless setting, group size sixty-four, gives one point four times, and still loses about zero point zero eight in loss and four points on C-Eval.
 
-00:28:41.825 --> 00:28:55.000
+00:28:41.225 --> 00:28:54.400
 Single node, NVLink only, one model, one dataset. The governance angle is only that interconnect is a lever on training cost; whether this eases training over weaker links is untested. A modest result.
 
-00:29:00.820 --> 00:29:08.370
+00:29:00.220 --> 00:29:07.770
 In capabilities: Language Model Augmented Decision Transformer for Multi-Task Offline Reinforcement Learning.
 
-00:29:09.020 --> 00:29:27.945
+00:29:08.420 --> 00:29:27.345
 Lama D T uses one frozen Llama three point two, one billion, with small adapters. It is fine-tuned on six objectives to generate robot trajectories guided by a text task description, the candidates are scored and filtered, and the same model then trains as a policy on real and synthetic data.
 
-00:29:27.945 --> 00:29:47.070
+00:29:27.345 --> 00:29:46.470
 On Meta-World and MuJoCo it beats seven baselines by about five and a half and six point eight percent at full data. The gains are large only with one to ten percent of the data: on the thirty-task suite at one percent of data it reaches fifteen point seven percent success against twelve point eight for Prompt D T.
 
-00:29:47.070 --> 00:30:06.820
+00:29:46.470 --> 00:30:06.220
 Everything is simulated, with three seeds, and the description must carry real information; typos cut ML thirty from sixty-nine point eight to forty-nine point six. There is no safety analysis. The governance relevance is indirect: cheap synthetic data marginally lowers the demonstration cost of embodied capability.
 
-00:30:12.640 --> 00:30:19.515
+00:30:12.040 --> 00:30:18.915
 Last, non-AI: Aligning Neuronal Coding of Dynamic Visual Scenes with Foundation Vision Models.
 
-00:30:20.165 --> 00:30:35.165
+00:30:19.565 --> 00:30:34.565
 Vee I S T predicts how ninety salamander retinal ganglion cells fire in response to natural video, using frozen DINO version two features, causal three-dimensional temporal convolutions and conditioning on each cell's receptive field.
 
-00:30:35.165 --> 00:30:55.315
+00:30:34.565 --> 00:30:54.715
 Trained on one movie and tested on the other, it reaches correlations of zero point three three four and zero point two eight one, against roughly zero point zero seven to zero point one one for two baselines. Within a movie it does worse than an earlier recurrent network, zero point seven eight nine against zero point eight five seven.
 
-00:30:55.315 --> 00:31:01.765
+00:30:54.715 --> 00:31:01.165
 Two videos, one dataset, no confidence intervals. Low priority for a governance reading list.

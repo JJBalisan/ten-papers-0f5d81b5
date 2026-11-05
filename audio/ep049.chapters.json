@@ -6,7 +6,7 @@
       "title": "Introduction"
     },
     {
-      "startTime": 43,
+      "startTime": 42,
       "title": "Agents influencing agents"
     },
     {
@@ -18,7 +18,7 @@
       "title": "Warnings as an attack surface"
     },
     {
-      "startTime": 1034,
+      "startTime": 1033,
       "title": "Training against beliefs"
     },
     {
@@ -34,7 +34,7 @@
       "title": "Fine-tuning without forgetting"
     },
     {
-      "startTime": 1657,
+      "startTime": 1656,
       "title": "Four-bit communication"
     },
     {
@@ -42,7 +42,7 @@
       "title": "Language-guided robot data"
     },
     {
-      "startTime": 1807,
+      "startTime": 1806,
       "title": "Salamander retina model"
     }
   ]
