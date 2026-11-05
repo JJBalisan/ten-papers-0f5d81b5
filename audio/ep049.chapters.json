@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 43,
+      "title": "Agents influencing agents"
+    },
+    {
+      "startTime": 590,
+      "title": "Regulatory assistants tested"
+    },
+    {
+      "startTime": 796,
+      "title": "Warnings as an attack surface"
+    },
+    {
+      "startTime": 1034,
+      "title": "Training against beliefs"
+    },
+    {
+      "startTime": 1239,
+      "title": "Durable suppression"
+    },
+    {
+      "startTime": 1397,
+      "title": "Ground truth for detectors"
+    },
+    {
+      "startTime": 1544,
+      "title": "Fine-tuning without forgetting"
+    },
+    {
+      "startTime": 1657,
+      "title": "Four-bit communication"
+    },
+    {
+      "startTime": 1735,
+      "title": "Language-guided robot data"
+    },
+    {
+      "startTime": 1807,
+      "title": "Salamander retina model"
+    }
+  ]
+}
