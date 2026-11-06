@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 46,
+      "title": "Hardening open-weight refusal"
+    },
+    {
+      "startTime": 509,
+      "title": "Assurance beyond accuracy"
+    },
+    {
+      "startTime": 796,
+      "title": "Principles and practice"
+    },
+    {
+      "startTime": 956,
+      "title": "The graded alignment tax"
+    },
+    {
+      "startTime": 1163,
+      "title": "Myopic alignment"
+    },
+    {
+      "startTime": 1311,
+      "title": "Cheaper agent evaluation"
+    },
+    {
+      "startTime": 1510,
+      "title": "How far can you steer"
+    },
+    {
+      "startTime": 1679,
+      "title": "Attention kernels for Blackwell"
+    },
+    {
+      "startTime": 1819,
+      "title": "Strategy-guided small models"
+    },
+    {
+      "startTime": 1949,
+      "title": "Alignment metrics for brains"
+    }
+  ]
+}

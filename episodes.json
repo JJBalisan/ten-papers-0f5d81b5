@@ -607,5 +607,20 @@
     "transcript": "audio/ep049.transcript.html",
     "vtt": "audio/ep049.vtt",
     "cover": "covers/ep049.jpg"
+  },
+  {
+    "no": 50,
+    "date": "2026-11-06",
+    "title": "Rewriting where refusal lives",
+    "summary": "Lead: ABS-Align, a defence that spreads refusal in open-weight models beyond a few safety neurons. Also AI assurance in public services and the graded alignment tax of preference optimisation.",
+    "file": "audio/ep050.mp3",
+    "bytes": 16636664,
+    "duration": "00:34:14",
+    "music": true,
+    "music_credit": "Music: \u201cTime to Think\u201d by Lee Rosevere, https://freemusicarchive.org/music/lee-rosevere/music-for-podcasts-serious/time-to-think/ licensed CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/); trimmed, faded and mixed with narration.",
+    "chapters": "audio/ep050.chapters.json",
+    "transcript": "audio/ep050.transcript.html",
+    "vtt": "audio/ep050.vtt",
+    "cover": "covers/ep050.jpg"
   }
 ]
