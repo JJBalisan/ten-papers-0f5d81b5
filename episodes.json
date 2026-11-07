@@ -622,5 +622,20 @@
     "transcript": "audio/ep050.transcript.html",
     "vtt": "audio/ep050.vtt",
     "cover": "covers/ep050.jpg"
+  },
+  {
+    "no": 51,
+    "date": "2026-11-07",
+    "title": "Who controls evaluation infrastructure",
+    "summary": "A governance framework showing design authority without infrastructure authority never gave African evaluators more than partial independence, a three-factor loss-of-control score tested on thirteen models, and a continuous-validation audit finding defects in 28 of 89 Terminal-Bench tasks.",
+    "file": "audio/ep051.mp3",
+    "bytes": 15062476,
+    "duration": "00:30:57",
+    "music": true,
+    "music_credit": "Music: \u201cTime to Think\u201d by Lee Rosevere, https://freemusicarchive.org/music/lee-rosevere/music-for-podcasts-serious/time-to-think/ licensed CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/); trimmed, faded and mixed with narration.",
+    "chapters": "audio/ep051.chapters.json",
+    "transcript": "audio/ep051.transcript.html",
+    "vtt": "audio/ep051.vtt",
+    "cover": "covers/ep051.jpg"
   }
 ]
