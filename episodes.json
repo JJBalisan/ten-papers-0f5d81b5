@@ -637,5 +637,20 @@
     "transcript": "audio/ep051.transcript.html",
     "vtt": "audio/ep051.vtt",
     "cover": "covers/ep051.jpg"
+  },
+  {
+    "no": 52,
+    "date": "2026-11-08",
+    "title": "Learning the verifier, not the task",
+    "summary": "A study showing a self-improving robot-coding agent that reads its grader learns the verifier, not the task, plus keyed homoglyph text provenance and a small gate against prompt injection in retrieved passages.",
+    "file": "audio/ep052.mp3",
+    "bytes": 16050310,
+    "duration": "00:33:00",
+    "music": true,
+    "music_credit": "Music: \u201cTime to Think\u201d by Lee Rosevere, https://freemusicarchive.org/music/lee-rosevere/music-for-podcasts-serious/time-to-think/ licensed CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/); trimmed, faded and mixed with narration.",
+    "chapters": "audio/ep052.chapters.json",
+    "transcript": "audio/ep052.transcript.html",
+    "vtt": "audio/ep052.vtt",
+    "cover": "covers/ep052.jpg"
   }
 ]
