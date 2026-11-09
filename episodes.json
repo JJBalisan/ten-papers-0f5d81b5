@@ -652,5 +652,20 @@
     "transcript": "audio/ep052.transcript.html",
     "vtt": "audio/ep052.vtt",
     "cover": "covers/ep052.jpg"
+  },
+  {
+    "no": 53,
+    "date": "2026-11-09",
+    "title": "Mass-produced training data with side effects",
+    "summary": "Transluce and Berkeley's 6,575 stealthy datasets that shift model behaviour, a benchmark of personal agents fooled by forged multimodal evidence, and a survey asking if mechanistic interpretability makes models safer.",
+    "file": "audio/ep053.mp3",
+    "bytes": 17873099,
+    "duration": "00:36:48",
+    "music": true,
+    "music_credit": "Music: \u201cTime to Think\u201d by Lee Rosevere, https://freemusicarchive.org/music/lee-rosevere/music-for-podcasts-serious/time-to-think/ licensed CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/); trimmed, faded and mixed with narration.",
+    "chapters": "audio/ep053.chapters.json",
+    "transcript": "audio/ep053.transcript.html",
+    "vtt": "audio/ep053.vtt",
+    "cover": "covers/ep053.jpg"
   }
 ]
