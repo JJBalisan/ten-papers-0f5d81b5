@@ -667,5 +667,20 @@
     "transcript": "audio/ep053.transcript.html",
     "vtt": "audio/ep053.vtt",
     "cover": "covers/ep053.jpg"
+  },
+  {
+    "no": 54,
+    "date": "2026-11-10",
+    "title": "Goodhart in the planner",
+    "summary": "Goodhart in the Planner, showing sampling-based control exploiting learned preference rewards; a DeepMind swarm attack on prompt injection defences; and TurnFlow, a benchmark of agents losing track of changing user requirements.",
+    "file": "audio/ep054.mp3",
+    "bytes": 13126084,
+    "duration": "00:26:55",
+    "music": true,
+    "music_credit": "Music: \u201cTime to Think\u201d by Lee Rosevere, https://freemusicarchive.org/music/lee-rosevere/music-for-podcasts-serious/time-to-think/ licensed CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/); trimmed, faded and mixed with narration.",
+    "chapters": "audio/ep054.chapters.json",
+    "transcript": "audio/ep054.transcript.html",
+    "vtt": "audio/ep054.vtt",
+    "cover": "covers/ep054.jpg"
   }
 ]
