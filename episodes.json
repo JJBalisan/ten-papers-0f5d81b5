@@ -697,5 +697,20 @@
     "transcript": "audio/ep055.transcript.html",
     "vtt": "audio/ep055.vtt",
     "cover": "covers/ep055.jpg"
+  },
+  {
+    "no": 56,
+    "date": "2026-11-12",
+    "title": "Chain of thought monitorability",
+    "summary": "Davies and Bearman propose five disclosures for tracking chain of thought monitorability after OpenAI reported a decline in G P T six Astra. Also a U N-centred global A I governance framework report and the BypassGym endpoint evasion benchmark.",
+    "file": "audio/ep056.mp3",
+    "bytes": 15548445,
+    "duration": "00:31:58",
+    "music": true,
+    "music_credit": "Music: \u201cTime to Think\u201d by Lee Rosevere, https://freemusicarchive.org/music/lee-rosevere/music-for-podcasts-serious/time-to-think/ licensed CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/); trimmed, faded and mixed with narration.",
+    "chapters": "audio/ep056.chapters.json",
+    "transcript": "audio/ep056.transcript.html",
+    "vtt": "audio/ep056.vtt",
+    "cover": "covers/ep056.jpg"
   }
 ]

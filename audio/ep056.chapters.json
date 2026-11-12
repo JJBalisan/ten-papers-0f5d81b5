@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 52,
+      "title": "Chain of thought monitorability"
+    },
+    {
+      "startTime": 539,
+      "title": "Global governance framework"
+    },
+    {
+      "startTime": 760,
+      "title": "Jailbreak defence"
+    },
+    {
+      "startTime": 933,
+      "title": "Living constitutions"
+    },
+    {
+      "startTime": 1099,
+      "title": "Gaze reward models"
+    },
+    {
+      "startTime": 1227,
+      "title": "A benchmark for endpoint evasion"
+    },
+    {
+      "startTime": 1413,
+      "title": "Auditing the judge"
+    },
+    {
+      "startTime": 1579,
+      "title": "Faster low-bit decoding"
+    },
+    {
+      "startTime": 1726,
+      "title": "Noise-robust retrieval"
+    },
+    {
+      "startTime": 1829,
+      "title": "A brain signal foundation model"
+    }
+  ]
+}
