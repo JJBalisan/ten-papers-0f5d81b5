@@ -712,5 +712,20 @@
     "transcript": "audio/ep056.transcript.html",
     "vtt": "audio/ep056.vtt",
     "cover": "covers/ep056.jpg"
+  },
+  {
+    "no": 57,
+    "date": "2026-11-13",
+    "title": "Agent benchmarks stop ranking",
+    "summary": "Lead: a re-scoring of eight agent benchmarks showing pass/fail scoring, not task supply, saturates leaderboards. Also, why verifier error rates mislead in RLVR, and an epidemiological cohort design for agents.",
+    "file": "audio/ep057.mp3",
+    "bytes": 18176089,
+    "duration": "00:37:26",
+    "music": true,
+    "music_credit": "Music: \u201cTime to Think\u201d by Lee Rosevere, https://freemusicarchive.org/music/lee-rosevere/music-for-podcasts-serious/time-to-think/ licensed CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/); trimmed, faded and mixed with narration.",
+    "chapters": "audio/ep057.chapters.json",
+    "transcript": "audio/ep057.transcript.html",
+    "vtt": "audio/ep057.vtt",
+    "cover": "covers/ep057.jpg"
   }
 ]

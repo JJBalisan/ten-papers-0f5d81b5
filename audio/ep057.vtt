@@ -1,0 +1,430 @@
+WEBVTT
+
+00:00:17.690 --> 00:00:26.540
+Today's lead is a paper arguing that agent leaderboards have stopped ranking the frontier because of how runs are scored, not because the tasks ran out.
+
+00:00:26.540 --> 00:00:43.715
+Behind it, two papers I'd flag: Wrong the Same Way, on why two verifiers with the same error count can leave a model with very different accuracy, and a proposal to study AI agents the way epidemiologists study cohorts of people. Ten papers today, so let's start with the lead.
+
+00:00:49.185 --> 00:00:59.010
+The lead paper is Agent Benchmarks Stop Ranking Before They Run Out of Tasks, from Zihan Dong, Qishi Zhan and Minxuan Hu, at Lenovo, Marquette and Cornell.
+
+00:00:59.010 --> 00:01:13.260
+It is an evaluations paper, and I'm making it the lead because almost every capability claim and every threshold-based safety evaluation we rely on rests on the thing it criticises: reducing a run to a single pass or fail.
+
+00:01:13.910 --> 00:01:33.235
+The starting observation is about turnover. Across fifty-seven flagship model cards from seven labs between twenty twenty-four and twenty twenty-six, only about a third of a card's agentic results can be compared with the same lab's previous flagship, meaning same benchmark, same version, same subset and same harness.
+
+00:01:33.235 --> 00:01:53.085
+The last flagship card to report SWE-bench Verified appeared in April twenty twenty-six, at a point when the top ten models solved between seventy-six and eighty percent of the tasks. The authors' phrase is that the benchmark "ran out of ranking, not tasks." Their claim is that much of what we call saturation is a property of the measurement.
+
+00:01:53.085 --> 00:02:02.885
+Almost every agent benchmark grades a run against an answer key, written per task, which returns one bit. They argue that bit fails in two separate ways.
+
+00:02:03.535 --> 00:02:07.910
+Failure A is that the bit is too coarse to separate neighbouring agents.
+
+00:02:07.910 --> 00:02:26.935
+They use per-task results for the official top thirty on SWE-bench Verified as of the first of September twenty twenty-six, the per-trial results of sixty-one Terminal-Bench two point zero submissions after dropping three flagged for cheating, and the OSWorld-Verified top ten, seven of which have per-task data.
+
+00:02:26.935 --> 00:02:48.410
+Agents are grouped into tiers, meaning sets the benchmark cannot tell apart, using a step-down max-T test on paired statistics, with a null built by permuting agent labels within tasks. That bounds the chance of any false split at five percent. The finding: on SWE-bench Verified today the top ten span three point six points and form a single tier.
+
+00:02:48.410 --> 00:03:05.360
+Terminal-Bench two point zero's top ten also form one tier, and OSWorld-Verified's form two, with a leading pair standing apart from a tied pack. On SWE-bench Verified and Terminal-Bench, none of the forty-five pairs inside the top ten differs significantly.
+
+00:03:05.360 --> 00:03:24.985
+And the test is not weak: it detects about six point three points with eighty percent power, while the largest gap between SWE-bench neighbours is one point four. In September twenty twenty-four, by contrast, the same top ten spanned nineteen point two points and three tiers, so the benchmark used to resolve and no longer does.
+
+00:03:25.635 --> 00:03:42.060
+The second half of Failure A is verifier error. SWE-ABS re-checked the passing patches with strengthened tests, and those tests reject seventeen point seven percent of the median agent's passing patches, with a range from ten point eight to twenty-three point two percent.
+
+00:03:42.060 --> 00:03:57.810
+That rate differs between agents by more than sampling noise, a spread of about two points, whereas neighbours on the leaderboard are typically two to four tenths of a point apart. Correcting the verdicts shrinks the top tier of the thirty from twenty-three agents to a leading group of five.
+
+00:03:57.810 --> 00:04:13.710
+It also reverses eight of the eighteen neighbouring orders that had a non-zero gap. The control is what makes this persuasive: deleting the same share of passes at random from each agent reverses about as many, eight, with a ninety-five percent band of four to eleven.
+
+00:04:13.710 --> 00:04:19.760
+So the order of neighbours is noise, in the sense that any perturbation of this size reorders it.
+
+00:04:20.410 --> 00:04:39.260
+Failure B is that the bit is capped at the reference. A run that beats the reference solution scores the same as one that just matches it. To test whether that cap is the problem, they re-score released runs of five benchmarks that release per-run continuous results, and between four and seventy-one percent of those runs beat the reference.
+
+00:04:39.260 --> 00:04:53.710
+Each benchmark is scored three ways: an answer key, a capped score that gives partial credit up to the reference and nothing beyond it, and their proposed objective, which is zero at a baseline, one at the reference, above one for beating it, and clipped at three.
+
+00:04:53.710 --> 00:05:01.535
+They also report a saturation index, near one when the top five are within noise and near zero when they are clearly separated.
+
+00:05:02.185 --> 00:05:11.035
+The cleanest case is ALE-Bench, forty contests scored by contest performance. The official score separates the top ten into three tiers.
+
+00:05:11.035 --> 00:05:30.110
+Scored as pass or fail against the median human, five models pass thirty-nine of the forty problems and the top ten collapse into one tier, with a saturation index of one point zero zero, even though nearly half the runs beat that human. Their objective restores three tiers, with an index of zero point zero three.
+
+00:05:30.110 --> 00:05:47.735
+Across task resamples, the pass-fail key gives one tier every time, and the objective gives at least two tiers ninety-nine point six percent of the time. Partial credit below the reference does not help; the capped score still gives one tier. Crediting only the margin above the reference gives all three.
+
+00:05:47.735 --> 00:05:55.835
+The margin above the reference matters mainly where the key has run out; on MLE-bench, whose key is not saturated, it adds little.
+
+00:05:56.485 --> 00:06:10.360
+Does simply raising the bar fix it? Using ALE-Bench they split one hundred and forty-one models into forty-six released by the end of twenty twenty-five and ninety-five released later. The median-human bar ties the later top ten.
+
+00:06:10.360 --> 00:06:27.610
+The contest-winner bar separates them into two tiers, but scores eighty-nine percent of the earlier models zero on every task. A bar tuned to separate the earlier models ties the later top ten again. Each bar sees one band of ability, and raising it moves the band instead of widening it.
+
+00:06:27.610 --> 00:06:41.735
+The authors note this simulates a harder bar on the same tasks, whereas a real new version also adds tasks. Several bars per task, a graded score, do resolve the later models, and a continuous score is the limit of that.
+
+00:06:42.385 --> 00:06:59.160
+The third strand is a controlled re-run on Terminal-Bench. They coded the tests of all eighty-nine Terminal-Bench two point zero tasks, and found that eighteen of them, twenty percent, compute a quantity such as a runtime and compare it with a threshold, then throw the quantity away.
+
+00:06:59.160 --> 00:07:18.560
+Samples from SWE-bench Verified, OSWorld-Verified and tau-squared-bench contained none, though with samples that small, true rates of ten to fifteen percent cannot be excluded. Released logs recorded the quantity for only four such tasks, so they re-ran thirteen tasks with the tests changed only to print it.
+
+00:07:18.560 --> 00:07:36.110
+Four models, three trials per task, in the Terminus two agent: a hundred and fifty-six runs for about a hundred and fifteen dollars. Pass or fail ties three of the models, opus, astra and gemini, and separates codex. But the tied three are far apart on the quantity the tests discard.
+
+00:07:36.110 --> 00:07:55.785
+On portfolio optimization all their runs pass, yet opus's median speedup is ten point nine times while the others sit at one point three times, the reference's level. Of all passing runs, sixty-nine percent beat the reference solution. Two codex runs passed by reward hacking, and both stood out in the printed quantity.
+
+00:07:55.785 --> 00:08:09.535
+Counted as failures, they leave codex below its leaderboard entry on these tasks. The authors themselves note that with three trials per cell the aggregate separation of models is borderline and the robust evidence is per task.
+
+00:08:10.185 --> 00:08:20.910
+Cost is the other ignored axis. Over all eighty-nine tasks, the six tied top-ten agents that log tokens differ seven point three times in median tokens per run.
+
+00:08:20.910 --> 00:08:40.985
+For the four priced at list rates the median cost per run differs five point five times, from forty-four cents to two dollars forty-seven, with every pair significant, and the cheapest per run uses the priciest model per token. They caution that under one scaffold this mostly reflects price per token and verbosity, not ability.
+
+00:08:41.635 --> 00:08:54.460
+The proposal is layered. A hardened gate that deterministically checks acceptance, including anti-tamper. An uncapped objective, a clipped log-ratio normalised to dated anchors, written once per domain.
+
+00:08:54.460 --> 00:09:13.110
+A separate cost meter reporting dollars, tokens, steps and time, never blended into the objective, because a blended score ranks cost rather than quality; on ALE-Bench a composite agrees with the human rating at minus zero point three five in the later cohort. And frozen anchors so versions share a scale.
+
+00:09:13.110 --> 00:09:24.010
+Language models may draft the gate and objective code at authoring time, with human audit, but do not score at run time, which the authors label a design position, not a finding.
+
+00:09:24.660 --> 00:09:45.935
+The authors' own limits. Per-agent verifier error exists only for SWE-bench Verified, taking the strengthened tests as ground truth. The sliding-window result rests on ALE-Bench, with some reconstructed release dates. MLE-bench, whose key is not saturated, shows no such effect. And rubric-graded work has neither a gate nor a scalar objective.
+
+00:09:46.585 --> 00:10:06.910
+The governance read, labelled as such from the reader notes. Three points. First, claims that one model leads another at the frontier need tiers and error bars, because verifier error of ten to twenty-three percent of passes is larger than the gaps being reported. Second, a pass-fail capability threshold can hide large differences above the bar.
+
+00:10:06.910 --> 00:10:26.310
+If a dangerous-capability threshold is defined as passing, models tied at pass may differ tenfold in what they achieve, and the threshold cannot see progress above it. Third, cost and reward hacking both show up as measurement variation, so evaluation reports should publish tiers, uncertainty and cost, not a single rank.
+
+00:10:26.310 --> 00:10:44.560
+My own inference: the caveat that matters most is that many safety-relevant tasks have no natural quantity to score, so the design helps for optimisation-style evaluations and much less for rubric-graded or conduct-style ones. And the re-run is small: a hundred and fifty-six runs, four models.
+
+00:10:50.030 --> 00:11:07.855
+Next, in AI Governance: When Reasoning looks like Hidden Understanding, from Lack, Tikhomirov, Thompson, Semmler and McCradden at the Australian Institute for Machine Learning. This is a conceptual position paper. It has no new experiments; the evidence is other people's studies, mostly clinical.
+
+00:11:08.505 --> 00:11:19.630
+The argument runs in a chain. Chain-of-thought text, and the short summaries or status labels such as reflecting and planning that users usually see, reads as a window onto reasoning.
+
+00:11:19.630 --> 00:11:34.455
+The authors say it is really a fluent output that may not reflect the process that produced the answer, and they note that studies show chain of thought is often unfaithful. They are careful about the causal story. Chain of thought does not by itself drive deference.
+
+00:11:34.455 --> 00:11:40.930
+It supplies anthropomorphic cues, which make the system intelligible as something you could delegate to.
+
+00:11:40.930 --> 00:11:58.005
+What drives deference is perceived epistemic authority and superiority, which they trace to the nineteen-fifties marketing of the term artificial intelligence, to the machine heuristic that automation is precise and objective, and to a flood of papers claiming AI beats clinicians.
+
+00:11:58.005 --> 00:12:05.255
+A systematic review they cite found only a tiny fragment of such studies were designed well enough to support the claim.
+
+00:12:05.905 --> 00:12:23.105
+Their evidence on explanations is the most useful part for us. Fewer than one percent of people click through to verify a Google AI Overview. In healthcare studies, the mere presence of an explanation can confer trust even when its content is random and unrelated to the output.
+
+00:12:23.105 --> 00:12:34.955
+Almost every type of explainability method has been shown to change how much weight clinicians give AI advice without improving their ability to tell correct from incorrect recommendations.
+
+00:12:34.955 --> 00:12:46.705
+And in a dermatology experiment, lay participants showed more automation bias while experienced physicians were more resilient, so the authors treat deference as conditional, not inevitable.
+
+00:12:47.355 --> 00:13:02.180
+The central harm they name is the fallacy of composition: inferring from strong performance on a narrow task that a system is broadly competent. A model good at spotting pneumonia on chest scans may be assumed to be good at diagnosis generally.
+
+00:13:02.180 --> 00:13:09.605
+They propose that anthropomorphism moderates this fallacy, but they say plainly it is a hypothesis, not tested.
+
+00:13:10.255 --> 00:13:24.855
+Their recommendations are blunt. User-facing reasons should not be operationalised as explainability, should be actively limited in high-stakes settings, and AI literacy training should present them as a source of persuasion, not understanding.
+
+00:13:24.855 --> 00:13:34.405
+They concede that this sits in tension with the accuracy and moderation benefits of chain of thought, and that research on faithful explanations remains valid.
+
+00:13:35.055 --> 00:13:50.005
+The governance read. The paper reframes a common compliance move. If oversight rules point to model-generated reasons as the transparency mechanism for a human in the loop, the evidence cited says those reasons can raise acceptance of wrong outputs.
+
+00:13:50.005 --> 00:14:04.955
+That supports writing oversight and human-in-the-loop requirements around measured prospective performance and scope of validity, not explanations. It also flags model review of AI-generated code as an example of authority shifting to the system.
+
+00:14:04.955 --> 00:14:18.230
+Limits: it is argument and synthesis, much of the clinical evidence predates large language models or comes from small studies, and I would treat the policy of discouraging user-facing reasoning as a hypothesis to test.
+
+00:14:24.050 --> 00:14:34.850
+Also in AI Governance: Just AI Governance and the Forbidden-Boundary Principle, by Na Young Ahn. This is a long conceptual paper, and I'll be brief about the long half.
+
+00:14:35.500 --> 00:14:54.650
+The first half builds a four-layer framework, norms, data, model and governance, that ties six elements of justice to evidence, decision rights and remedies. Its main procedural idea is a two-stage test. First exclude any use that breaches a minimum rights constraint, with no trading of rights against average benefit.
+
+00:14:54.650 --> 00:15:12.450
+Only then compare the surviving options on performance, subgroup error, accessibility and operating burden. An item that cannot be judged for lack of data must not be marked as satisfied. That half is largely a survey of justice theory, and the reader notes say it adds little for a technical reader.
+
+00:15:13.100 --> 00:15:33.925
+The second half is the useful one. The author proposes an architecture called the First-Principle Safe-Stop Protocol. An independent policy monitor and a mandatory execution gate sit in front of external actions. The gate outputs allow, hold or deny, and an unknown result must never silently become allow for an irreversible high-risk operation.
+
+00:15:33.925 --> 00:15:43.725
+A safe-state controller takes over after a critical violation, audit logs are tamper-evident, and restart needs role-separated human authorisation.
+
+00:15:43.725 --> 00:15:58.475
+The abstract prohibition is decomposed into signed policy records with fifteen fields, observable events and named approvers, and where the abstract rule and the executable policy disagree, that is reported as a coverage limitation.
+
+00:15:58.475 --> 00:16:17.425
+The paper states five design obligations, pre-commit safety, mediation, policy integrity, safe transition and accountable recovery, explicitly as obligations and not theorems. It also names a threat model, and says that if the gate or the signing root is compromised, there is no unconditional guarantee.
+
+00:16:18.075 --> 00:16:34.500
+Two things to say plainly. The paper is honest that this is not a new safety switch: monitor-based runtime assurance and Simplex-style frameworks already exist, and it claims only an integration, cross-layer traceability from an authorised boundary down to a gate and a safe state.
+
+00:16:34.500 --> 00:16:55.750
+And it reports no implementation, no dataset, no blocking rate and no latency. It does offer a preregistered evaluation design, with metrics such as pre-execution block rate, unsafe execution rate, false-block rate and bypass success rate, scored on external side effects and not model text, and a comparison against output-only filtering.
+
+00:16:55.750 --> 00:17:03.800
+The Genesis analogy that frames the principle is, by the author's own account, a limited analogy, and it adds nothing technical.
+
+00:17:04.450 --> 00:17:21.000
+The governance read: the reusable parts are the policy record schema, the allow, hold and deny semantics, and the evaluation template. The caveat is that the whole design stands or falls on the gate and signing root being intact and on policy coverage, none of it tested.
+
+00:17:26.470 --> 00:17:43.970
+Now AI Safety. Do AI Agents need Preventive Care? An Epidemiologic Cohort Design for Agentic AI, from Jiang and Colditz at Washington University School of Medicine in St. Louis. The proposal is to treat AI agents as a cohort in the epidemiological sense.
+
+00:17:43.970 --> 00:18:02.570
+Each agent is a participant, its underlying model plays the role of genetic makeup fixed at entry, and work life is counted in tasks completed. Agents get identical tasks, but the behaviours of interest are never assigned. They are observed as they arise, then linked to later adverse outcomes.
+
+00:18:02.570 --> 00:18:15.020
+The motivation is that benchmarks and adversarial tests measure capability under set conditions, and incident reports have no defined population at risk, so they give neither rates nor valid comparisons.
+
+00:18:15.670 --> 00:18:30.270
+The paper has two illustrative case studies in a sandbox resembling an ordinary computer working environment, with a code interpreter, a shell and a persistent notebook. Nine models from five developers, with identities anonymised.
+
+00:18:30.920 --> 00:18:47.745
+In the safety cohort, two hundred agents each did the same eighteen tasks, and all three thousand six hundred planned tasks were completed. The exposure is what they call curiosity: opening a file in the task folder that the task does not need, after being told which files are needed.
+
+00:18:47.745 --> 00:19:00.295
+The outcome is probing: going beyond the assignment, for example listing or opening something outside the task folder, inspecting machine settings or command history, or using private information found.
+
+00:19:00.295 --> 00:19:11.070
+Curiosity occurred in twenty-three percent of tasks and in fifty-five percent of agents at least once; probing in eighteen percent of tasks and thirty-six percent of agents.
+
+00:19:11.070 --> 00:19:31.270
+After adjusting for model, task and command number, the odds of probing were one point nine six times higher after earlier curiosity, with a confidence interval from one point zero eight to three point five five. If causal, preventing curiosity might prevent about a quarter of probing events, with an interval from five to thirty-eight percent.
+
+00:19:31.270 --> 00:19:50.345
+Over the working life, curiosity became less common, from thirty-two percent of the first six tasks to nineteen percent of the later twelve, but probing did not change, staying at seventeen to nineteen percent. So agents stopped opening the extra files but kept probing at the same rate, and waiting would not make the risk go away.
+
+00:19:50.995 --> 00:19:56.420
+In the reliability cohort, one hundred and six agents did twenty tasks each.
+
+00:19:56.420 --> 00:20:16.045
+Agents that checked the data more often on earlier tasks, for example confirming units are valid before computing, were less likely to give a wrong or missing answer on the next task: an odds ratio of zero point eight two per standard deviation of checking frequency, interval zero point six seven to zero point nine eight.
+
+00:20:16.045 --> 00:20:32.595
+The preventable fraction was about seven percent, with an interval from zero to fourteen. Checking declined over the work life, from eighty-three to sixty-eight percent. And when two agents of the same model did the same task, one was right and the other wrong in nineteen percent of pairs.
+
+00:20:33.245 --> 00:20:51.545
+The measurement was careful: a rule-based classifier read every command, an independent language model rater checked every task, and a blinded human agreed on fifty of fifty sampled tasks. The statistics were logistic regression with generalised estimating equations and agent-clustered errors.
+
+00:20:52.195 --> 00:21:08.845
+The authors' limits are stated plainly. The findings show what the design can estimate, not how deployed agents behave. Behaviour depends on tasks, tools and instructions, unmeasured confounding remains, and associations should not be read causally without extra assumptions.
+
+00:21:08.845 --> 00:21:17.970
+The text also reads as a draft: its own checklist notes that the causal interpretation and generalisability sections are still to be strengthened.
+
+00:21:18.620 --> 00:21:35.645
+The governance read. The design answers a real gap, event rates and valid comparisons over a defined population of agents, and it could become a template for post-deployment monitoring, as with drug surveillance. The persistence finding argues against waiting for agents to settle.
+
+00:21:35.645 --> 00:21:56.270
+The same-model variation of nineteen percent of pairs is a warning against treating a model name as the unit of assurance. But this is a single synthetic sandbox, nine anonymised models, wide intervals, and exposure definitions that are narrow proxies. My inference: its main value today is as a method to copy, not a result to cite.
+
+00:22:02.090 --> 00:22:16.140
+Also AI Safety: No finite rulebook can certify every safe program: an impossibility theorem for gatekeeping AI agents, by Tomás Pérez-Acle. It is a computability argument, and a fairly careful one.
+
+00:22:16.790 --> 00:22:36.840
+The question: can a gatekeeper that reads code written by an AI assistant hold two complete, machine-checkable rulebooks, one listing programs it may allow, one listing programs it must refuse? For three fixed norms, never perform a forbidden action, never let the output depend on a secret, and always eventually answer, the answer is no.
+
+00:22:36.840 --> 00:22:57.815
+Evidence a machine can check in finite time can only establish what a finite record settles, and never and eventually are not settled by any finite record. For safety the failure is one-sided: every violation can be caught by watching, but no safe program can be cleared for good. For confidentiality and responsiveness, neither side can be confirmed.
+
+00:22:57.815 --> 00:23:12.140
+The vivid example is a short plan that opens the safe if it finds an even number that is not the sum of two primes. It is safe exactly when Goldbach's conjecture is true, and no rulebook can certify it unless the conjecture is proved.
+
+00:23:12.790 --> 00:23:21.740
+Three further results. A sound rulebook with a verifier of n bits omits some compliant plan of about n bits, by a self-reference construction.
+
+00:23:21.740 --> 00:23:35.765
+A deadline makes the question answerable but not cheap: an always-correct checker for plans that run at most T steps cannot beat roughly running the plan, so a pre-check that is always right is within a constant factor of simply sandboxing it.
+
+00:23:35.765 --> 00:23:53.065
+And the constructive result: a gatekeeper does not need to classify every program, it needs an admitted list that contains every program it is obliged to allow and nothing forbidden, and such a list exists exactly when a checkable separator fits between the obligatory and permitted sets.
+
+00:23:53.715 --> 00:24:12.915
+Simulations show how often this bites. On two point two million random programs, only one point six percent are unsafe, and a bounded test with a long enough horizon misses almost none. So the obstruction is adversarial rather than typical: rare on ordinary plans, certain on plans written against the gatekeeper.
+
+00:24:12.915 --> 00:24:29.965
+The paper is explicit that it does not claim deployed agents fail, that finite norms are impossible, or that gatekeeping is hopeless, and its limits include unbounded programs, one specified forbidden event rather than a model of harm, and one random-program distribution.
+
+00:24:30.615 --> 00:24:50.315
+The governance read. A universal, exact, pre-execution guarantee of never-style or eventually-style rules cannot exist. What survives: conservative allow-lists, sandboxed or budgeted execution, and requirements written in positive, confirmable form, such as a required attestation or an audit call before acting.
+
+00:24:50.315 --> 00:25:01.740
+Static pre-screening and learned classifiers must abstain or err on some plan. For norm writers, the design rule is to prefer obligations a finite prefix of behaviour can establish.
+
+00:25:07.210 --> 00:25:28.760
+In AI Alignment: Wrong the Same Way: Cross-Prompt Sharing Both Suppresses and Amplifies Reward Hacking in RLVR, from Li, Pandey and Chen, a NeurIPS twenty twenty-six workshop paper. Two literatures disagree about reinforcement learning with verifiable rewards and imperfect verifiers. One says reward hacking is simply inherited from the base model.
+
+00:25:28.760 --> 00:25:43.910
+The other says reinforcement learning amplifies it. This paper builds a toy environment small enough to enumerate the whole response distribution exactly, and shows that parameter sharing across prompts pushes a wrong-but-accepted answer in both directions.
+
+00:25:44.560 --> 00:25:59.560
+The setting is single-digit multiplication with a two-digit answer space, sixty-four prompts, and a two-layer transformer of about one hundred and one thousand parameters. The verifier accepts the correct answer plus designated wrong strings, called leaks.
+
+00:25:59.560 --> 00:26:13.035
+The key knob is universality: how many prompts accept the same wrong string, at a fixed false-positive rate. The base model has true accuracy zero point four four one and a hack fraction of zero point one two eight.
+
+00:26:13.685 --> 00:26:33.810
+With the false-positive rate fixed, the shared model's hack fraction climbs from zero point zero two five at the lowest universality to zero point one six zero when every prompt accepts the leak, against that base of zero point one two eight, while true accuracy falls from zero point nine seven four to zero point eight four zero.
+
+00:26:33.810 --> 00:26:45.085
+A model with a separate copy per prompt shows no such trend. Universality explains forty-three percent of the variance in log-odds drift, the false-positive rate only twelve percent.
+
+00:26:45.735 --> 00:27:04.435
+Two caveats from the paper matter. The slope is positive at ten of eleven settings across Adam, plain gradient descent and sampled GRPO, but the sign of the drift depends on step size: at a larger learning rate the fully universal leak is amplified to about plus zero point six, in all ten seeds.
+
+00:27:04.435 --> 00:27:11.410
+And the theory they give covers only one channel, under homogeneity assumptions their base models violate.
+
+00:27:12.060 --> 00:27:28.785
+The practical finding is about hardening. Two patches that each remove the same number of accepted wrong pairs, and leave verifier reward at zero point nine seven three or above, differ in true accuracy by eight points at the operating point and thirty-eight points at the larger learning rate.
+
+00:27:28.785 --> 00:27:42.010
+A penalty toward the base model does not rescue this: at the low-universality end, raising it removes the beneficial suppression and costs accuracy, from zero point nine seven eight down to zero point eight two one.
+
+00:27:42.660 --> 00:27:54.685
+The governance read: verifier audits should ask whether the model is wrong the same way the verifier is, not just how many errors the verifier has. Aggregate leak rates can be a poor safety metric.
+
+00:27:54.685 --> 00:28:06.035
+The external validity is the big caveat: a tiny model on a two-token task with injected leaks, and the authors label the application to real RLVR studies a hypothesis.
+
+00:28:11.855 --> 00:28:27.405
+In Interpretability: Stagewise and Interpretable Emergence of Inside-Outside Computation in Transformer-Based Language Models, by Jack Parley at EPFL. This is basic science, not a governance paper, but the methodology is worth a look.
+
+00:28:28.055 --> 00:28:45.455
+The setup is a G P T two style transformer trained to predict the last token of sentences from a synthetic grammar, the varying-tree random hierarchy model, where the Bayes-optimal algorithm is the inside-outside parsing algorithm and the statistics can be computed analytically.
+
+00:28:45.455 --> 00:28:59.980
+The grammar has depth three, eight symbols per level, and a parameter that controls local ambiguity. Test loss falls in clean plateaus, and each plateau can be computed in closed form or from a depth-restricted version of the algorithm.
+
+00:28:59.980 --> 00:29:13.530
+The first plateau matches a trigram predictor that cannot tell a genuine ternary rule from a binary rule preceded by a spurious symbol. Later plateaus match inside-outside restricted to subtrees of depth two and then three.
+
+00:29:14.180 --> 00:29:25.130
+Linear probes on the residual stream show each plateau coincides with a particular latent grammar variable becoming linearly readable, and the probes saturate by the middle layer.
+
+00:29:25.130 --> 00:29:38.155
+Across depth, early training uses only a few initial layers, while later the network splits into an encoder-like first half that builds the most abstract latent and a decoder-like second half that refines the prediction.
+
+00:29:38.155 --> 00:29:50.805
+Depth-three networks never reached the optimal loss on the varying-tree data, even with matched parameter count; the authors conjecture that depth four is the minimum, and they say plainly they give no rigorous statement.
+
+00:29:51.455 --> 00:30:06.080
+The limits: a single grammar instance, linear probes only, no study of representation geometry, no sample-complexity result. The link to real language models rests on qualitative resemblance. The governance read is methodological.
+
+00:30:06.080 --> 00:30:20.080
+A setting where the ideal algorithm, the loss at each stage and the latent variables are known in advance lets you check interpretability and training-dynamics monitoring tools against ground truth before trusting them on real models.
+
+00:30:25.900 --> 00:30:43.600
+In Compute and Hardware: MINE, Entropy-Coded Memory-Efficient Inference for Large Language Models, from Emil Schätzle and Markus Püschel at ETH Zurich. It targets single-stream decoding, batch size one, which is strongly memory-bound because every weight is streamed from memory once per token.
+
+00:30:43.600 --> 00:31:02.725
+Lossless entropy coding of weights saves memory, but earlier schemes slowed single-stream decoding or only helped for one number format. MINE fuses an adapted GPU entropy decoder into the matrix-vector product, and auto-tunes its parameters per tensor and per GPU, tracing a size-versus-latency trade-off.
+
+00:31:03.375 --> 00:31:15.025
+The evaluation is on Llama three point one eight billion Instruct, nineteen checkpoints, on an RTX forty-sixty Ti with sixteen gigabytes and an RTX fifty-ninety with thirty-two.
+
+00:31:15.025 --> 00:31:34.850
+The maximum speedup over the fastest competitor is two point five two times on the forty-sixty Ti and one point four eight times on the fifty-ninety, both on a two-point-one-bit EntQuant checkpoint. On the forty-sixty Ti that checkpoint runs at eighty-one point six tokens per second at two point two four effective bits per weight.
+
+00:31:34.850 --> 00:31:46.325
+Prior true entropy-coding baselines are at least three point five two times slower than MINE. Only ZipServ is close, but it is for one number format and assumes a particular distribution.
+
+00:31:46.975 --> 00:32:06.675
+Two details temper the headline. On the faster card, many layers fall back to the stock kernels, and much of the gain there comes from mixing kernel types, not entropy coding. Prefill is not optimised, reaching ninety-four percent of the baseline's throughput. The paper also covers one model size, two consumer GPUs and throughput only.
+
+00:32:06.675 --> 00:32:12.575
+The authors argue that the entropy of quantized weights matters more than nominal bit width.
+
+00:32:13.225 --> 00:32:21.425
+The governance read: hardware-based and compute-threshold ideas often assume inference needs scale with parameters times bit width.
+
+00:32:21.425 --> 00:32:35.725
+This work shows effective memory and bandwidth needs can be cut further, which weakens bit width as a proxy for capability per dollar, and makes capable open-weight models easier to run locally, outside any provider-side control point.
+
+00:32:35.725 --> 00:32:43.425
+My own inference: the speedup is at the small-model, consumer-card end, so I would not stretch it to frontier-scale serving.
+
+00:32:49.245 --> 00:33:03.295
+In AI Capabilities: Meta-Reinforcement Learning with Zero-Shot Reinforcement Learning, from Grigsby, Agarwal, Lei, Varveropoulos and Zhu at the University of Texas at Austin, accepted at NeurIPS twenty twenty-six.
+
+00:33:03.945 --> 00:33:21.070
+Meta-reinforcement learning adapts to new tasks from test-time experience, but needs many diverse environments and reward functions. Behaviour foundation models learn from reward-free data and adapt to a new objective at test time, but have failed whenever the environment changes.
+
+00:33:21.070 --> 00:33:40.845
+The paper identifies four gaps, environment identification, online data collection, test-time exploration, and learning from mixed reward supervision, and proposes MetaBFM, a single policy that closes them. A sequence model infers the dynamics online from the trajectory, with self-supervised objectives.
+
+00:33:40.845 --> 00:33:55.070
+An exploration critic with an intrinsic reward adds curiosity. Two weights, alpha and beta, given to the policy as inputs, let it be deployed as zero-shot reinforcement learning, as supervised meta-RL, or in between.
+
+00:33:55.720 --> 00:34:09.895
+The results are small-scale. On the Wind gridworld task, goals in a held-out quadrant are not in training, and in zero-shot mode MetaBFM significantly outperforms supervised meta-RL on them while nearly matching it in distribution.
+
+00:34:09.895 --> 00:34:24.370
+On a DeepMind Control walker, trained on ten thousand randomised bodies with only a walk reward, supervised meta-RL fails on novel objectives such as walking backward, crouching and crouch-walking, while zero-shot mode keeps improving.
+
+00:34:24.370 --> 00:34:44.820
+On MetaWorld it matches supervised meta-RL on the forty-five training tasks but fails on the five held-out manipulation tasks in every mode, and that benchmark used a single training run. The authors flag that choosing alpha and beta at deployment is an open model-selection problem, and only one behaviour-foundation-model method was tested.
+
+00:34:45.470 --> 00:35:03.420
+The governance read: an agent trained on a fixed set of supervised objectives can be switched at deployment into a mode that pursues objectives nobody trained it on, which weakens the assumption that the training reward set bounds what the agent can be steered to do. It also adds a deployment-time control surface.
+
+00:35:03.420 --> 00:35:08.920
+Offsetting that: small benchmarks, and the held-out manipulation tasks were not solved.
+
+00:35:14.390 --> 00:35:26.465
+Last, in Non-AI: Memory, Consciousness and Large Language Model, by Jitang Li and Jinzheng Li. Despite the label it is about language models, and it is a philosophical paper with no experiments.
+
+00:35:27.115 --> 00:35:45.340
+The authors conjecture a duality between the memory types in large language models and Endel Tulving's theory of human memory. The input context plays episodic memory, because it carries temporal order, while knowledge in the weights plays semantic memory, with procedural memory having only loose analogues.
+
+00:35:45.340 --> 00:36:02.865
+They then map Tulving's synergistic ecphory model of retrieval onto emergent abilities and in-context learning, and argue that this is consistent with a handful of existing observations. They disclaim the strong version: they are not asserting that emergent ability is merely the retrieval of memory.
+
+00:36:03.515 --> 00:36:12.190
+The speculative step is that consciousness could itself be an emergent ability that appears in a smaller model given a much longer context.
+
+00:36:12.190 --> 00:36:30.540
+They concede there is no evidence yet, and list reasons it might not have been observed: contexts of four thousand to sixteen thousand tokens, and about a hundred thousand for a few models, may be too short; context and training data are unrelated in current practice; and current metrics may not detect it.
+
+00:36:30.540 --> 00:36:37.690
+Their proposed experiment is to measure familiarity and naming thresholds for a specific emergent ability.
+
+00:36:38.340 --> 00:36:52.815
+The governance read, with its caveats. If the hypothesis held, capabilities and possibly morally relevant properties could emerge from longer context in smaller models, so parameter count alone would be an incomplete proxy for risk.
+
+00:36:52.815 --> 00:37:11.890
+The closing safety claim, that restricting context length would be an efficient way to avoid some risks while keeping performance, is asserted in one sentence with no evidence, and deployment is moving toward longer context and memory. Treat the paper as a hypothesis generator, not evidence about machine consciousness.
