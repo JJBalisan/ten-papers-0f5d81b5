@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 44,
+      "title": "Defending RL fine-tuning APIs"
+    },
+    {
+      "startTime": 570,
+      "title": "Institutions for agent populations"
+    },
+    {
+      "startTime": 787,
+      "title": "US data centre governance"
+    },
+    {
+      "startTime": 974,
+      "title": "Specification satisficing"
+    },
+    {
+      "startTime": 1138,
+      "title": "Learnability via debate"
+    },
+    {
+      "startTime": 1240,
+      "title": "Detection is not early warning"
+    },
+    {
+      "startTime": 1369,
+      "title": "Trusting interpretability claims"
+    },
+    {
+      "startTime": 1459,
+      "title": "Sparse convolution on GPUs"
+    },
+    {
+      "startTime": 1540,
+      "title": "Human-agent systems"
+    },
+    {
+      "startTime": 1641,
+      "title": "Fairness over time in voting"
+    }
+  ]
+}

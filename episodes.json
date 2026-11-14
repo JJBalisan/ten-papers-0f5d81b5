@@ -727,5 +727,20 @@
     "transcript": "audio/ep057.transcript.html",
     "vtt": "audio/ep057.vtt",
     "cover": "covers/ep057.jpg"
+  },
+  {
+    "no": 58,
+    "date": "2026-11-14",
+    "title": "Baiting harmful reward functions",
+    "summary": "Bait, a provider-side defence against harmful reinforcement learning on fine-tuning APIs, plus a paper showing that detection is not early warning for language model monitors, and a perspective on designing institutions for autonomous agents.",
+    "file": "audio/ep058.mp3",
+    "bytes": 13936895,
+    "duration": "00:28:36",
+    "music": true,
+    "music_credit": "Music: \u201cTime to Think\u201d by Lee Rosevere, https://freemusicarchive.org/music/lee-rosevere/music-for-podcasts-serious/time-to-think/ licensed CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/); trimmed, faded and mixed with narration.",
+    "chapters": "audio/ep058.chapters.json",
+    "transcript": "audio/ep058.transcript.html",
+    "vtt": "audio/ep058.vtt",
+    "cover": "covers/ep058.jpg"
   }
 ]
