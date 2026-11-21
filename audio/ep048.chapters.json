@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 46,
+      "title": "Rewarded for not getting caught"
+    },
+    {
+      "startTime": 618,
+      "title": "Auditing agent ethics"
+    },
+    {
+      "startTime": 759,
+      "title": "Automating AI Act gap analysis"
+    },
+    {
+      "startTime": 926,
+      "title": "Predictive guardrails and the prediction-to-action gap"
+    },
+    {
+      "startTime": 1144,
+      "title": "Attacking ballot classifiers"
+    },
+    {
+      "startTime": 1311,
+      "title": "Organizational difficulty in benchmarks"
+    },
+    {
+      "startTime": 1514,
+      "title": "Value heads in language models"
+    },
+    {
+      "startTime": 1667,
+      "title": "Fast low-bit decoding on phones"
+    },
+    {
+      "startTime": 1802,
+      "title": "Agent-ready construction data"
+    },
+    {
+      "startTime": 1924,
+      "title": "Data science education"
+    }
+  ]
+}

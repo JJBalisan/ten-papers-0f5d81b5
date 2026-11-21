@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 61,
+      "title": "Learning the verifier"
+    },
+    {
+      "startTime": 595,
+      "title": "Keyed homoglyph provenance"
+    },
+    {
+      "startTime": 822,
+      "title": "Scaffolding AI in ethics essays"
+    },
+    {
+      "startTime": 987,
+      "title": "Decision models as retrieval gates"
+    },
+    {
+      "startTime": 1209,
+      "title": "Failure monitor for robot policies"
+    },
+    {
+      "startTime": 1375,
+      "title": "Constraint drift in preference tuning"
+    },
+    {
+      "startTime": 1526,
+      "title": "Certifying mechanism claims"
+    },
+    {
+      "startTime": 1681,
+      "title": "Quantising multimodal models"
+    },
+    {
+      "startTime": 1795,
+      "title": "Targeted guidance in agentic RL"
+    },
+    {
+      "startTime": 1903,
+      "title": "Neural emulators"
+    }
+  ]
+}

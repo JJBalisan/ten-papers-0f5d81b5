@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 48,
+      "title": "Role spoofing"
+    },
+    {
+      "startTime": 608,
+      "title": "Policy reasoning without abstention"
+    },
+    {
+      "startTime": 817,
+      "title": "Auditable belief updates"
+    },
+    {
+      "startTime": 967,
+      "title": "Multilingual safety templates"
+    },
+    {
+      "startTime": 1128,
+      "title": "The Quine Test"
+    },
+    {
+      "startTime": 1283,
+      "title": "Prefix executability"
+    },
+    {
+      "startTime": 1400,
+      "title": "Steering and quantization"
+    },
+    {
+      "startTime": 1507,
+      "title": "GPU power traces"
+    },
+    {
+      "startTime": 1608,
+      "title": "No free lunch in reinforcement learning"
+    },
+    {
+      "startTime": 1705,
+      "title": "Algorithmic statistics"
+    }
+  ]
+}

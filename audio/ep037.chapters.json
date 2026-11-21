@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 38,
+      "title": "Per-action authorization"
+    },
+    {
+      "startTime": 573,
+      "title": "AI and job design"
+    },
+    {
+      "startTime": 745,
+      "title": "Monitors that fail together"
+    },
+    {
+      "startTime": 1007,
+      "title": "Refusal transfer to agents"
+    },
+    {
+      "startTime": 1228,
+      "title": "Debate and weaker judges"
+    },
+    {
+      "startTime": 1411,
+      "title": "Rubrics for safety evals"
+    },
+    {
+      "startTime": 1551,
+      "title": "Weighted refusal directions"
+    },
+    {
+      "startTime": 1697,
+      "title": "Compression for edge devices"
+    },
+    {
+      "startTime": 1805,
+      "title": "Path diversity in parallel thinking"
+    },
+    {
+      "startTime": 1916,
+      "title": "Scaling brain decoding"
+    }
+  ]
+}

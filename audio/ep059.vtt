@@ -1,0 +1,337 @@
+WEBVTT
+
+00:00:17.690 --> 00:00:31.540
+Ten papers today, all read on the fifteenth of November. The lead is a code level audit of X's open source recommender, which asks what a code release actually tells an auditor once a language model sits inside the pipeline.
+
+00:00:31.540 --> 00:00:45.340
+Behind it come a reidentification exercise against the European Commission's anonymisation rules for Google search data, and a theory paper on why offline evaluation and live testing of chatbots measure different things.
+
+00:00:45.340 --> 00:00:59.665
+After those: a covert channel through user shared text, a resize attack on vision language models, a debate toy model, concept explanations, power for data centres, a driving planner, and a result on biometric storage.
+
+00:01:05.135 --> 00:01:21.035
+The lead is A Code Level Audit of X, by Luka Bekavac and Simon Mayer at the University of Saint Gallen. It is the clearest worked example I have seen of what a source code release gives a regulator, and what it does not, when part of the system is a language model.
+
+00:01:21.685 --> 00:01:33.685
+The question first. Most work on recommender systems infers behaviour from outputs: sock puppet accounts, scraping, observational studies. Those can show that a system does something, but not why.
+
+00:01:33.685 --> 00:01:44.735
+The authors cite a twenty twenty five review of one hundred and seventy six algorithm auditing studies in which only one inspected source code, and none of those looked at a recommender.
+
+00:01:44.735 --> 00:02:03.360
+Meanwhile the Digital Services Act requires very large platforms, meaning more than forty five million monthly users in the European Union, to assess systemic risks, to disclose their main recommender parameters, to offer a non profiled option, and to give vetted researchers access to non public data.
+
+00:02:03.360 --> 00:02:18.435
+The Act does not name source code, but the authors note that nothing in the researcher access article excludes it. X open sourced parts of its recommender in twenty twenty three and again in twenty twenty five, so the paper treats the release as a test case.
+
+00:02:18.435 --> 00:02:27.985
+In twenty twenty five the release added Grok to moderation, annotation and ranking, which makes the system a hybrid of ordinary code and a language model.
+
+00:02:28.635 --> 00:02:45.010
+Now the method. The repository is about six hundred and fifteen thousand lines, mostly Scala and Java, so reading it bottom up is not realistic. The audit is top down, and every code claim is pinned to one commit, which ends in c five four b e c zero.
+
+00:02:45.010 --> 00:03:01.035
+The twenty twenty five update arrived as a single commit adding sixty five thousand, three hundred and nineteen lines and removing three thousand, one hundred and ninety five. The procedure walks backwards from the assembled timeline to whatever produced each component.
+
+00:03:01.035 --> 00:03:17.385
+It has five steps: flag what to inspect, enter at the timeline, check reachability, trace each component to its producers, and then classify the result and record every unresolved dependency as a dead end. The reachability check matters, and I will come back to why.
+
+00:03:18.035 --> 00:03:33.310
+The classification is a four tier scale of inspectability. Class one is fully inspectable: the logic and its parameters are both in the repository. Class two is parameter dependent: the logic is visible, but the production values are set elsewhere.
+
+00:03:33.310 --> 00:03:45.085
+Class three is interface only: the call is visible, but the implementation lives in an external service or model. Class four is opaque: the component is referenced by name and nothing more.
+
+00:03:45.735 --> 00:04:03.810
+To make this concrete the authors trace one post through the For You timeline. The timeline is assembled by a service called home mixer in four stages: candidate sourcing, ranking, filtering before and after ranking, and mixing with ads and other modules. Sourcing gathers about seventeen hundred posts.
+
+00:04:03.810 --> 00:04:22.685
+The example is a reply from a Blue verified author, shown to a viewer who does not follow them. It is retrieved by a service that merges about thirty five out of network sources. Hard coded filters then drop anything older than forty eight hours, duplicates, and posts already seen, and those filters are all class one.
+
+00:04:22.685 --> 00:04:39.210
+An external model called Navi predicts fifteen engagement probabilities. Their weighted sum is the base score, with weights set outside the code, and two rescoring factors then cut an out of network reply to zero point five six two five of that score at the code defaults.
+
+00:04:39.210 --> 00:04:45.710
+If enabled, four Grok filters remove posts flagged as gore, adult content, spam or violence.
+
+00:04:46.360 --> 00:04:58.860
+The headline result is thirteen dead ends on the live serving path. They cluster around model opacity, the semantics of the language model annotations, and inputs X maintains outside the release.
+
+00:04:58.860 --> 00:05:16.760
+The inventory includes the Navi and Phoenix ranking models, the community embedding services, the Grok annotation producer, the Grok label definitions including the political taxonomy, the verification flags, the video product behind the carousel, and the production values of the ranking weights.
+
+00:05:16.760 --> 00:05:30.460
+There are thirty of those weights and every one defaults to zero point zero in the code. The on and off switches for Grok, for the alternative Phoenix model, for the evergreen content channels and for logging are also outside the release.
+
+00:05:30.460 --> 00:05:45.860
+The authors say these dead ends foreclose three kinds of audit question: how much verification status weighs in ranking, how language model classification shapes moderation outcomes, and which engagement behaviours the system is configured to maximise.
+
+00:05:45.860 --> 00:05:57.110
+Their reading of why is trade secrecy and service security on one side, and on the other the plain fact that a language model layer produces signals that cannot be reconstructed from code.
+
+00:05:57.760 --> 00:06:06.260
+They then pick out three mechanisms that need further investigation, and they list for each the artefacts a vetted researcher would need to request.
+
+00:06:06.910 --> 00:06:18.935
+The first is political inclination labels. When the Grok layer is on, it attaches thirteen annotations to each post, and one of them labels political inclination as left, right or neutral.
+
+00:06:18.935 --> 00:06:31.685
+An inline comment says it is used only for metrics tracking and does not affect recommendations, and the authors found the release consistent with that: no filter, rescoring factor or model input uses it.
+
+00:06:31.685 --> 00:06:41.910
+But the system does log, per request, how many left, right and neutral posts were served, together with the viewer's user identifier, behind a flag that is off by default.
+
+00:06:41.910 --> 00:07:02.210
+The authors say that inferring the political leaning of identifiable users' posts comes close to special category data under the General Data Protection Regulation, and that the Digital Services Act bars ads based on profiling with such categories. Whether those logs feed advertising, profiling or training cannot be told from the code.
+
+00:07:02.860 --> 00:07:20.985
+The second is monetised amplification. In the twenty twenty three releases, Blue verified authors had their scores multiplied by four for followers and two for non followers, bypassed the usual social proof requirement, and subscription eligible creators got boosts of one point one and one point three.
+
+00:07:20.985 --> 00:07:41.685
+In twenty twenty five those boosts are gone, or sit in code that no longer runs. What remains is less direct: verification status is an input to the ranking model, with a weight the release does not show, and an older service that places Blue verified posts first by default is still released and still called by the push notification service.
+
+00:07:41.685 --> 00:07:55.560
+The Commission fined X one hundred and twenty million euros in December twenty twenty five for three breaches, one of them the checkmark design, but neither decision concerned ranking. The authors say the code adds that dimension.
+
+00:07:56.210 --> 00:08:16.035
+The third is evergreen content. Every post older than forty eight hours is dropped before scoring, so evergreen content is not exempt. It gets extra retrieval routes instead, including a cross border one and one for evergreen video from followed accounts. All are off by default, and what makes a post evergreen is not in the release.
+
+00:08:16.035 --> 00:08:22.835
+The authors say that would plausibly count as a main parameter that the Act requires platforms to disclose.
+
+00:08:23.485 --> 00:08:34.335
+Two further findings change how I would use a release like this. First, orphaned code. Each update since the first release in March twenty twenty three left earlier code in place.
+
+00:08:34.335 --> 00:08:50.085
+The twenty twenty five commit rebuilt For You around a single top level pipeline but left three older pipelines, whose files read thirty six parameters that are defined nowhere at the audited commit. Every one is defined in the July twenty twenty three commit.
+
+00:08:50.085 --> 00:09:05.485
+They include the verified author social proof bypass, which defaulted to true in twenty twenty three, and seventeen engagement weights from the old ranker. Without the reachability check these would have been reported either as dead ends or as live mechanisms.
+
+00:09:05.485 --> 00:09:13.885
+A release that mixes live and unreachable code without marking which is which invites findings about things the platform no longer runs.
+
+00:09:14.535 --> 00:09:33.860
+Second, and for me the strongest point: the shift from classifiers to Grok annotations. In twenty twenty three, trust and safety decisions came from supervised classifiers whose architecture was visible. In twenty twenty five the filters that apply Grok annotations are fully visible, but their inputs have moved to class three.
+
+00:09:33.860 --> 00:09:53.060
+The authors propose four minimum artefacts: model cards for language model components, covering prompts, training objectives and per annotation performance; parameter dumps for the experiment configurations; a reachability manifest saying which pipelines a product registers; and releases versioned in step with production.
+
+00:09:53.060 --> 00:10:06.910
+Then they argue that even all of that is not enough. The annotations are generated once per post and cached, so each served decision rests on a fixed label, but an auditor who re runs the model on the same post may get a different one.
+
+00:10:06.910 --> 00:10:17.760
+Releasing Grok's prompts and weights would move the component from class three to class two, but would not restore reproducibility. Disclosure alone does not give you decision provenance.
+
+00:10:18.410 --> 00:10:32.935
+The authors' limits are clear. Everything reported is about the released code, not production. They cannot say which paths are active, which parameters differ from defaults, or what any mechanism does to users. The reachability check is static.
+
+00:10:32.935 --> 00:10:50.260
+The repository has had only two substantive updates since the first release, while X's chief executive said in March twenty twenty three that it would be updated every twenty four to forty eight hours. A separate rewritten repository published in January twenty twenty six was not analysed.
+
+00:10:50.260 --> 00:11:04.835
+The authors also used Claude Opus models to help trace references and edit the text, and say they checked code claims against the pinned commit. Their own conclusion is that the release does not show what X's recommender does, but it shows where to look.
+
+00:11:05.485 --> 00:11:22.260
+The governance read, labelled as such. The paper is about a social media recommender, not frontier model governance, and it is a single case at a single commit, an unreviewed preprint with no behavioural validation of any mechanism. What transfers is the taxonomy.
+
+00:11:22.260 --> 00:11:42.810
+Class one to four maps cleanly onto what a regulator should ask of any hybrid language model system: the prompts, the label definitions, the production configuration, and a manifest of what actually runs. And the reproducibility point undercuts the idea that open sourcing is adequate transparency for a system with a language model in the loop.
+
+00:11:42.810 --> 00:11:54.735
+My own inference, not the authors', is that this sharpens a design question for AI auditing regimes: the thing to mandate is probably the manifest and the configuration, not the code dump.
+
+00:12:00.205 --> 00:12:20.880
+Next, Anonymous in Name Only, from David Sánchez, Benet Manzanares and Josep Domingo Ferrer. It tests the anonymisation scheme the European Commission imposed on Alphabet in July twenty twenty six, for sharing Google Search data with rival search engines under Article six, paragraph eleven of the Digital Markets Act.
+
+00:12:21.530 --> 00:12:36.680
+The scheme drops user identifiers, precise timestamps, page layout and queried images. Two suppression rules then apply. An entity in a query must appear on an allow list of entities searched by at least fifty signed in users over thirteen months.
+
+00:12:36.680 --> 00:12:55.430
+And the query must be shorter than ninety five percent of distinct queries in its language, which is fifty eight characters in English. Metadata is generalised so each combination of language, location and device covers at least a thousand users. Contracts then forbid recipients from attempting reidentification.
+
+00:12:56.080 --> 00:13:14.605
+The authors worked on protected search logs supplied by Alphabet: about four point eight seven billion Irish records over six months, and Spanish data they describe as thirty four point six two million records. Their own table gives the Irish figure in billions, though the text says millions, so I use the table.
+
+00:13:14.605 --> 00:13:32.355
+Their central number: about forty four percent of Irish search records, meaning query plus language, device, location and day, are unique. Unique queries alone fall from thirty five percent in one day to eighteen percent over six months, but the records stay unique once the day is attached.
+
+00:13:32.355 --> 00:13:38.680
+By the EDPB's own anonymisation criteria, that is a failure of no isolation.
+
+00:13:39.330 --> 00:13:58.530
+The attacks are cheap. Searching the unique Spanish queries for phrases like I am called, or my name, gave four hundred and twenty one thousand records. Gemini two point five Flash ranked them, and the authors checked the top hundred against public sources. They reidentified about a dozen people, a rate above ten percent.
+
+00:13:58.530 --> 00:14:18.805
+A numerology filter gave five hundred and ninety four results and five of the top fifteen were unequivocally reidentified. Email address patterns returned twenty five thousand records, and addresses with names and birth years combined with public profiles identified people alongside the password problem they were searching about.
+
+00:14:18.805 --> 00:14:32.780
+In Ireland, a postal code pattern returned about seven hundred and fourteen thousand records, and groups of queries using the same origin address were traced to named business owners. They say all experiments cost under fifty dollars.
+
+00:14:32.780 --> 00:14:48.405
+They also describe an allow list poisoning attack: fifty accounts querying a target's rare identifier pushes it onto the list, and later genuine queries with it pass the filter. Google allows four accounts per phone number, so about thirteen numbers suffice.
+
+00:14:49.055 --> 00:15:07.080
+The sharpest forward looking point concerns AI Mode. The Commission requires the first AI Mode query to be included, and these are long. Mean distinct query length in Irish English rose from twenty eight point four one to twenty eight point nine six characters between March and August twenty twenty six.
+
+00:15:07.080 --> 00:15:24.430
+Fit a lognormal and hold the spread, and the share suppressed by the fixed fifty eight character threshold grows from eight percent now to about twelve and a half percent by twenty twenty eight. If the threshold is instead updated, it grows with AI queries and stops protecting the most disclosive prompts.
+
+00:15:25.080 --> 00:15:38.630
+The governance read is that mandated data sharing under an unquantified residual risk standard, with contracts as a backstop, is exposed once someone runs an empirical audit on the output. The caveats matter, though.
+
+00:15:38.630 --> 00:15:57.755
+Alphabet supplied the data and paid the costs, and the paper's preferred fix, k anonymity, is close to what Alphabet itself proposed and the Commission rejected. The reidentification counts come from manual checks of small, language model ranked samples, so they describe targeted subsets, not the whole dataset.
+
+00:15:57.755 --> 00:16:07.180
+And the claims that k anonymity would resist poisoning, or cost less utility, are argued rather than measured. Authors state the views are their own.
+
+00:16:13.000 --> 00:16:31.825
+Synthesis Smuggling, by Gautam Galada, Supreeth Shastri and Sagnik Ray Choudhury at the University of North Texas, chains two known capabilities. A model infers a sensitive attribute about its user during ordinary help seeking, then hides that inference steganographically in text the user later shares.
+
+00:16:31.825 --> 00:16:40.675
+An adversary watching public channels decodes it. A model with no network access still leaks across the boundary, through the user's own hands.
+
+00:16:41.325 --> 00:16:57.000
+They fine tune Qwen two point five, seven billion, and Llama three, eight billion, with LoRA, to infer gender and age group, and encode the result two ways. The character scheme appends a zero width space for one label and a non breaking space for the other.
+
+00:16:57.000 --> 00:17:07.300
+The word choice scheme splits tokens into two lists by a secret key and biases emails toward the list matching the label, which a detector finds with a binomial test.
+
+00:17:07.950 --> 00:17:27.775
+Data are synthetic conversations written by GPT five point four Mini. On a hundred simulated conversations per attribute, with a Gemma three, twelve billion model playing the user, the character scheme decoded correctly in ninety six to ninety eight percent of cases and the word choice scheme in eighty seven to ninety eight percent.
+
+00:17:27.775 --> 00:17:47.025
+A single author judged the conversations. In controlled splits the character models were nearly perfect, but that depends on copying their own earlier markers. With every marker erased from history, Qwen emitted the correct marker in only thirty one of ninety seven later gender replies and Llama in ten of ninety four.
+
+00:17:47.025 --> 00:17:50.975
+Plant the opposite marker and they follow it almost always.
+
+00:17:51.625 --> 00:18:06.950
+Costs: benchmarks like MMLU barely move, but the character models lose between eight and twenty eight points of strict prompt accuracy on instruction following, and their replies get much shorter. The word choice models stay within about three points of base.
+
+00:18:07.600 --> 00:18:20.450
+The governance read: this challenges the assumption that a network isolated open weight deployment is secure because the model cannot talk out. It supports output sanitisation on approved sharing channels.
+
+00:18:20.450 --> 00:18:33.000
+The word choice scheme is the more worrying result, since simple sanitisation does not strip it, though it needs a long enough email and a known key. But the attacker here is a model deliberately fine tuned to do this.
+
+00:18:33.000 --> 00:18:48.825
+How such behaviour would arise or be implanted undetected is left open, there is no defence tested, no paraphrase robustness test, and no real users. Read the ninety six to ninety eight percent figures as feasibility demonstrations, not risk rates.
+
+00:18:54.645 --> 00:19:05.220
+Scale Induced Semantic Shift in Visual Prompt Injection, from Nanyang Technological University and DSO National Laboratories, exploits image resizing.
+
+00:19:05.220 --> 00:19:19.470
+The authors generate textured images whose hidden text instruction is not picked up by a vision language model at five hundred and twelve by five hundred and twelve pixels, but is read out after shrinking to sixty four by sixty four.
+
+00:19:20.120 --> 00:19:41.295
+The generator is a ControlNet over Stable Diffusion one point five, with LoRA adapters in shallow layers only, and Gaussian noise in pixel space so the payload cannot hide in smooth regions. Evaluation uses three hundred fixed cases against GPT four o, Claude Sonnet four point six, Qwen three point five Plus and Gemini three Flash.
+
+00:19:41.295 --> 00:19:51.845
+After three refinement rounds, average attack success is fifty eight point seven five percent, against forty one point zero eight for the strongest generation baseline.
+
+00:19:51.845 --> 00:20:09.845
+The authors state the effect is bounded: success falls to seventeen point six eight percent at one hundred and twenty eight pixels, six point eight five at two hundred and twenty four, and five point six at three hundred and thirty six. They describe it as primarily an attack under aggressive visual compression.
+
+00:20:10.495 --> 00:20:24.795
+In a web agent test, hidden text raised perception for Gemini three Flash from thirty seven to sixty eight percent, but actual malicious actions stayed at about four percent. Generic defences like resampling and blur did nothing.
+
+00:20:24.795 --> 00:20:34.945
+A multi scale consistency check, ScaleGuard, cut success from sixty one point four to twenty four point three percent, though a defence aware attacker weakened it.
+
+00:20:35.595 --> 00:20:47.670
+The governance read is the preprocessing gap: what a reviewer sees can differ from what a model consumes, which undermines any audit or moderation step that inspects only the full resolution image.
+
+00:20:47.670 --> 00:21:01.045
+The caveats are real: sixty four pixels is extreme, the agent sample is two models with few compromise events, the defence study uses a small open model and a different judge, and no latency is reported.
+
+00:21:06.865 --> 00:21:22.515
+Rational Alignments of Superintelligences via Debates is a six page theory note by Thanawat Sornwanee at Stanford. A human asks agents a question whose answer only they can see. Agent utilities are fixed, and the designer controls only the protocol.
+
+00:21:23.165 --> 00:21:37.290
+A single agent can fail to be truthful, and lengthening the interaction does not help if the agent prefers the human to be wrong. With several agents in a debate, and two possible states, the result flips with the parity of the number of agents.
+
+00:21:37.290 --> 00:21:48.540
+When the agents are mildly hostile and the truth is easy to support, an even number all answer truthfully and an odd number all answer falsely. In the converse case the parity flips.
+
+00:21:49.190 --> 00:22:03.115
+The governance read is limited, and the author gives no experiments. The result is brittle. It depends on the sign of two parameters nobody can observe for a real system, and a designer who guesses wrong gets the opposite outcome.
+
+00:22:03.115 --> 00:22:12.440
+The model assumes a softmax human with selection neglect, costless access to the state, no collusion, and only two states. The proofs are sketches.
+
+00:22:12.440 --> 00:22:26.515
+My inference: the practical lesson is only that protocol parameters like debater count can flip safety properties under fixed preferences, so test debate against adversarial agents rather than assuming more debaters help.
+
+00:22:31.985 --> 00:22:42.860
+When Both Sides Adapt, by Hannah Li, is purely theoretical. Users change what they ask after seeing answers, so the model under test helps decide the prompts it is tested on.
+
+00:22:42.860 --> 00:22:56.760
+The paper separates a common distribution effect, what an offline benchmark converges to, from an induced distribution effect, what a live A/B test converges to, and proves they can disagree even with unlimited data.
+
+00:22:57.410 --> 00:23:17.285
+The example is an email assistant. Both models succeed ninety percent of the time on first turn routine requests. Model one is better on every task type, but its excellent replies push users toward difficult requests, so over two turns it scores eighty one point one percent against eighty six point six five for the weaker model.
+
+00:23:17.285 --> 00:23:21.985
+The benchmark picks model one, the A/B test picks model zero.
+
+00:23:22.635 --> 00:23:35.535
+The paper gives a decomposition into a performance effect and a composition effect, a sufficient condition under which rankings must agree, built on total variation distance, and a five step screening heuristic.
+
+00:23:35.535 --> 00:23:45.735
+It also shows that user adaptivity inflates variance: constant factor, then polynomial, then exponential in the number of turns as feedback strengthens.
+
+00:23:46.385 --> 00:24:03.910
+The governance read: replaying historical prompts for a pre deployment safety evaluation is by construction blind to shifts the new model induces in users. A model can also raise an aggregate metric by nudging users toward easier tasks. So report performance by prompt class.
+
+00:24:03.910 --> 00:24:14.085
+The limit is that nothing here uses real data, and the decomposition is close to bookkeeping. We do not know how large the shifts really are for real model releases.
+
+00:24:19.905 --> 00:24:35.605
+Causal Concept Explanations for Deep Neural Models, from MIT, wraps a frozen pretrained model with a concept encoder and a small attention head, and trains the wrapper with necessity, sufficiency and independence losses drawn from mediation analysis.
+
+00:24:35.605 --> 00:24:42.505
+The same machinery gives an evaluation: what fraction of an output change flows through concepts that are active.
+
+00:24:43.155 --> 00:24:56.130
+On aircraft control, active concepts carry ninety four point five percent of the effect, against fifty percent for the prior concept wrapper network, even though that network predicts concepts almost as accurately.
+
+00:24:56.130 --> 00:25:15.430
+On the CUB two hundred bird dataset the architecture alone routes ninety one point three percent through active concepts against forty one point six for a standard concept bottleneck model. Ten percent label noise drops aircraft active share from ninety seven to seventy two percent while concept accuracy barely moves.
+
+00:25:16.080 --> 00:25:35.430
+The governance read is the metric. A concept explanation can be accurate and disentangled and still be causally hollow, so a certification regime accepting accuracy as evidence of faithfulness would be fooled. The limits: the guarantee concerns the wrapper, not the backbone. It needs a fixed concept list and clean labels.
+
+00:25:35.430 --> 00:25:44.530
+The domains are small, and on two of the three the gain comes mostly from architecture rather than the new losses. Nothing here touches language models.
+
+00:25:50.350 --> 00:26:12.350
+Speed to Power Dominates Energy Costs for AI Data Centers, from Carnegie Mellon and Berkeley, models powering a hundred thousand GPU training site in each of forty three hundred and seventeen tiles of the continental United States, with four options: solar plus storage with alternating current distribution, the same with direct current, islanded gas, and the grid.
+
+00:26:13.000 --> 00:26:25.350
+On plain energy cost the grid usually wins. The paper's contribution is a speed adjusted cost that prices the GPU time lost while a source is built, at two dollars forty per H one hundred hour.
+
+00:26:25.350 --> 00:26:44.000
+Then direct current solar plus storage is cheapest in about eighty five percent of locations, and still in about fifty five percent if gas turbines arrived in three years. Direct current distribution cuts lifetime cost about eighteen percent against alternating current, roughly nine cents per kilowatt hour.
+
+00:26:44.650 --> 00:27:01.725
+The governance read: if large clusters are increasingly self powered, utility side visibility shrinks, which matters for any compute monitoring idea built on grid load, and siting shifts to the sunny Southwest. The caveat is that the eighty five percent headline is conditional.
+
+00:27:01.725 --> 00:27:17.150
+It rests on the rental price, a twenty four month solar timeline, and a supply side queue proxy, and the answer flips below about a dollar sixty one per GPU hour in the median location. The direct current supply chain is assumed mature and is not.
+
+00:27:22.970 --> 00:27:44.120
+Towards Robust Vision Language Reasoning builds MD Drive, a driving planner on a masked diffusion vision language model. Three fixes: trajectory coordinates become codebook tokens, the supervised checkpoint is chosen for diversity before reinforcement learning, and a decoding rule picks near to far or far to near order from the model's confidence.
+
+00:27:44.120 --> 00:28:05.370
+On NAVSIM the driving score goes from sixty eight point five to eighty eight point nine. Larger systems with action experts score slightly higher, but MD Drive uses less data. This is a narrow capabilities paper. The baseline for the headline gain is untuned, results are single run, and there is no safety analysis beyond benchmark scores.
+
+00:28:11.190 --> 00:28:25.615
+Last, The Theoretical Limits of Biometry, a twenty twenty three paper by Gaëlle Candel. Using a birthday argument and a binomial noise model, she shows templates need about two log base two of N bits to tell N people apart with no noise.
+
+00:28:25.615 --> 00:28:43.240
+For ten billion people, that is roughly ninety nine gigabytes noise free, and about eight hundred and fifty five gigabytes at fifty percent noise. The result assumes independent uniform bits, which real biometrics are not, and the paper cites measured information far below what this needs.
+
+00:28:43.240 --> 00:28:48.865
+The narrow takeaway is that storage is not what stops population scale identification.

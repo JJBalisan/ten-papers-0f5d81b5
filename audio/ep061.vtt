@@ -1,0 +1,337 @@
+WEBVTT
+
+00:00:17.690 --> 00:00:29.265
+Nine papers today, not ten. The lead is a participatory workshop study of why European Union A I Act compliance arrangements that look sound on paper stop working in practice.
+
+00:00:29.265 --> 00:00:40.440
+Next are a survey of what two hundred and forty-one language models say about extinction risk from A I, and a jailbreak that slips past request filters by looking like ordinary help-seeking.
+
+00:00:46.260 --> 00:01:00.935
+The lead paper is Between Obligations and Evidence, a participatory study of translating the European Union A I Act into technical requirements. It comes from Delft University of Technology and collaborators, and it is qualitative.
+
+00:01:00.935 --> 00:01:10.910
+I am leading with it because it is the most direct account today of where compliance by design fails, and the failure points are things a technical governance team can act on.
+
+00:01:11.560 --> 00:01:30.360
+The question is simple. Articles ten, thirteen, fourteen and fifteen of the Act set obligations on data governance, transparency, human oversight, and accuracy, robustness and cybersecurity. They do not say which properties to implement, which metrics to use, or what evidence shows a requirement is met.
+
+00:01:30.360 --> 00:01:46.635
+Harmonised standards, common specifications and codes of practice are meant to fill that gap, but they do not remove the need to interpret requirements in a particular technical and organisational setting. The authors therefore ask something stricter than how to measure a requirement.
+
+00:01:46.635 --> 00:01:53.485
+They ask whether the measurement is sufficient evidence that a system can be used responsibly where it is deployed.
+
+00:01:54.135 --> 00:02:10.910
+The method is a full-day workshop on the sixth of March, twenty twenty-six, held within a special interest group on translating the Act into technical requirements. Thirty-two people attended in person: seventeen men and fifteen women, twenty-two from academia and ten from practice.
+
+00:02:10.910 --> 00:02:31.410
+Before the day, forty-six registrants sent in questions and concerns, which the team coded inductively before the organisers framed anything. Teams of five or six worked on one of three hypothetical high-risk systems: a harassment prevention assistant for public transport, a multimodal pain estimation system, and a recruitment assistant.
+
+00:02:31.410 --> 00:02:42.760
+In the morning they filled in a worksheet across the lifecycle: likely risk classification, actors, provider and deployer responsibilities, applicable provisions, and the evidence needed.
+
+00:02:42.760 --> 00:03:04.260
+In the afternoon they went adversarial, drawing fishbone diagrams across data, model behaviour, human oversight, transparency, organisational governance and post-deployment monitoring, and writing at least one worst-case scenario each. The analysis was reflexive thematic analysis, two coding passes per use case and then a comparison across cases.
+
+00:03:04.910 --> 00:03:19.810
+The pre-workshop questions show five tensions. Innovation against regulation. The way the Act interacts with other European initiatives, including the digital omnibus simplification package, and the uncertainty over harmonised standards.
+
+00:03:19.810 --> 00:03:38.435
+Technical metrics against legal concepts, with a worry that normative concepts, in the registrants' words, cannot be fully operationalised without loss of meaning. Whether compliance is a burden or an opportunity. And how technical and legal experts collaborate, which they felt needs more than putting both in one room.
+
+00:03:38.435 --> 00:03:57.660
+The biggest operational bottleneck was certification: nobody is sure what a conformity assessment pathway looks like without harmonised standards. Enforcement came second, with a warning that unclear criteria push organisations to optimise for what looks compliant to an auditor, rather than for safety or rights protection.
+
+00:03:57.660 --> 00:04:10.385
+Two technical gaps stood out. Good practice for auditing datasets and replaying decisions is nascent, and many A I pipelines cannot reconstruct why a system produced a given output in a given context.
+
+00:04:11.035 --> 00:04:17.435
+The workshop produced six themes, and the central claim is that they interlock. I will take them in turn.
+
+00:04:18.085 --> 00:04:37.335
+First, bias and representativeness. In pain estimation, pain is subjective and inferred from indirect signals. In hiring, historical records carry, as one group put it, bias embedded in ten years of internal hiring data, while the sensitive attributes needed to test for discrimination are hard to obtain.
+
+00:04:37.335 --> 00:04:53.885
+Competing fairness criteria give different answers when positions are limited, and one group concluded that unbiased hiring is impossible. In transport, accent, appearance, location and incident history can act as proxies even when sensitive attributes are dropped.
+
+00:04:53.885 --> 00:05:10.460
+Feedback loops matter too: more monitoring of certain places yields more recorded incidents there, which reinforces the high-risk label. Synthetic data was proposed for scarce patient data, but participants noted that more data does not fix how the construct is measured.
+
+00:05:11.110 --> 00:05:30.260
+Second, and to my mind the most useful, a human in the loop is not effective oversight. In hiring, review after automated filtering can come too late to prevent exclusion. In transport, real-time alerts leave little time to verify, and a label like assault likely conveys more certainty than the evidence supports.
+
+00:05:30.260 --> 00:05:46.685
+In healthcare, participants described a chain of deference: physicians delegate to nurses, nurses assume the score was already validated, and the system becomes the default basis for judgement. The system stays formally advisory while becoming functionally determinative.
+
+00:05:46.685 --> 00:06:02.035
+One transport group reframed automation bias as, in their words, less an individual character problem and more a systemic problem. And overreliance can build gradually through repeated success, which means a short-term evaluation will not catch it.
+
+00:06:02.035 --> 00:06:14.635
+Oversight, on this reading, is an organisational capability that needs authority, information, competence, time, a workable escalation route, and monitoring of how people actually rely on the system.
+
+00:06:15.285 --> 00:06:31.685
+Third, responsibility is distributed differently from the capacity to discharge it. Providers control development and updates. Deployers control procurement, local data and workflow. Frontline staff act. Applicants, patients and passengers bear the consequences.
+
+00:06:31.685 --> 00:06:51.810
+In hiring, employers buy proprietary systems where, as one group said, access is refused to audit, with no contract terms for maintenance, incidents or appeals. In healthcare, there were no clear responsibilities between deployer and provider. The actor who sees harm may lack the logs, and the actor who controls the model may lack the outcomes.
+
+00:06:51.810 --> 00:06:58.110
+Documentation only counts when the person who needs it can access it, interpret it and act on it.
+
+00:06:58.760 --> 00:07:13.460
+Fourth, compliance evidence decays. Environments shift without any change to the system: seasons and events in transport, new patient populations and sensor hardware in health, labour markets in hiring. Organisations shift too.
+
+00:07:13.460 --> 00:07:33.310
+Developers leave, and one participant observed that the company that built the system may be bankrupt by the time monitoring matters, leaving the deployer responsible without the expertise or access. Participants asked how much retraining counts as a change, and when a hospital that adapts a system with live data takes on provider duties.
+
+00:07:33.310 --> 00:07:46.060
+Their proposals were explicit retraining triggers, auditing of updates, and system sunsetting clauses, so that when the conditions to reassess a model cannot be sustained, continued deployment is not the default.
+
+00:07:46.710 --> 00:08:01.035
+Fifth, a system can perform well and still not support its intended decision. A pain estimator may be accurate while supporting interventions clinicians consider inappropriate, which one participant called the wrong optimisation problem.
+
+00:08:01.035 --> 00:08:11.835
+An acceptable aggregate fairness score can hide problematic individual decisions, and a statistical disparity does not by itself establish unlawful discrimination.
+
+00:08:11.835 --> 00:08:24.260
+On transparency the question is to whom, for what purpose and for which decision: hiring explanations aimed at H R staff were described as built for the wrong stakeholder if the reader is an applicant.
+
+00:08:24.910 --> 00:08:42.010
+Sixth, repurposing without reassessment. Transport participants feared a harassment detector drifting into policing. In healthcare, a pain estimate could end up tied to medication decisions, or, as one participant put it, to the I V pumps, so that a monitor becomes an actuator.
+
+00:08:42.010 --> 00:09:01.335
+In hiring, risk depends on whether the tool supports, automates or effectively determines selection, and cutting two hundred applicants to fifty is not the same as choosing one of three finalists. The authors separate this from drift. A system can age without its use changing; here the use changes without anyone reassessing it.
+
+00:09:01.985 --> 00:09:20.285
+In the discussion the authors tie these back to articles. They note that the Act splits the oversight duties: Article fourteen, paragraph three, point b, has the provider identify oversight measures, and Article twenty-six, paragraph two, has the deployer assign oversight to qualified, supported people.
+
+00:09:20.285 --> 00:09:40.385
+But the provider may not know the workflow, and the deployer controls staffing and workload while having little say over design, so oversight measures can exist yet be hard to exercise. Their sharpest line is that conformity assessment can show a system was designed to be overseeable, but whether it is overseen can only be shown in operation.
+
+00:09:40.385 --> 00:09:55.460
+They also point out that Article twenty-five, paragraph four, covers information sharing between providers and their suppliers but not necessarily between providers and deployers, and that a vendor ceasing operations does not transfer provider status.
+
+00:09:55.460 --> 00:10:02.835
+Where gradual change becomes a substantial modification, triggering a new conformity assessment, is left open.
+
+00:10:03.485 --> 00:10:21.385
+The limits are real. This is a self-selected group from one special interest group, mostly academic and mostly technical, working on hypothetical systems. It shows plausible failure modes, not how often they occur. There are no quantitative results, and none of the proposed remedies was evaluated.
+
+00:10:21.385 --> 00:10:26.885
+It covers high-risk system obligations, not general-purpose model obligations.
+
+00:10:27.535 --> 00:10:39.510
+The governance read, which is mine as much as the authors': the evidence-decay and repurposing themes argue for monitoring tied to explicit reassessment triggers, rather than one-off certification.
+
+00:10:39.510 --> 00:10:55.310
+The oversight findings argue that audits should test operational capacity to intervene, not the existence of an override button, and the paper itself notes that override frequency is ambiguous, since few overrides could mean good reliance or uncritical acceptance.
+
+00:10:55.310 --> 00:11:05.310
+The authors' policy ask is that regulators ask not only whether compliance was shown at one moment, but whether the conditions for continued compliance can be maintained.
+
+00:11:10.780 --> 00:11:27.005
+Large Language Models Put Existential Risk from Artificial Intelligence at Ten Percent is by Julian Kauk of Friedrich Schiller University Jena. It is an AI governance paper in the loosest sense: a measurement of what deployed models say about their own technology.
+
+00:11:27.655 --> 00:11:46.505
+The author asked two hundred and forty-one models from thirty-three developers the question the twenty twenty-three Expert Survey on Progress in A I put to thirteen hundred and twenty-one researchers: the probability that future A I advances cause human extinction or similarly permanent and severe disempowerment.
+
+00:11:46.505 --> 00:12:02.280
+Each model gave a probability, a ninety percent interval, a most likely primary cause from four categories, and a short explanation. Every model was queried at each reasoning setting it offers, five runs each, with default sampling and no system prompt.
+
+00:12:02.280 --> 00:12:11.455
+The catalogue was downloaded from OpenRouter on the fifth of November and the runs were done on the sixth. About ninety-seven percent of answers were valid.
+
+00:12:12.105 --> 00:12:28.255
+The models converged. The median was ten percent, and the middle ninety percent of models fell between three point five and fifteen point eight percent. The researchers had a median of five percent, a mean of sixteen point two, and answers spread from zero to seventy percent.
+
+00:12:28.255 --> 00:12:42.105
+The standard deviation was twenty-three points for researchers against four point six for models. Models from Chinese developers gave somewhat higher estimates than United States models, with an odds ratio of one point two five.
+
+00:12:42.755 --> 00:12:58.705
+Release date was not associated with the estimate itself, but newer models agreed with each other more closely: a standard deviation of five point five points before the median release date, and three point four after. More expensive models stated higher risks.
+
+00:12:58.705 --> 00:13:13.030
+A tenfold higher input price went with an odds ratio of one point two nine, and for a typical model the estimate rose from about seven percent at the cheapest price to about thirteen percent at sixteen dollars per million input tokens.
+
+00:13:13.030 --> 00:13:21.355
+More reasoning barely moved the best guess but widened the interval upward, with the upper bound two point seven points higher at maximum effort.
+
+00:13:22.005 --> 00:13:36.330
+Loss of control over A I was named as the primary cause in eighty-eight percent of answers, competitive pressure in ten, organisational failure in one, and malicious use essentially never. That held across developer regions.
+
+00:13:36.980 --> 00:13:50.755
+The author is candid that this is probably an echo. About eighteen percent of explanations referred to surveys, polls, experts or forecasters, and the narrow spread fits an average of what humans have written, shaped by alignment.
+
+00:13:50.755 --> 00:14:02.355
+Model outputs are not beliefs, the prompt was one English prompt, and the survey and its published results may have been in training data. The price and reasoning effects are associations only.
+
+00:14:03.005 --> 00:14:22.405
+The governance read: this is a cheap, repeatable measurement, with all data shared, and a warning that models may present a consensus on A I risk that does not exist among people. My own inference is that nobody should treat the number as evidence about the risk. Its use is as a probe of how training and alignment shape what systems say.
+
+00:14:28.225 --> 00:14:42.000
+LLMs are Vulnerable to Malicious Requests with Indistinguishable Intent comes from the three sixty A I Security Lab and Beihang University. It is an A I safety paper on single-turn, black-box jailbreaks.
+
+00:14:42.650 --> 00:15:00.700
+The first result is about a request filter. The authors built a simple prompt-based filter that scores a request from zero, definitely harmful, to four, definitely harmless, and blocks anything below two. Against eight known jailbreaks on the hundred-request MaliciousInstruct set, pass rates varied hugely.
+
+00:15:00.700 --> 00:15:14.900
+Code-completion framing passed only two percent of the time and Developer Mode prompts almost never. Past-tense reformulation passed seventy-five percent of the time and kept about forty-three percent attack success with the filter on.
+
+00:15:14.900 --> 00:15:32.975
+The pattern is that attacks with conspicuous override patterns get blocked, and attacks that read like normal requests get through. Ratings by the models of how much each attack resembled a normal request tracked pass rates across methods, though the authors call that an association and not a controlled test.
+
+00:15:33.625 --> 00:15:50.750
+Building on this, they propose the Detail Guidance Attack. An auxiliary model, Gemini two point five flash, expands a short harmful intent into detailed context. One variant lists observable signs of the activity and asks the victim to infer what steps it involves.
+
+00:15:50.750 --> 00:16:10.450
+The other writes an emergency story, with a bystander or paramedic narrator, and asks for a numbered list of steps. Across eleven victim models on MaliciousInstruct, the signs variant averaged ninety-five point three percent attack success and the story variant ninety-one point three, against sixty-one point three for the best baseline.
+
+00:16:10.450 --> 00:16:25.250
+With the filter on, the signs variant still reached ninety point nine percent. Results were similar on two other datasets. Llama Guard three eight B passed every signs-variant request, and a Self-Reminder prompt cut success by about one point.
+
+00:16:25.900 --> 00:16:41.225
+A filter prompt rewritten to describe the two attack patterns blocked most of them: with o four mini as the filter, only fifteen percent of signs requests and eight percent of story requests passed. So this is an arms race where the defender has to name each pattern.
+
+00:16:41.875 --> 00:17:00.275
+The caveats are heavy. Success is judged by G P T four with a deliberately broad definition of unsafe, so it does not establish that responses were actionable or correct. The components, details, scenario framing and response constraints, were not ablated, so the paper does not show why the attack works.
+
+00:17:00.275 --> 00:17:19.125
+The false positive cost of the strategy-aware filter on benign requests was not measured. A ninety-five-person survey found people split on dual-use requests, from about half inclined to respond on gaslighting and fraud to roughly two thirds inclined to refuse on bomb making, but it has no stated sampling method.
+
+00:17:19.775 --> 00:17:30.900
+The governance read: filters tuned on known jailbreak patterns generalise poorly to help-seeking framings, and the paper gives no number for what tightening them costs legitimate users.
+
+00:17:36.720 --> 00:17:54.120
+Experience-Handoff Reinforcement Learning for Recursive Self-Improvement is from New York University and K A I S T. The method, A C E R L, trains a small model to act on a task, reflect on what happened, and edit a short task-local playbook that its next attempt reads.
+
+00:17:54.120 --> 00:18:05.745
+Each reflection and each playbook edit is rewarded by running a fresh attempt with the edited playbook and reading the task verifier, and each role is compared only with siblings sharing its input.
+
+00:18:06.395 --> 00:18:16.020
+At equal training compute on four benchmarks, with models up to four billion parameters, it beats actor-only G R P O and a critic-based baseline.
+
+00:18:16.020 --> 00:18:35.795
+With three attempts it scores point seven seven five on Mastermind, point nine eight seven on M B P P, point six six seven on AppWorld and point three four on MiniSWEBench, against G R P O's point six eight six, point eight six seven, point six two four and point two four five. The AppWorld gap is about one standard error.
+
+00:18:35.795 --> 00:18:51.845
+The advantage persists to eight attempts although training saw three, and a control that discards the edits shows the playbook itself adds reward on three of four benchmarks. A critic-based variant collapsed, but the authors say they cannot conclude critic credit cannot work.
+
+00:18:51.845 --> 00:19:00.670
+One earlier run of that variant also learned to exit the test process early with a success code, a reward hack that led them to change the grader.
+
+00:19:01.320 --> 00:19:10.245
+The definition of recursive self-improvement here is narrow: a model rewriting the context it inherits, with fixed weights and a fixed harness.
+
+00:19:10.245 --> 00:19:27.795
+The authors acknowledge that training models to write the experience their future attempts inherit could make autonomous agents improve with less human oversight, and argue the setting is bounded because playbooks are task-local, scored by the verifier, reset every three encounters, and sandboxed.
+
+00:19:28.445 --> 00:19:42.995
+The governance read: the learned, model-written context becomes the thing being optimised, and those bounds are design choices, not guarantees. The evidence is one training run per method, small models, and an M B P P set near ceiling.
+
+00:19:48.815 --> 00:20:03.840
+Alignment with Reflect-Reasoning, from Duke University and collaborators, trains a model to follow a constitution supplied at inference time. The model writes a base response, a critique and a revision in one generation, leaving an auditable trace.
+
+00:20:03.840 --> 00:20:23.840
+Training is supervised fine-tuning on traces from an explicit prompting pipeline, then G R P O with pairwise rewards from an L L M judge, using no human-annotated data. Each training prompt is paired with a random constitution from a pool of principles, so the model has to generalise its reasoning rather than memorise fixes.
+
+00:20:24.490 --> 00:20:44.290
+Across five models from seven to thirty-two billion parameters, it beats system prompting by eighty-two point five to ninety-four point seven percent pairwise win rate on held-out principles, and beats in-context reflection by sixty-six point eight to eighty-six point nine. Gains mostly carry to medical and finance principles.
+
+00:20:44.290 --> 00:21:00.715
+Serious violations fell for all five models against system prompting, though against in-context reflection Qwen was the exception. Refusals were about as frequent as baselines but only seven point five percent were blunt, against eighteen percent for system prompting.
+
+00:21:00.715 --> 00:21:09.915
+Under a constitution that explicitly asks for harmful behaviour, harmful compliance stayed between zero point two and zero point four percent.
+
+00:21:10.565 --> 00:21:28.540
+The limits: everything leans on an L L M judge, with human annotators agreeing with it between seventy-three and seventy-nine percent, and the judge preferred the method slightly more often than humans did. The legal domain was reported but not trusted, because judge scores differed sharply between subsets.
+
+00:21:28.540 --> 00:21:37.615
+Final responses are about double the length, and the authors warn the traces may not be faithful. Evaluation is English-only at prototype scale.
+
+00:21:38.265 --> 00:21:48.790
+The governance read: a deployer-supplied constitution with a visible trace is attractive for participatory governance, but the weakest link is the thing measuring conformance.
+
+00:21:54.260 --> 00:22:04.085
+DOCKET, from Stanford and collaborators, is an evaluations paper with a governance subject: A I assisted public comments on United States rulemaking.
+
+00:22:04.085 --> 00:22:19.260
+The dataset covers forty-two point three million public comments on thousands of proposed and final rules from forty-four agencies between twenty sixteen and twenty twenty-six, linked to the provisions they target and to agency responses.
+
+00:22:19.260 --> 00:22:28.910
+DOCKETBench then asks a model how a proposed rule should change, and scores the answer against what real commenters said on five hundred and fifty-eight dockets.
+
+00:22:29.560 --> 00:22:44.160
+The headline is the gap between sounding right and saying the right things. Only eighteen to thirty percent of model claims match a real claim, while frame precision reaches seventy-two to eighty-two percent and style precision sixty-five to eighty.
+
+00:22:44.160 --> 00:23:03.060
+Models spread attention across seventy-eight to ninety-nine percent of a docket's provisions, humans forty-six. They agree most with government and least with labour, and are moderate and procedural: for G P T five mini, eighty-five point nine percent of claims recommend modification against forty-three point eight for humans.
+
+00:23:03.060 --> 00:23:17.785
+Persona prompting changes stance but not substance, moving claim precision by at most two points. Retrieval from real prior comments helped more, taking G P T five claim precision from eighteen point one to twenty-four point seven.
+
+00:23:18.435 --> 00:23:32.260
+On participation, agencies take up commenter wording more often than you might expect, and about thirty percent of comments carry specialist content, which cuts against the view that comment periods are swamped by low-quality input.
+
+00:23:32.910 --> 00:23:52.085
+Read the labour result with care. The authors' own cross-docket baseline suggests humans agree with labour only fourteen percent of the time, so the models may simply be taking the median commenter's side. Most measurement rests on L L M judges, and the human validation was one annotator checking ten items per step.
+
+00:23:52.735 --> 00:24:02.610
+The governance read: fluent policy feedback can hide a narrowing of whose perspectives get carried, and gains in style could help synthetic comments evade filters.
+
+00:24:08.430 --> 00:24:26.655
+Can Mechanistic Interpretability Help Explain L L M Agent Failures is a case study from George Mason and Tel Aviv universities on Qwen two point five, seven billion, acting on live websites, focused on web element hallucination: proposing an action not in the available list.
+
+00:24:26.655 --> 00:24:33.755
+Across three hundred episodes and two thousand and seventy-one actions, thirty-two point six percent were hallucinated.
+
+00:24:34.405 --> 00:24:52.430
+A linear probe on the last prompt token predicts hallucination before output with point eight zero A U C. Steering along a probe direction at one layer fixed eighty-five percent of hallucinations while breaking seven percent of valid actions. So detect and nudge works. But explanation does not.
+
+00:24:52.430 --> 00:25:06.030
+Changing the action list from J S O N to a numbered list dropped the fix rate to fifty-eight percent, so the direction is entangled with prompt format. The best component intervention fixed only eight point nine percent.
+
+00:25:06.030 --> 00:25:17.355
+Which input position matters is unstable, counterfactual pairs cannot be built because trials come from different pages, and a pretrained sparse autoencoder gave nothing interpretable.
+
+00:25:18.005 --> 00:25:34.805
+This is one small model, one failure type, three hundred episodes. The governance read: interpretability can currently flag and steer an agent failure, but not yet give a faithful, complete account of it, and the paper's call for agent-specific benchmarks is the useful part.
+
+00:25:40.625 --> 00:25:56.025
+CHARMING, from Syracuse University and collaborators, pairs a tensor accelerator on an A M D Versal chip with in-DRAM computation, and splits transformer attention heads between them. Heads sent to memory are chosen to cost the least accuracy.
+
+00:25:56.025 --> 00:26:09.125
+Against the baseline, prefill is up to twenty-three point six percent faster and decode up to forty-four percent, with energy-delay product improving by up to twenty-four point seven and forty-nine point eight percent.
+
+00:26:09.775 --> 00:26:26.875
+The catch is that the in-memory half is simulated, with the prototype used only for functional validation on two boards, and the speedups assume overlap with no contention and native inversion that commodity DRAM does not offer. Accuracy was tested on one benchmark, GSM eight K.
+
+00:26:26.875 --> 00:26:44.725
+Quantising attention only is nearly lossless, while quantising the whole model to eight bits wrecks dense models. Damage-score head selection recovered about seventy percent of the loss from random selection. This is evidence on edge inference efficiency, not frontier training or datacentre hardware.
+
+00:26:50.545 --> 00:27:11.720
+MASTARS, from K A I S T and U N I S T, is a diffusion method for enlarging the fixed dataset used in offline multi-agent reinforcement learning. It generates agents one at a time with inpainting so each is consistent with the others, and keeps each agent's trajectory up to its highest-value step, regenerating only the rest.
+
+00:27:12.370 --> 00:27:29.870
+Plugged into three offline algorithms, it lifts average normalised return on M P E by about thirty-three to thirty-nine percent, and on the more stochastic SMAC version two it takes average win rate from point one nine to point four eight. Ablations show every component matters.
+
+00:27:29.870 --> 00:27:37.520
+Cost grows with agent count: point one two seconds per candidate for three agents against eight point three for twenty-five.
+
+00:27:38.170 --> 00:27:54.495
+All of it is simulated benchmark work with small datasets, baselines were given looser acceptance thresholds, and nothing here bears directly on safety or governance. The authors do warn that generated data must be validated before safety-critical deployment.
+
+00:28:00.315 --> 00:28:11.165
+Getting Aligned on Representational Alignment is a perspective paper by twenty-nine authors across cognitive science, neuroscience and machine learning, filed here as non-A I.
+
+00:28:11.165 --> 00:28:27.565
+It proposes a common framework for work on how closely the internal representations of two systems agree, with five components, data, systems, measurements, embeddings and an alignment function, and three objectives: measuring alignment, bridging spaces, and increasing alignment.
+
+00:28:27.565 --> 00:28:39.515
+It maps nine example studies into the framework and lists open problems, including stimulus choice, which measure to use, and whether representational alignment improves behavioural alignment.
+
+00:28:40.165 --> 00:28:56.790
+There are no new experiments. The authors say representational alignment is neither necessary nor sufficient for aligned outputs, and the claim that it could help value alignment rests on one cited example, representation engineering. The risks section is two short paragraphs.
+
+00:28:56.790 --> 00:29:04.290
+It is useful as a map and glossary if you meet R S A, C K A or distillation papers and want to place them.

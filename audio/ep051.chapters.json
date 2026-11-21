@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 48,
+      "title": "Who controls evaluation infrastructure"
+    },
+    {
+      "startTime": 711,
+      "title": "Incident reporting in practice"
+    },
+    {
+      "startTime": 888,
+      "title": "Predicting loss of control"
+    },
+    {
+      "startTime": 1112,
+      "title": "Blind compliance"
+    },
+    {
+      "startTime": 1221,
+      "title": "Safe exploration during training"
+    },
+    {
+      "startTime": 1358,
+      "title": "Benchmarks as software"
+    },
+    {
+      "startTime": 1516,
+      "title": "Reading any direction in the residual stream"
+    },
+    {
+      "startTime": 1634,
+      "title": "Streaming precision from slow memory"
+    },
+    {
+      "startTime": 1728,
+      "title": "Shapley axioms for ad hoc teamwork"
+    },
+    {
+      "startTime": 1782,
+      "title": "Course scheduling in a pandemic"
+    }
+  ]
+}

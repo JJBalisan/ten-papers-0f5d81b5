@@ -1,0 +1,388 @@
+WEBVTT
+
+00:00:17.690 --> 00:00:26.140
+Today's lead is Addition by Subtraction, a defence that makes refusal in open weight models less dependent on a small set of neurons.
+
+00:00:26.140 --> 00:00:45.540
+After it, the two most consequential papers are Beyond accuracy, on what assurance of AI in public services has to establish, and The Alignment Tax Is Graded, a pre-registered look at what preference optimisation does to capability. Ten papers today, one per category plus an extra in governance and in alignment.
+
+00:00:51.360 --> 00:01:05.785
+The lead is Addition by Subtraction: Toward Mitigating Fragile Safety Alignment in Large Language Models, from Hamid Dashtbani and Alexandra Dmitrienko at the University of Duisburg-Essen. Category: AI Safety.
+
+00:01:06.435 --> 00:01:22.860
+The starting point is a result you will know. Several recent attacks show that safety behaviour in aligned models is, in the authors' word, "highly sparse". A few thousand neurons, mostly in the gate and up projections of the feed-forward blocks, carry much of the refusal behaviour.
+
+00:01:22.860 --> 00:01:40.310
+Prune them and the model stops refusing while its general ability barely moves. A separate line of work shows that ablating a single direction in the activations has a similar effect. For anyone who releases weights, that means the attacker does not need training, only access to the parameters.
+
+00:01:40.960 --> 00:02:00.435
+The defence is called ABS-Align. The idea is to fine-tune the model with preference optimisation while the known safety neurons are switched off, so that refusal has to be rebuilt in other places. Afterwards the neurons are switched back on, and the authors call the result denser safety: refusal that is spread across more of the network.
+
+00:02:01.085 --> 00:02:09.410
+Here is the method in enough detail to judge it. First, the defender finds the safety neurons using an existing attack called TwinBreak.
+
+00:02:09.410 --> 00:02:29.885
+TwinBreak takes pairs of near-identical prompts, one malicious and one benign, compares mean activations in the gate and up projections, and flags the top one percent of neurons per layer with the largest difference. It repeats this for five iterations, so roughly five percent of neurons end up flagged. Second, those flagged neurons are ranked.
+
+00:02:29.885 --> 00:02:43.235
+Training begins with the top twenty percent of that set pruned and frozen. Every two hundred steps, another twenty percent is pruned, so by the fifth stage all of the flagged neurons are off. Everything is restored at the end.
+
+00:02:43.235 --> 00:02:54.010
+The authors report that ranking matters, and that pruning the strongest neurons first matters, because pruning weak ones leaves safety mostly intact and gives little learning signal.
+
+00:02:54.010 --> 00:03:12.435
+Third, the training data is small: one thousand preference pairs sampled from PKU-SafeRLHF, with a harmful response as the rejected answer and a refusal as the chosen one, plus eight hundred and fifty Alpaca samples and one hundred and fifty benign XSTest samples to protect utility.
+
+00:03:12.435 --> 00:03:20.360
+Two epochs, direct preference optimisation, full fine-tuning except the first and last transformer blocks, which are frozen.
+
+00:03:21.010 --> 00:03:41.085
+They test on four small models: Llama three eight B Instruct, Llama three point two three B Instruct, Gemma two two B, and Qwen three four B. The primary metric is the StrongREJECT score on three hundred and thirteen harmful prompts, where zero means refusal or no useful harmful content and higher means more useful harmful content.
+
+00:03:41.735 --> 00:04:03.060
+On the TwinBreak attack itself, rerun against the tuned models, the cumulative score falls from zero point seven one to zero point two three on Gemma, from zero point eight one to zero point one one on Llama three eight B, from zero point seven four to zero point three three on Llama three point two, and from zero point seven nine to zero point one three on Qwen.
+
+00:04:03.710 --> 00:04:19.410
+The more interesting results are on attacks the tuned models never saw. NeuroStrike, a related pruning attack, drops from zero point five zero to zero point zero five on Gemma and from zero point eight four to zero point zero three on Llama three eight B.
+
+00:04:19.410 --> 00:04:38.260
+Refusal direction ablation drops from zero point eight zero to zero point zero eight on Gemma and from zero point seven five to zero point zero five on Llama three eight B. The effect is weaker on the other two models. On Llama three point two, NeuroStrike still reaches zero point three seven after tuning.
+
+00:04:38.260 --> 00:04:47.885
+On Qwen it is zero point four four, though refusal direction ablation on Qwen falls from zero point seven zero to zero point zero nine.
+
+00:04:48.535 --> 00:04:54.685
+Black-box robustness also improves, even though no black-box data was used in training.
+
+00:04:54.685 --> 00:05:14.335
+Averaged over ten SORRY-Bench prompt transformations, attack success falls from about forty-two percent to thirteen percent on Gemma, from forty-eight to eighteen on Llama three eight B, from fifty-three to thirty-three on Llama three point two, and from sixty-nine to twenty-seven on Qwen. The biggest movements are on persuasion-style rewrites.
+
+00:05:14.335 --> 00:05:22.235
+On Qwen, expert endorsement falls from about ninety-four percent to fifty-eight, and role play from fifty-two percent to seven.
+
+00:05:22.885 --> 00:05:41.435
+Side effects look modest. Over-refusal on a hundred held-out benign prompts moves by a few prompts at most: Gemma goes from two to four, Llama three eight B from five to one. Most utility benchmarks move within about three points, with one exception, a drop of three point six seven points on ARC for Llama three eight B.
+
+00:05:41.435 --> 00:05:53.610
+TruthfulQA improves by between nine and fourteen points on every model. The authors do not explain that, and my guess is that it comes from the safety preference data rather than from anything structural.
+
+00:05:54.260 --> 00:06:15.060
+Against competing defences, the paper compares only on the models each baseline was published for. W-DOOR on Gemma barely moves black-box success, from forty-two to thirty-five percent, and raises over-refusal from two to nine. On Llama three eight B, Deep Refusal is beaten on every attack but refuses forty-eight percent of benign prompts.
+
+00:06:15.060 --> 00:06:23.885
+Circuit Breaker is slightly better on SORRY-Bench, sixteen percent against eighteen, but leaves NeuroStrike at about zero point seven nine.
+
+00:06:24.535 --> 00:06:43.435
+The ablations on Gemma are what make the method credible. Plain preference optimisation with no pruning leaves TwinBreak at zero point five two. Pruning random neurons instead gives zero point five zero. Pruning all safety neurons at once gives zero point three eight, and the full gradual method gives zero point two three.
+
+00:06:43.435 --> 00:06:47.535
+So extra safety data alone does not explain the gain.
+
+00:06:48.185 --> 00:07:04.360
+Now the limits, which the authors state and some I add. The threat model excludes adversarial fine-tuning. That is the big one for open weights, because the cheap attack is simply training the safeguards out, and nothing here speaks to whether denser safety makes that more expensive.
+
+00:07:04.360 --> 00:07:24.860
+Neuron detection is heuristic, and the authors do not measure absolute density, only reduced dependence on the neurons they originally found. The adaptive attack test is bounded rather than defence-aware: the attacker prunes for fifteen iterations instead of five, and success rises to between zero point two five and zero point three nine.
+
+00:07:24.860 --> 00:07:34.810
+For Llama three eight B that is more than double the tuned model's zero point one one. Still far below the undefended zero point eight, but it is movement.
+
+00:07:34.810 --> 00:07:47.735
+All models are two to eight billion parameters, one run per setting, no variance reported, the ablation is on one model, and no optimisation-based black-box attacks such as GCG or PAIR were tried.
+
+00:07:48.385 --> 00:08:07.110
+The governance read, and this part is my inference. This is evidence that tamper resistance of open-weight safeguards is a tractable research target: roughly two thousand examples and two epochs measurably raise the bar against inference-time edits. That matters for arguments about what open release implies.
+
+00:08:07.110 --> 00:08:20.710
+But it should not be cited as showing that open-weight safeguards are robust. The defender here used the attacker's own tool to pick neurons, the generalisation is to closely related attacks, and the cheapest attack is out of scope.
+
+00:08:20.710 --> 00:08:28.935
+The honest summary is a useful, narrow data point, with the missing experiment being the same defence against harmful fine-tuning.
+
+00:08:34.405 --> 00:08:45.205
+Next, Beyond accuracy: what AI assurance needs to establish in public services, by Louise Yorke at University College London. Category: AI Governance.
+
+00:08:45.855 --> 00:09:06.555
+The question is what justifies relying on AI-produced evidence in public services. It answers with two linked studies. The first is an experiment. Eight configurations of GPT-four-o classify twelve hundred UK Prime Minister's Questions into twenty-one policy topics, scored against human coders from the Comparative Agendas Project.
+
+00:09:06.555 --> 00:09:24.480
+The sample is stratified and reweighted, because topics are very imbalanced. The configurations vary the codebook description, few-shot examples, reasoning, time scope, speaker scope and output format. The anchor uses temperature zero, full descriptions, an explicit coding rule and six examples.
+
+00:09:25.130 --> 00:09:39.355
+The headline result is that accuracy hides almost everything. Accuracy across configurations runs from sixty-eight point two to seventy point three percent, and after correcting for twenty-eight comparisons no difference is significant.
+
+00:09:39.355 --> 00:09:55.530
+Yet two hundred and ninety-one of eleven hundred and ninety-nine questions, twenty-four point three percent, get different labels depending on configuration. For two hundred and fifteen questions the label matches the human coding under some configurations and not others.
+
+00:09:55.530 --> 00:10:10.905
+Even unchanged reruns disagree: five reruns of the anchor at temperature zero differ on two point seven eight percent of labels on average, and sixty-five questions change at least once. Temperature zero does not make this pipeline deterministic.
+
+00:10:10.905 --> 00:10:19.680
+Each alternative configuration disagrees with the anchor on between five and eleven point six percent of labels, with chain of thought the highest.
+
+00:10:20.330 --> 00:10:41.305
+Three other findings are worth carrying away. First, agreement is not correctness. For one hundred and ninety-one questions all eight configurations agree on a label that differs from the human coding. They are all one model family, so that agreement is not independent evidence. Second, filtering out disputed questions inflates reported accuracy.
+
+00:10:41.305 --> 00:11:01.505
+Keep only the nine hundred and eight questions where all eight configurations agree and the anchor jumps from sixty-nine point six to seventy-nine point zero percent, without a single label changing. The score describes a selected subset, not a better classifier. Third, routing to human review depends heavily on how the score is extracted.
+
+00:11:01.505 --> 00:11:21.430
+A hypothetical rule flags outputs scoring below zero point nine nine. Under the anchor that flags thirty-six percent of outputs, and the unflagged accuracy is eighty-three point six. Under chain of thought it flags under one percent and does nothing. Across configurations the flagged share runs from zero point nine to forty-one percent.
+
+00:11:21.430 --> 00:11:30.280
+The score is the highest token probability at a chosen position, not a calibrated confidence, so this is about this extraction procedure.
+
+00:11:30.930 --> 00:11:51.680
+The second study is a documentary analysis of thirty-seven UK and EU documents, nineteen UK and eighteen EU, coded with AI assistance and checked by the author. Both sets expect pre-use testing, monitoring and human oversight. The AI Act requires predefined, purpose-appropriate metrics and thresholds for high-risk systems.
+
+00:11:51.680 --> 00:12:11.605
+UK guidance is more concrete on stability, recommending that the same prompt be run several times, and gives an illustrative threshold of eighty percent of sampled outputs judged acceptable. But measures, thresholds and reporting are largely left to providers and public bodies. Self-assessment is the default route for most systems.
+
+00:12:11.605 --> 00:12:20.955
+Neither set clearly asks organisations to report changing answers, shared errors, evaluation exclusions, or how cases reach human review.
+
+00:12:21.605 --> 00:12:39.180
+The limits are real. One task, one model family, eight of seventeen configurations retained, and raw outputs for those were lost when a cloud environment was deleted. The reruns happened five months later on an unpinned model alias, so drift is confounded with configuration effects.
+
+00:12:39.180 --> 00:12:45.455
+No reviewer decisions were observed, and there is no inter-coder agreement for the documentary coding.
+
+00:12:46.105 --> 00:12:58.155
+The governance read: this is a small, concrete worked example of why a single accuracy number is weak assurance, and of how evaluator discretion changes what an evaluation appears to establish.
+
+00:12:58.155 --> 00:13:15.930
+The proposed short assurance record, covering configuration, exclusions, individual label changes, shared errors and the review rule, is a proposal the study has not tested. It is not frontier-safety work. I would use it as a template for what evaluation reporting requirements should ask for.
+
+00:13:21.750 --> 00:13:33.475
+Also in governance: Beyond the principle practice gap: Responsible AI as situated epistemic and ethical practice, by Thao Do-Ngoc and Emma Carmel at the University of Bath.
+
+00:13:34.125 --> 00:13:52.175
+The claim is that the familiar gap between responsible AI principles and practice is the wrong frame. The evidence is fourteen semi-structured interviews, run between October twenty twenty-five and February twenty twenty-six, with people who design, evaluate and govern AI-enabled anti-trafficking systems.
+
+00:13:52.175 --> 00:14:12.350
+That domain is revealing because everyone shares a social purpose, yet reaches different conclusions, and because the data is poor. Official datasets capture identified victims, not the affected population, and indicators used to spot exploitation also appear in consensual sex work and ordinary migrant job advertisements.
+
+00:14:13.000 --> 00:14:33.925
+The authors trace four moments where ethical concerns are lost or weakened. In perception, the same words, privacy, harm, accountability, mean different things depending on institutional position. One interviewee in a support organisation treats retained data as a route to exposure. An investigator treats traceability as a route to detection.
+
+00:14:33.925 --> 00:14:54.475
+In judgement, concerns are weighed against effectiveness, funding and revenue. One participant in commercial supply-chain work says that companies must drive revenue first. In situated action, people lack time, mandate or resources, or displace responsibility to someone else, for example saying ethics belongs to whoever applies the technology.
+
+00:14:54.475 --> 00:15:10.750
+In materialisation, commitments either become design features, such as no accounts, no IP collection, a quick-exit button and session resets after two hours of inactivity, or get narrowed to quality control, or never get deployed, or do not survive staff leaving.
+
+00:15:11.400 --> 00:15:27.125
+The policy conclusion is epistemic infrastructure: durable arrangements through which affected communities' knowledge can change design decisions, plus documenting the assumptions considered, concerns raised, trade-offs negotiated and alternatives rejected.
+
+00:15:27.775 --> 00:15:42.700
+The limits: self-reported accounts, not observation. No survivors or workers in the sample. Fourteen interviews in one niche domain supports theory building, not generalisation, and there are no measurements of whether the proposed infrastructure works.
+
+00:15:42.700 --> 00:15:55.375
+The governance read is a vocabulary for where safeguards leak inside organisations, and a case for decision-record requirements over principles or checklists. That is my reading of its use, not a result.
+
+00:16:01.195 --> 00:16:13.295
+Now to AI Alignment. The Alignment Tax Is Graded: Task-Selective Capability Loss Under Length-Normalized DPO with SFT Retention, by Ye Yuan, an independent researcher.
+
+00:16:13.945 --> 00:16:30.745
+This is a small, carefully pre-registered study. The setup is Qwen three point five four B, sparse LoRA on the eight full-attention layers only, length-normalised direct preference optimisation with an added supervised retention term, trained for one hundred and eighty steps.
+
+00:16:30.745 --> 00:16:47.470
+Preferences are synthetic: six hundred and forty-seven pairs from financial filings, mixing tool-calling pairs with wrong-tool rejected answers and style pairs where the rejected answer is a degraded short version. The implicit reward margin grows to about seven.
+
+00:16:47.470 --> 00:17:05.595
+Three tasks of a hundred and sixty items each are tracked: a json tool call, a router that outputs one of five labels, and a field extraction task. The primary test is pre-registered equivalence testing with a tolerance of five points, across eight seeds, six of them unseen when the plan was frozen.
+
+00:17:06.245 --> 00:17:22.845
+The results are graded. Extraction goes from ninety-seven point five to ninety-six point nine five percent, a drop of about half a point, statistically equivalent within the band on all eight seeds. Json drops by three point five two points and equivalence is not shown.
+
+00:17:22.845 --> 00:17:40.220
+Router collapses from ninety-three point seven five to sixty-three point five nine, a thirty point loss, with no seed inside the band. So the tax is real, graded and task-selective, and the author's own pre-registered claim that all three tasks stay within five points is falsified.
+
+00:17:40.870 --> 00:18:00.970
+Two methodological points are the reason this is on the shortlist. A strict string-match scorer first showed extraction crashing at margin three. After canonicalising answers, for example accepting the digit one for Item one, the eight seed mean went from about sixty-two percent to ninety-nine. A false collapse became a transient formatting shift.
+
+00:18:00.970 --> 00:18:14.245
+And the mechanism: at least ninety-six percent of the margin comes from suppressing the rejected completions, while the chosen reward stays flat. The retention term anchors the chosen likelihood and damage still occurs.
+
+00:18:14.245 --> 00:18:34.545
+The author is careful to say this shows where the margin comes from, not where the damage comes from, since a no-retention control was not run. A transient dip in router accuracy near margin three also has two failure modes, invented label strings and content errors, and recovery is stochastic across seeds even though damage is reproducible.
+
+00:18:34.545 --> 00:18:46.270
+Margins measured on the quantised model versus the full precision model differ by up to three point four times for the same adapters, so margin-based monitoring is backend sensitive.
+
+00:18:46.920 --> 00:19:02.045
+Limits are many: one four B model, easily separable synthetic preferences, three tasks, domain overlap between evaluation and training filings, and no safety or refusal tasks. Nothing here speaks to safety-relevant behaviour.
+
+00:19:02.695 --> 00:19:23.320
+The governance read, mine: for anyone writing evaluation or audit requirements for post-training, equivalence testing with a pre-stated tolerance is a reusable template, and a thirty point loss on an unrelated task alongside a flat chosen reward is a useful counterexample to the idea that anchoring the chosen likelihood is enough.
+
+00:19:29.140 --> 00:19:38.690
+Also in alignment: Alignment Myopia in Generative AI, a perspective paper from Google Research and DeepMind, by Remi Denton and colleagues.
+
+00:19:39.340 --> 00:19:59.515
+The argument is that methods like reinforcement learning from human feedback optimise for immediate conversational satisfaction, which assumes that what a user prefers in the moment is a reliable proxy for what benefits them over time. The authors call this alignment myopia. They synthesise existing literature across four facets of well-being.
+
+00:19:59.515 --> 00:20:19.590
+Cognitive capacity: a year-long study of cancer specialists, as the paper reports it, found productivity gains alongside gradual erosion of expertise, which is awkward because that expertise is what you need to supervise the AI. Social health: sycophancy and affirmation without friction can weaken relationship skills.
+
+00:20:19.590 --> 00:20:37.865
+Affective well-being: venting to AI relieves negative affect short term, while dependency and affective flattening are the long-term risks. Identity and agency: self-trust and psychological ownership can erode, and in extreme cases uncritical validation reinforces delusional thinking.
+
+00:20:37.865 --> 00:20:47.265
+For each facet they set the near-term value that preference signals reward against longitudinal risks they cannot see, at individual and societal scale.
+
+00:20:47.915 --> 00:21:00.490
+The recommendations are long-horizon objectives, measurement infrastructure that turns longitudinal evidence into training signals, and explicit choices about whose welfare is optimised over what horizon.
+
+00:21:00.490 --> 00:21:14.115
+One useful point: recommender systems moved from clicks to long-term value metrics like retention, and those proved myopic and engagement-driven too. That warns that a longitudinal proxy can be captured in the same way.
+
+00:21:14.765 --> 00:21:29.940
+This is a position paper. No new data, no method, no evaluation. Evidence quality is uneven, mixing randomised studies with surveys and preprints, and causal verbs like erodes often outrun the studies. I did not check the cited work.
+
+00:21:29.940 --> 00:21:50.540
+The governance read, my inference: it names missing infrastructure but not who builds it, and it leaves open what longitudinal evaluations a developer should run before deployment and how to attribute population-level effects to model behaviour. It is orthogonal to loss-of-control concerns, though the agency thread touches gradual disempowerment.
+
+00:21:56.010 --> 00:22:05.585
+Evaluations and Benchmarks: Task-Efficient Agent Evaluation Using Cached Traces, by Ben Johnson at Jataware and Hayden Helm at Helivan.
+
+00:22:06.235 --> 00:22:21.510
+Full agent evaluation is expensive, over two thousand dollars for a benchmark in the authors' framing. The question is how few task runs are needed to predict a new system's full benchmark score, given saved traces from systems already evaluated.
+
+00:22:21.510 --> 00:22:33.960
+Their method, trubric, short for trace rubric, has an LLM write a task-specific rubric with six fields: understanding, localisation, reproduction, editing, verification and final state.
+
+00:22:33.960 --> 00:22:48.410
+A second pass summarises each trace field by field, the summaries are embedded with an ordinary text encoder, and the embeddings place systems in a geometry that predicts score. They then combine that with a standard item response model.
+
+00:22:49.060 --> 00:23:01.810
+The first result concerns the representation. Linear probes recover which system produced a trace from raw trace embeddings at roughly sixty-eight to eighty-nine percent accuracy, against a one percent chance level.
+
+00:23:01.810 --> 00:23:16.635
+With trubric that falls to roughly eleven to twenty-one percent, while task identity stays near ninety-nine percent and correctness prediction stays at about eighty-two to eighty-five. So it strips system identity and keeps what the system did.
+
+00:23:17.285 --> 00:23:33.710
+The prediction results: on SWE-bench Verified, with a hundred and seven leaderboard systems, mean absolute error with one random task is zero point zero eight one for trace geometry alone, versus zero point four four two for the sample score from one task.
+
+00:23:33.710 --> 00:23:52.010
+The combined estimator gets to under zero point one with one task, about two dollars at their nominal cost, where the item response model alone needs five tasks and the sample score twenty. Adaptive task selection pushes the combined estimate to zero point zero four eight with five tasks.
+
+00:23:52.010 --> 00:24:01.760
+In head-to-head comparisons of systems at least five points apart, the combined estimator picks the better one in eighty-eight percent of pairs from one task each.
+
+00:24:02.410 --> 00:24:16.885
+Terminal-Bench two point zero is weaker. The combined error with one task goes from zero point one four to about zero point one two, and on that benchmark item response theory is the most accurate at every budget for pairwise ranking.
+
+00:24:17.535 --> 00:24:36.285
+Limits: one summariser model, DeepSeek version four Flash, because a provider banned the authors' account and accused them of distilling reasoning traces, which is a practical note for anyone planning large-scale trace analysis. Every reference system had run nearly every task, and sparse coverage was not tested.
+
+00:24:36.935 --> 00:24:51.510
+The governance read, mine: evaluation coverage is a binding constraint for third-party testing, and saved traces are a reusable evidence asset. But this predicts leaderboard scores for systems resembling ones already evaluated.
+
+00:24:51.510 --> 00:25:09.910
+Dangerous-capability evaluations have few references, rare successes and novel elicitation, which is where this method is weakest, and an error floor of eight to twelve points is large against gaps between frontier systems. Traces submitted by the system's owner could also be selected or sanitised.
+
+00:25:15.730 --> 00:25:26.055
+Interpretability: How Far Can You Steer? Behavior-Capability Frontiers in Contrastive Activation Addition, by Deepanshu Raj at the University of Chicago.
+
+00:25:26.705 --> 00:25:36.880
+The question is how far contrastive activation addition can push a behaviour before capability loss becomes too costly. It treats steering as constrained selection.
+
+00:25:36.880 --> 00:25:54.330
+For each behaviour, pick the layer using behavioural data only, then pick the strongest coefficient whose capability loss stays inside a budget of one, three or five points on MMLU, ARC-Challenge and HellaSwag, using lower confidence bounds. Freeze that choice, and test on held-out data.
+
+00:25:54.330 --> 00:26:08.380
+Four models of seven to eight billion parameters, Llama two, Llama three point one, Mistral and Qwen two point five, and seven behaviours including sycophancy, refusal, hallucination, corrigibility and survival instinct.
+
+00:26:09.030 --> 00:26:30.080
+Behavioural gains generalise: validation and held-out gains correlate at a Spearman of zero point nine four five across a hundred and nine unique nonzero interventions. Capability preservation is the fragile part. At the one percent budget, only nine of twenty-four nonzero operating points survive both tests, thirty-seven point five percent.
+
+00:26:30.080 --> 00:26:47.430
+At three percent it is forty of fifty-five, seventy-two point seven. At five percent it is forty-three of fifty-six, seventy-six point eight. Random norm-matched, label-shuffled and off-target-matched control directions give near-zero gains, so the effect is specific to the learned direction.
+
+00:26:48.080 --> 00:27:00.980
+The pointed result: the same frozen interventions that pass the protected suite cost about ten points on average on G S M eight K maths, and raise WikiText perplexity by about six point six percent.
+
+00:27:00.980 --> 00:27:13.980
+Transfer is uneven out of distribution, with a median retention of forty-six point five percent of gains across domains for sycophancy, and open-ended generation behaves differently from multiple choice.
+
+00:27:13.980 --> 00:27:24.180
+Hallucination steering does not preserve ordering at all, and twelve of two hundred and eighty-eight generation triplets, all on Llama three point one, never terminated.
+
+00:27:24.830 --> 00:27:35.180
+Limits: four small models, one method, a binary-choice core, a small open-ended study with a single unvalidated judge, and a sixty-four question maths subset.
+
+00:27:35.830 --> 00:27:52.030
+The governance read, mine, echoing the paper's own conclusion: a capability-preservation claim is relative to the suite it was constrained on. Any report that a control works and does not hurt capability should name the capability set and the deployment distribution.
+
+00:27:52.030 --> 00:27:59.080
+The author also stresses dual use, since the same machinery can amplify sycophancy or hallucination.
+
+00:28:04.900 --> 00:28:14.450
+Compute and Hardware: FLAMIA, FLAsh MIcroscaling Attention for Fast and Causally Safe Training on Blackwell, from Yandex Research.
+
+00:28:15.100 --> 00:28:23.850
+FLAMIA is a set of attention kernels for NVIDIA Blackwell GPUs that train in eight-bit or a mixed four-bit and eight-bit format.
+
+00:28:23.850 --> 00:28:41.650
+On causal packed-document workloads, the eight-bit path is one point one zero to one point four zero times faster on the B two hundred, and one point zero six to one point four two times faster on the B three hundred, than the fastest baseline, for forward plus backward including quantisation.
+
+00:28:42.300 --> 00:29:01.825
+The more transferable point is correctness. Sharing a quantisation scale across token positions lets future tokens change earlier outputs even under a causal mask, because a future token can raise the maximum of a shared scale group. The authors probe for it by perturbing a future key and measuring changes at earlier positions.
+
+00:29:01.825 --> 00:29:12.250
+Per-tensor scales leak about ten percent relative change in output, four-bit grouping along keys twenty-two percent, and a FlashInfer four-bit path twenty-six percent.
+
+00:29:12.250 --> 00:29:33.850
+In small byte-level GPT models on enwik eight, a leaking configuration reaches validation loss of zero point eight one one to zero point eight two seven through its own kernel against zero point eight five two for bf sixteen, but evaluated with exact attention the loss rises to zero point eight eight eight to zero point nine four zero.
+
+00:29:33.850 --> 00:29:41.950
+Mismatches between forward and backward can also diverge within five hundred steps despite high single-step cosine similarity.
+
+00:29:42.600 --> 00:29:58.625
+In a one billion parameter pretraining run on one hundred billion tokens, loss rose from two point three nine two to two point three nine seven for eight-bit and two point four zero six for the mixed path, one run per setting, with downstream differences within noise.
+
+00:29:59.275 --> 00:30:18.850
+My read for governance, labelled as mine: each kernel gain lowers the real cost of a training run without changing the counted FLOPs, a small data point on effective versus counted compute. The leakage probe is a checkable integrity property. The evidence is one lab, one one billion parameter run, and no scale tests.
+
+00:30:24.670 --> 00:30:37.070
+AI Capabilities: AlgoPilot: Cross-Paradigm Reasoning in Language Models via Strategy Selection and Guidance, from researchers at MIT, Harvard and the MIT-IBM Watson AI Lab.
+
+00:30:37.720 --> 00:30:57.420
+AlgoPilot wraps Qwen three eight B in three parts. A steering model chooses a paradigm, plain reasoning, Python, an SMT solver, a PDDL planner or a mixed integer optimiser. A paradigm-specific guidance model writes a structured formulation. An unmodified execution model writes and runs the solution.
+
+00:30:57.420 --> 00:31:05.245
+Steering is trained by supervised fine-tuning and then reinforcement learning with rewards from measured execution success.
+
+00:31:05.895 --> 00:31:21.795
+On the authors' suite of thirteen benchmarks, about twenty-two thousand problems, average accuracy rises from thirty-eight point four to seventy-two point nine percent, beating GLM-five, a seven hundred and forty-four billion parameter model, at sixty-one point two.
+
+00:31:21.795 --> 00:31:42.220
+The gains are largest where format matters: PDDL goes from zero to ninety-one point five, because the base model cannot produce valid plans in that format. GLM-five is still better on code and SMT. Ablations show steering and guidance are complementary, forty-five point seven with steering alone, and seventy-two point nine with both.
+
+00:31:42.220 --> 00:31:56.195
+Robustness is reasonable: ninety-eight percent routing agreement under paraphrase, though accuracy falls to sixty-eight point six. On ten held-out domains it scores seventy-three point three, but beats the baselines on only five.
+
+00:31:56.845 --> 00:32:11.245
+Limits: training and test come from the same thirteen benchmarks, many baselines fail on output format rather than reasoning, and a heuristic-routing baseline for GLM-five reaches seventy-one point five, almost matching AlgoPilot.
+
+00:32:11.895 --> 00:32:29.220
+My read for governance: this is capability elicitation through scaffolding. A modest training run lets an eight billion model rival a frontier-scale one on structured tasks, so evaluating bare models on direct prompting can badly understate what the same weights can do with routing and tools.
+
+00:32:35.040 --> 00:32:49.040
+Last, Non-AI, and an old one: How aligned are different alignment metrics? A four-page workshop paper from Tübingen and Google DeepMind, from twenty twenty-four, asking about vision models and brains rather than AI safety.
+
+00:32:49.690 --> 00:33:00.965
+The question is whether the many metrics used to measure how brain-like or human-like a vision model is agree with each other. Using Brain-Score plus three other sources, they find low agreement.
+
+00:33:00.965 --> 00:33:13.940
+The average pairwise correlation across eighty fully evaluated models is zero point one nine eight, and some are negative: shape bias and one consistency metric correlate at minus zero point five two.
+
+00:33:13.940 --> 00:33:33.915
+Brain-Score's arithmetic mean also lets behaviour dominate, explaining ninety-five percent of variance in the overall score against thirty-three percent for neural predictivity. Z-transforming does not fix it, and mean rank reorders models substantially, with a Spearman correlation of zero point four seven against the original ordering.
+
+00:33:34.565 --> 00:33:54.840
+The sample is small, most pairwise correlations are not significant, and the paper's own numbers are inconsistent in places. Direct relevance to technical governance is limited. The transferable lesson is that averaging heterogeneous metrics lets one component silently dominate, and that model rankings shift with the aggregation rule.
+
+00:33:54.840 --> 00:33:59.365
+Worth remembering for composite benchmarks and thresholds built on them.

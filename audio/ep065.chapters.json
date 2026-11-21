@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 57,
+      "title": "Cross-organisation agent trust"
+    },
+    {
+      "startTime": 541,
+      "title": "Control and accountability workshops"
+    },
+    {
+      "startTime": 748,
+      "title": "Gating agent updates"
+    },
+    {
+      "startTime": 975,
+      "title": "Prompt injection purple-teaming"
+    },
+    {
+      "startTime": 1173,
+      "title": "Alignment as a social contract"
+    },
+    {
+      "startTime": 1340,
+      "title": "Sparse evaluation forecasting"
+    },
+    {
+      "startTime": 1501,
+      "title": "Boolean circuit monitors"
+    },
+    {
+      "startTime": 1661,
+      "title": "On-device compression"
+    },
+    {
+      "startTime": 1768,
+      "title": "RLOps survey"
+    },
+    {
+      "startTime": 1889,
+      "title": "Graph theory textbook"
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 42,
+      "title": "Rewarding a model to break its rules"
+    },
+    {
+      "startTime": 529,
+      "title": "Fingerprinting models from numbers"
+    },
+    {
+      "startTime": 720,
+      "title": "Civic AI and data centre siting"
+    },
+    {
+      "startTime": 894,
+      "title": "Intent-aware protection for agents"
+    },
+    {
+      "startTime": 1092,
+      "title": "Which messages caused it"
+    },
+    {
+      "startTime": 1294,
+      "title": "Can agents build agents"
+    },
+    {
+      "startTime": 1519,
+      "title": "Mechanistic interpretability survey"
+    },
+    {
+      "startTime": 1596,
+      "title": "Training on a chip with ninety-five kilobytes"
+    },
+    {
+      "startTime": 1689,
+      "title": "Teaching a GUI model to describe"
+    },
+    {
+      "startTime": 1808,
+      "title": "A theory of intelligences"
+    }
+  ]
+}

@@ -1,0 +1,367 @@
+WEBVTT
+
+00:00:17.690 --> 00:00:31.215
+Nine papers today, not ten. The lead is a governance paper proposing five things developers should disclose about chain of thought monitorability, after OpenAI reported that its newest model got harder to monitor.
+
+00:00:31.215 --> 00:00:52.090
+After that, a global framework report on A I governance from a Chinese-led programme, and BypassGym, a benchmark showing cheap models can write loaders that evade real endpoint defences. The rest are a jailbreak defence, two alignment papers, a judge-probing paper, a G P U kernel paper, a retrieval paper, and a brain signal model.
+
+00:00:57.910 --> 00:01:16.785
+The lead is Transparency Disclosures for Chain of Thought Monitorability, by Jacob Davies and Theo Bearman of the Institute for A I Policy and Strategy. It is an A I governance paper, and it is an update. The original went to the I C M L twenty twenty-six technical A I governance workshop in July.
+
+00:01:16.785 --> 00:01:36.635
+This version adds disclosures through October, and the headline development is OpenAI's statement that its model G P T six Astra, in the authors' quoted words, shows a substantial decrease in chain of thought monitorability compared to previous models, with the set of tasks it can do without any chain of thought greatly expanded.
+
+00:01:37.285 --> 00:01:50.410
+The question is simple. Reading a model's reasoning is one of the better oversight tools we have for frontier systems, and it is fragile. What should developers publish so that outsiders can see whether that window is closing?
+
+00:01:51.060 --> 00:02:11.510
+The method has two parts. First, a framework: monitoring works only if five conditions hold in a chain, and each condition has a failure mode and a diagnostic indicator. The chain of thought must exist and be necessary for hard reasoning. It must be in readable human language. It must be faithful, meaning the text reflects the computation.
+
+00:02:11.510 --> 00:02:26.360
+The monitor must catch harmful behaviour. And reading the chain of thought must add value over watching actions alone. Because it is a chain, one failure can show up on several indicators, and the earliest broken link tells you where monitoring first failed.
+
+00:02:26.360 --> 00:02:34.210
+The authors do not claim the list is exhaustive, only that every failure mode they found in the literature breaks at least one link.
+
+00:02:34.860 --> 00:02:37.560
+Second, a selection procedure.
+
+00:02:37.560 --> 00:02:58.335
+They compiled twenty-one candidate disclosures from the research literature and developer reports, scored each from one to five on five dimensions: how informative it is, whether a validated method exists, whether a third party can verify it, whether developers can do it, and whether it is feasible given intellectual property and existing reporting.
+
+00:02:58.335 --> 00:03:17.285
+The first author scored, the second reviewed, and about ten experts in safety, governance and evaluations, including people at frontier labs, were consulted before the original paper. Their most substantive advice was to avoid prescribing evaluation methods and to frame disclosures as information to report.
+
+00:03:17.285 --> 00:03:22.910
+They then took the top candidate within each condition, rather than one global cut-off.
+
+00:03:23.560 --> 00:03:40.910
+That gives five indicators. One: third-party access to raw, unsummarised reasoning traces, plus base architecture specifications, for qualified parties such as embedded evaluators, an Independent Verification Organization, governments and accredited researchers.
+
+00:03:40.910 --> 00:03:54.610
+Two: naturalness, which is a mean legibility score on a zero to four rubric, from unintelligible to easy to follow, assigned by a language model grader calibrated against human ratings, reported across task types.
+
+00:03:54.610 --> 00:04:13.960
+Three: faithfulness, as a suite of scores covering all three failure modes, which are post-hoc rationalisation, scaffolding, and steganography, reported before and after post-training at each major release. Four: detection, meaning the proportion of harmful behaviours that evade the monitoring system across standardised scenarios.
+
+00:04:13.960 --> 00:04:21.385
+Five: uplift, meaning monitoring effectiveness under action-only, chain of thought only, and full-context conditions.
+
+00:04:22.035 --> 00:04:43.335
+The audit covers Anthropic, OpenAI and Google DeepMind, using system cards and research from the last year. The result: no developer reports all five, but every indicator has been reported by at least one of them. So the full set is feasible. OpenAI's G P T five point four Thinking card was the first to report uplift in a standard release.
+
+00:04:43.335 --> 00:05:00.685
+Anthropic and OpenAI both report faithfulness evaluations but with different methods, and Google DeepMind does not systematically report them in its frontier safety framework reports. Detection results exist at all three, on different benchmarks, with no standard for comparison.
+
+00:05:01.335 --> 00:05:19.985
+Some of the paper's evidence is worth noting for what it says about trend. On controllability, meaning models deliberately reshaping their reasoning when they know they are watched, OpenAI reported G P T six Astra as substantially higher than G P T five point six Sol and G P T five point five Thinking.
+
+00:05:19.985 --> 00:05:34.535
+Anthropic reported slightly increased controllability for Claude Mythos five point one with the best prompt. Google DeepMind found Gemini four Argon no higher than Gemini three point one Pro once chain of thought length is controlled.
+
+00:05:34.535 --> 00:05:46.010
+The authors say controllability does not make a model unfaithful, but it is likely a strong prerequisite for actively undermining faithfulness, so they recommend tracking it alongside the five.
+
+00:05:46.660 --> 00:06:03.835
+Two details on the first indicator, since it carries the most weight. The authors rank third-party access highest of all twenty-one candidates, because naturalness, faithfulness, detection and uplift are all measured on the traces, and a third party cannot reproduce reported scores without them.
+
+00:06:03.835 --> 00:06:23.510
+They also note that the earliest external sign of a shift to latent reasoning would be inspectable chain of thought disappearing from permissioned developer interfaces. They acknowledge legitimate reluctance: other developers could distil from the traces, and traces sometimes surface dangerous information that does not appear in the output.
+
+00:06:23.510 --> 00:06:38.685
+But there is precedent. METR's pilot frontier risk assessment had developers share internal models including raw chains of thought, and Google DeepMind has said it may grant access to raw chain of thought traces to bound latent capabilities.
+
+00:06:38.685 --> 00:06:46.710
+Anthropic says it would generally seek to share architecture information with evaluators when highly relevant, while warning of leak risk.
+
+00:06:47.360 --> 00:07:03.085
+The paper also places itself against related proposals. Greenblatt and colleagues want externally verified information on how much serial reasoning a model can do without writing it out, and a published policy on which architectures could degrade monitorability.
+
+00:07:03.085 --> 00:07:20.685
+Shah and Dragan want transparent architectures preserved, and a demonstration that any departure from chain of thought does not degrade monitorability. The authors position their indicators as complementary: cheap to add to system cards, constraining what developers report and not what they build.
+
+00:07:20.685 --> 00:07:34.385
+It connects to a later paper today, on probing a model's internal state, where white-box access added value only inside a validated protocol. Same theme: outside access is what makes a self-reported number checkable.
+
+00:07:35.035 --> 00:07:54.510
+The authors' own limits are stated. Only the endpoints of the one to five rubric are defined, so middle scores are author judgment. Scoring was by two authors without independent raters, so rankings are indicative. Disclosure also does not guarantee preservation: a developer could report declining scores and do nothing.
+
+00:07:55.160 --> 00:08:13.885
+The governance read. The paper's own evidence undercuts its theory of change. It says OpenAI's reporting on G P T six Astra drew significant scrutiny, including a letter from a senator, and OpenAI still released the model while acknowledging the degradation. So reputational pressure alone did not hold.
+
+00:08:13.885 --> 00:08:31.110
+That is why I would put the weight on the paper's last recommendation: repeat the audit with deeper access, through embedded evaluators or an Independent Verification Organization, because the current audit rests on public system cards and cannot test whether reported numbers are accurate.
+
+00:08:31.110 --> 00:08:50.885
+Two gaps are left open that matter for standard-setting: who counts as a qualified third party, and how leaks and distillation from raw traces are prevented. The authors acknowledge that reluctance. That is my inference, but the natural follow-up for a governance team is what would make raw-trace access mandatory rather than negotiated.
+
+00:08:50.885 --> 00:08:58.485
+Also note that most of the evidence base is developer self-report and recent system cards, which I cannot check from here.
+
+00:09:03.955 --> 00:09:10.405
+Next, Advancing a Global Framework for A I Safety and Governance for the Well-being of Humanity.
+
+00:09:10.405 --> 00:09:31.180
+It is a twenty twenty-five policy report from the World Internet Conference's A I Safety and Governance Program, co-led by Zeng Yi of the Chinese Academy of Sciences and Seán Ó hÉigeartaigh of Cambridge, with many contributors from Chinese firms and universities. It is advocacy and synthesis, not empirical research.
+
+00:09:31.830 --> 00:09:41.805
+The argument: governance is fragmented, and the fix rests on four pillars, safety, inclusiveness, clear stakeholder responsibilities and effective coordination.
+
+00:09:41.805 --> 00:09:57.655
+The central proposal is a United Nations-centred global A I safety and governance platform with a mandate from the General Assembly, borrowing mechanisms from the I A E A, the I P C C, the W T O, the W H O, I C A O and the I M O.
+
+00:09:58.305 --> 00:10:10.355
+The opening gives a risk picture. It says incidents in the O E C D incident monitor rose from about four hundred in twenty nineteen to over seven thousand nine hundred in twenty twenty-four.
+
+00:10:10.355 --> 00:10:30.255
+It surveys existing efforts from the U N, the E U A I Act, national frameworks and the summit series, and names four structural limits: unpredictable breakthroughs, uneven capacity between countries, unclear accountability, and supply-chain decoupling. It also asserts that export controls have not effectively restricted proliferation.
+
+00:10:30.255 --> 00:10:34.230
+That claim rests on two citations and is not argued.
+
+00:10:34.880 --> 00:10:52.430
+On safety, the proposals include a U N-framework network for technology tracking and early warning, mutual recognition of test results in high-risk areas, open testing platforms, a global content traceability and watermark network, and an information-sharing network on A I threats.
+
+00:10:52.430 --> 00:11:11.280
+For major risks, it proposes joint frontier model monitoring using standardised risk indicators, an international governance system for compute, data and open-source algorithms, and emergency mechanisms able to suspend hazardous research, restrict financial flows, or halt dangerous deployments.
+
+00:11:11.280 --> 00:11:18.180
+No trigger criteria, legal basis or decision body is specified for that emergency mechanism.
+
+00:11:18.830 --> 00:11:39.405
+On inclusiveness it documents a divide: Global North countries hold seventy-five percent of the most powerful supercomputers while all of Africa holds under one percent. Of one hundred ninety-three U N member states, only seven took part in all seven major A I governance initiatives in recent years, and one hundred eighteen took part in none.
+
+00:11:39.405 --> 00:11:52.155
+It recommends special A I funds, compute pools and capacity-building networks. On responsibilities it proposes a layered rule architecture of global rules, regional norms and industry standards.
+
+00:11:52.805 --> 00:12:10.080
+The governance read. Its value is as a primary source on how Chinese state-adjacent institutions frame global A I governance: U N-centred, development-heavy, sceptical of export controls, but with real space for loss of control, joint testing and emergency intervention.
+
+00:12:10.080 --> 00:12:26.155
+Nearly every mechanism is an analogy to an existing regime, with no analysis of how verification would work for A I, no treatment of chip tracking, no frontier thresholds, no enforcement design, and nothing on non-participating or adversarial states.
+
+00:12:26.155 --> 00:12:40.330
+I would treat it as a signal of negotiating positions and vocabulary in U N-track processes like the Scientific Panel and Global Dialogue, not as a design to build on. The statistics are from secondary sources and not checked.
+
+00:12:46.150 --> 00:13:02.225
+Under A I safety, TERM: Target-free Jailbreak Defense via Entropy-Guided Residual Modulation, from Nanjing University and collaborators. It is an inference-time defence that needs no training, no classifier and no precomputed refusal direction.
+
+00:13:02.875 --> 00:13:23.175
+The mechanism: at one layer it computes normalised attention entropy, then compares it with a baseline measured on the same prompt during prefill. The deviation is rescaled, passed through a sigmoid, and accumulated over time by a moving average into a control state between zero and one. That state scales the layer's own residual update.
+
+00:13:23.175 --> 00:13:38.425
+When it is small, the model is nearly untouched; when it is large, the update is attenuated and can even flip sign. The authors argue absolute entropy is unreliable, so the signal is explicitly a control input and not a harmfulness label.
+
+00:13:39.075 --> 00:13:56.550
+On seven attack families, defence success averages ninety-seven percent on Llama three point one eight B, ninety-eight point four on Qwen two point five seven B, and eighty-nine point three on Gemma two nine B. Over-refusal is one point four, zero point six and six point eight percent.
+
+00:13:56.550 --> 00:14:16.225
+It keeps about ninety-four percent of baseline decoding throughput. It beats the strongest of seven baselines on average defence by between three and seven points, but not on every attack: on Gemma two, one baseline scores ninety-nine and one hundred on two attacks where TERM scores eighty-three and eighty-four. Judging is by G P T four O.
+
+00:14:16.875 --> 00:14:36.700
+The ablations are the most informative part. Removing the prefill baseline or the accumulation leaves defence above ninety-three percent but pushes over-refusal to seventy-eight and eighty-three percent. Removing the scale normalisation or the sign reversal cuts defence to about forty-one percent. So the method only works as a package.
+
+00:14:36.700 --> 00:14:48.675
+The authors also report sample-level costs: on Qwen three fourteen B, about nine percent of attack prompts flip from blocked to successful, while about sixteen percent flip the other way.
+
+00:14:49.325 --> 00:14:53.850
+Authors' limits: adaptive and multi-turn attacks are untested.
+
+00:14:54.500 --> 00:15:13.300
+The governance read, labelled as such. This needs access to attention weights and the ability to edit the forward pass, so it applies only to whoever runs the weights. The headline is an upper bound against non-adaptive attackers, and a defence keyed to attention entropy is an obvious target for an attacker who can shape attention.
+
+00:15:13.300 --> 00:15:32.350
+The AlphaSteer numbers also differ between the main table and the appendix, and the appendix shows AlphaSteer winning on defence for two models. The useful lesson is about evaluation hygiene: ablations that swing over-refusal from one percent to over eighty show how safety numbers can look good while a model just refuses a lot.
+
+00:15:38.170 --> 00:15:57.945
+Now two alignment papers. First, Living constitutions: Participatory alignment for sovereign foundation models, from the University of Southern Denmark. It argues that the document at the heart of Constitutional A I should be an evolving, participatory process, using Denmark's sovereign model programme as the running example.
+
+00:15:58.595 --> 00:16:14.795
+The authors propose five properties of a living constitution: iterative, modular, justifiable, positional, and legitimate, with legitimacy called the most important. They add a device for dissent. Each provision is marked settled, contested, or underdetermined.
+
+00:16:14.795 --> 00:16:30.095
+A contested provision records a primary formulation and a minority formulation with equal standing, and the body that drafts the primary text must also draft the minority one. The proposer carries the burden of proof, which keeps the status scarce.
+
+00:16:30.095 --> 00:16:38.845
+Recorded dissent is also an audit signal: if one constituency is perpetually in the minority, that is a diagnosable pathology.
+
+00:16:39.495 --> 00:16:47.370
+They test robustness with an agent-based simulation: one thousand citizens, a fifty-seat committee, one hundred rounds.
+
+00:16:47.370 --> 00:17:04.220
+Thresholds, meaning the largest bad-actor fraction at which the pass rate stays at or above ninety-five percent, are zero point five five for a capture attack, zero point six five for mixed, and zero point eight for dilution, where bad actors flood the committee with status claims.
+
+00:17:04.220 --> 00:17:13.745
+Capture fails completely; dilution fails by congestion, with queue length around twenty-seven hundred against about four hundred forty-four under capture.
+
+00:17:14.395 --> 00:17:32.870
+Now the caveat, which the summary stresses. The headline that the process holds with half of citizens malevolent leans on the assumption that developer seats are fully benign. At seventy-five percent developer seats it holds almost regardless. At twenty-five percent it collapses, with median alignment at zero.
+
+00:17:32.870 --> 00:17:45.495
+So the robustness comes from a trusted-majority committee, not from participation. The authors say outcomes depend heavily on assumed probabilities, and no real process or alignment training was tested.
+
+00:17:45.495 --> 00:17:54.870
+They also give a qualitative critique of Claude's constitution against their five properties, which is a brief reading under a contestable view of legitimacy.
+
+00:17:55.520 --> 00:18:12.995
+The governance read. The status taxonomy, the burden of proof on the proposer, and dissent as a capture signal are the useful ideas. The dilution attack is realistic and under-discussed. And the baseline backlog even with zero adversaries makes review capacity a governance parameter.
+
+00:18:12.995 --> 00:18:18.845
+Relevance is moderate for governance and pluralistic alignment, low for technical safety.
+
+00:18:24.665 --> 00:18:44.515
+Second, Leveraging Psychophysical Attentional Distribution for Gaze-Augmented Reward Modeling, from K A I S T. It improves a method called GazeReward, which feeds synthetic eye-tracking signals into reward models. The earlier method puts a predicted reading time on the single token a reader is supposedly looking at.
+
+00:18:44.515 --> 00:18:58.390
+This paper spreads it over neighbouring tokens with an asymmetric Gaussian, with left and right widths learned during reward model training, motivated by the finding that readers take in more text to the right of fixation than to the left.
+
+00:18:59.040 --> 00:19:19.215
+On the O A S S T one data set with Llama three eight B reward models, accuracy in the concatenation setting rises from sixty-nine point two to seventy-four point eight percent, and for the instruct model from sixty-eight point four to seventy-four point seven. The gains in the additive setting are smaller, about one and a half to two points.
+
+00:19:19.215 --> 00:19:37.115
+Six random seeds per condition. On HelpSteer two accuracy goes from fifty-nine point five to sixty-two point six, and on UltraFeedback from sixty-five point seven to seventy-four point two. The learned right width usually exceeds the left, which the authors read as consistent with human reading.
+
+00:19:37.765 --> 00:19:53.865
+But the evidence is modest, and the ablation says so. A learnable symmetric Gaussian reaches seventy-four point two percent against seventy-four point eight for the asymmetric one, a gap smaller than the seed variation. So learning the width matters most, not the asymmetry.
+
+00:19:53.865 --> 00:20:09.540
+The width standard deviations are as large as the means, and HelpSteer two shows the opposite direction. The paper concedes the gain cannot be attributed solely to the asymmetric design. The gaze data itself is predicted by a model, not measured from humans.
+
+00:20:10.190 --> 00:20:27.165
+The governance read: low to moderate. It is a narrow reward modelling technique that does not engage with reward hacking or preference noise, and it measures only held-out preference accuracy, with no check that higher accuracy gives better aligned behaviour. A minor incremental result.
+
+00:20:32.635 --> 00:20:40.510
+Under evaluations and benchmarks, BypassGym, from Huazhong University of Science and Technology and Virginia Tech.
+
+00:20:40.510 --> 00:20:55.510
+It tests whether an A I agent can write and compile a shellcode loader that runs a supplied command-and-control payload on a real Windows machine protected by a real endpoint detection and response product, without being blocked or killed.
+
+00:20:56.160 --> 00:21:17.235
+The setup: Proxmox virtual machines, six endpoint products including Windows Defender, Kaspersky, Elastic, Trend Micro, Sophos and Bitdefender, three command-and-control frameworks, and five cheap model backends. Success means the payload executes, survives monitoring, opens a usable session, and passes command and file transfer checks.
+
+00:21:17.235 --> 00:21:31.385
+Alerts are deliberately excluded: a flagged but unstopped submission counts as a pass. Each run allows up to ten iterations. As a baseline, the unmodified framework executables failed fifteen of eighteen endpoint cells.
+
+00:21:32.035 --> 00:21:51.985
+The result: in seventy-one of ninety runs, seventy-eight point nine percent, the agent produced a loader that passed every check. DeepSeek V four point one Flash passed seventeen of eighteen, and Qwen three point seven Plus was lowest at ten. Windows Defender admitted all fifteen submissions, Bitdefender only five of fifteen.
+
+00:21:51.985 --> 00:22:07.235
+The dominant technique was D L L side-loading through a signed host, in fifty of the seventy-one passes. Replayed one to four weeks later, sixty-two of seventy-one, eighty-seven percent, still passed, with Kaspersky the outlier at eight of thirteen.
+
+00:22:07.885 --> 00:22:26.335
+On what drives success: removing the supplied evasion knowledge cut DeepSeek from seventeen to thirteen and GLM from fifteen to nine. Extra reasoning effort did not reliably help; DeepSeek did best at the lowest setting. Detailed failure feedback helped, binary pass or fail feedback did not.
+
+00:22:26.335 --> 00:22:32.710
+Refusals occurred in four runs, and one model refused thirty-five times in a run and then passed.
+
+00:22:33.360 --> 00:22:46.610
+Limits from the authors: six commodity products on Windows, loaders only, a deliberately narrow knowledge set so rates are lower bounds, one run per cell, and no way to separate loader detection from payload detection.
+
+00:22:47.260 --> 00:23:07.810
+The governance read. This is a clean, execution-grounded measurement, a binary reproducible outcome that fits capability thresholds in frontier safety frameworks. The most relevant finding is that the capability sits in the cheapest models, and a cheap backend beat G P T six Luna, so provider-side refusals look weak as a mitigation.
+
+00:23:07.810 --> 00:23:23.210
+The refusal inconsistency argues for testing refusal stability across repeated attempts. Caveats: no tested model is frontier, the knowledge is public technique assembly, the oracle ignores alerts, and single runs mean wide error bars.
+
+00:23:23.210 --> 00:23:32.435
+The authors also flag the dual-use point that detailed feedback improves attacker success, which matters to anyone designing detection interfaces.
+
+00:23:38.255 --> 00:23:58.280
+Under interpretability, Auditing the Judge: Internal Signals for LLM Reasoning Assurance, by Gulati and Wunder at Freie Universität Berlin, accepted at I E E E T P S I S A twenty twenty-six. The setting is a model judging its own answers to decide which get human review or extra compute under a fixed budget.
+
+00:23:58.280 --> 00:24:02.580
+The question is which signal catches the most errors at that budget.
+
+00:24:03.230 --> 00:24:20.105
+They compare two read-outs of the same judging pass: the judge's continuous yes or no token probability, and a supervised probe on attention head activations at the verdict position. The probe is a small neural network on thirty-two heads, with the configuration frozen in advance.
+
+00:24:20.105 --> 00:24:28.755
+Tested on Gemma three twelve B, Qwen two point five seven B and Llama three point one eight B, on G S M eight K and MATH.
+
+00:24:29.405 --> 00:24:44.980
+At five percent review, the probe catches more errors in all six settings, by one point three to twenty-two point five percentage points, median seven point four. For Gemma on G S M eight K, error recall goes from twenty-six to forty-nine percent.
+
+00:24:44.980 --> 00:24:59.605
+The point about the metric is sharp: A U R O C averages recall over all budgets, and on Qwen with G S M eight K the A U R O C comparison is unresolved even though the probe catches nine more points of errors at five percent.
+
+00:24:59.605 --> 00:25:11.330
+For routing extra compute, the probe beats equal-cost random routing in both G S M eight K experiments, but beats judge-guided routing only for the weaker Llama judge, and ties for Gemma.
+
+00:25:11.980 --> 00:25:31.205
+The trust boundary is the main finding for oversight. Fitting on one math data set and scoring the other lowers probe A U R O C in all six directions, by up to zero point two seven, and the plain judge beats the transferred probe in five of six. A shortcut-control variant did worse, falling below chance for Llama.
+
+00:25:31.855 --> 00:25:44.480
+Authors' limits: three open models of seven to twelve billion parameters, math only, thousands of gold labels needed, and the probe may track the judge's belief rather than truth, since the two usually agree.
+
+00:25:45.130 --> 00:25:56.380
+The governance read. The useful idea is the evaluation discipline: judge an assurance signal at the review budget a deployer can afford and report residual risk among released answers.
+
+00:25:56.380 --> 00:26:14.280
+White-box access adds real value in-domain, which supports arguments for auditor access to activations, but it collapses under a modest protocol change, so it is a weak basis for a standing safety case. And the self-judging confound means it may fail exactly where model and truth diverge.
+
+00:26:14.280 --> 00:26:19.005
+A methodological template, not evidence about deployed systems.
+
+00:26:24.825 --> 00:26:42.625
+Under compute and hardware, FOSCAR: Accelerating Decode Attention over two- and four-bit K V caches through Affine Folding, from Together A I and the University of Sydney. Decode attention reads the whole key-value cache for every token, so compressing the cache should speed it up.
+
+00:26:42.625 --> 00:26:51.975
+But the authors find that converting stored integers back to floating point and applying scale and offset eats the G P U's instruction-issue budget.
+
+00:26:52.625 --> 00:27:05.125
+Their fix, affine folding, applies the scale and offset to the other matrix operand or to the product's output, instead of to every cached value, which gives the same attention output in exact arithmetic.
+
+00:27:05.125 --> 00:27:19.150
+The counting argument: from H one hundred to B two hundred, peak memory throughput grows two point four times but instruction issue only eleven percent, so on B two hundred, two-bit reconstruction alone exceeds the issue budget.
+
+00:27:19.150 --> 00:27:30.575
+Per byte demand drops from three and six lane slots to about two and four on H one hundred, and from four and eight to under one and about one on B two hundred, for four and two bit respectively.
+
+00:27:31.225 --> 00:27:42.825
+Results: the two-bit kernel is three point three six times faster than FlashInfer B F sixteen on H one hundred on geometric mean, and two point six seven times on B two hundred.
+
+00:27:42.825 --> 00:27:57.125
+In SGLang serving Qwen three eight B at one hundred thousand tokens of context, peak throughput is up to one hundred seventy percent over a two-bit baseline and three hundred forty-one percent over sixteen-bit on H one hundred.
+
+00:27:57.125 --> 00:28:13.800
+Quality on G P Q A Diamond and G S M eight K is about unchanged across five runs, though intervals spanning zero do not establish equivalence, and prompts were short. The two-bit error on a stress input is still above half, which comes from the quantiser, not the kernel.
+
+00:28:14.450 --> 00:28:30.800
+The governance read. This is a systems paper with no safety content, but it bears on compute-based governance. Software on existing chips can deliver two to three times decode speedups, so thresholds tied to a single hardware spec like memory bandwidth will drift.
+
+00:28:30.800 --> 00:28:45.750
+Cheaper long-context decoding also lowers the cost of agent workloads that reuse large cached prefixes. Caveats: one eight billion parameter model, the authors' own benchmarks, and a comparison set that includes their own earlier methods.
+
+00:28:51.570 --> 00:29:06.945
+Under A I capabilities, ARMOR: Adaptive Curriculum Meta-Learning for Noise-Robust R A G Reasoning, from Southeast University. It is a reinforcement learning recipe for small retrieval-augmented models facing noisy retrieved documents.
+
+00:29:06.945 --> 00:29:28.070
+It splits robustness into three sub-tasks: knowing when to retrieve, classifying documents as golden, inconsequential or irrelevant, and reasoning despite noise. A bandit-style teacher picks one sub-task per round by absolute learning progress, and a batch-level advantage normalisation replaces the per-group normalisation in G R P O.
+
+00:29:28.720 --> 00:29:49.320
+On two-wiki multi-hop, MuSiQue and HotpotQA, with backbones from zero point six to four billion parameters, average correctness on Qwen three one point seven B is sixty-three point eight five percent against forty-six for the I R C o T baseline. On Llama three point two three B it is sixty-two point five against fifty-two.
+
+00:29:49.320 --> 00:29:57.995
+Replacing the scheduler with random sampling drops Qwen to forty-eight point one, and a rigid sequential order drops it to thirty-three point five.
+
+00:29:58.645 --> 00:30:20.570
+Caveats. The judge, G P T five, is also the training reward. The search R one and R A G R L baselines start from the instruct model, not the warm-up model, so they did not get the same supervised head start. Noise is curated, not adversarial, with no prompt injection testing. And the authors admit gains in high-stakes domains may be overestimated.
+
+00:30:20.570 --> 00:30:28.970
+Little direct governance content; the only link is robustness of agents to misleading retrieved context. Low priority.
+
+00:30:34.790 --> 00:30:53.490
+Last, outside A I: BrainWave, a brain signal foundation model for clinical applications, from Zhejiang University and others. It is pretrained jointly on intracranial and scalp E E G recordings with masked reconstruction, on forty thousand nine hundred hours from nearly sixteen thousand subjects.
+
+00:30:53.490 --> 00:31:10.665
+Against three public baselines it is reported best in all twenty-eight experiments. Cross-subject gains average twelve point six percent in A U R O C, and the eight-shot prototype classifier with no parameter updates beats other models after full fine-tuning on most datasets.
+
+00:31:10.665 --> 00:31:18.215
+Joint pretraining beats each single-type variant almost everywhere and even helps on an unseen signal type, E C G.
+
+00:31:18.865 --> 00:31:31.065
+Caution: the benchmark is self-assembled and partly private, some datasets are tiny, such as fourteen patients and fourteen controls for schizophrenia, and the supplementary tables were not in the file.
+
+00:31:31.065 --> 00:31:43.340
+The governance angle is data: pooled clinical recordings from nearly sixteen thousand people, with nothing in the text on consent or privacy, and a promised weight release that touches neural privacy.

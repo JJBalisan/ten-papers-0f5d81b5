@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 51,
+      "title": "Double blind evals"
+    },
+    {
+      "startTime": 517,
+      "title": "Auditing research bias"
+    },
+    {
+      "startTime": 732,
+      "title": "Agentic deception and adaptive monitors"
+    },
+    {
+      "startTime": 949,
+      "title": "Backdoors in contrastive models"
+    },
+    {
+      "startTime": 1119,
+      "title": "Axioms and reward models"
+    },
+    {
+      "startTime": 1274,
+      "title": "Jailbreak detectors beyond A U R O C"
+    },
+    {
+      "startTime": 1479,
+      "title": "A logic of inference for interpretability"
+    },
+    {
+      "startTime": 1625,
+      "title": "Decode token parallelism"
+    },
+    {
+      "startTime": 1770,
+      "title": "Margins and LoRA"
+    },
+    {
+      "startTime": 1861,
+      "title": "Look ahead in algorithms"
+    }
+  ]
+}

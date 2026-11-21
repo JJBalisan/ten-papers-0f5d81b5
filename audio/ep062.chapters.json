@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 43,
+      "title": "Shortcuts and boundaries"
+    },
+    {
+      "startTime": 613,
+      "title": "Terms of care"
+    },
+    {
+      "startTime": 829,
+      "title": "Gating self-updates"
+    },
+    {
+      "startTime": 1069,
+      "title": "Messages between agents"
+    },
+    {
+      "startTime": 1307,
+      "title": "Few examples, safer model"
+    },
+    {
+      "startTime": 1486,
+      "title": "Spreadsheet benchmark"
+    },
+    {
+      "startTime": 1647,
+      "title": "Causal neuron groups"
+    },
+    {
+      "startTime": 1834,
+      "title": "Green speculative decoding"
+    },
+    {
+      "startTime": 1945,
+      "title": "Supervising reinforcement learning"
+    },
+    {
+      "startTime": 2118,
+      "title": "Taming errors"
+    }
+  ]
+}

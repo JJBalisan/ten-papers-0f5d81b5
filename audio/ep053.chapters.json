@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 54,
+      "title": "Training data with side effects"
+    },
+    {
+      "startTime": 637,
+      "title": "Newsroom personalisation"
+    },
+    {
+      "startTime": 882,
+      "title": "Agents and forged evidence"
+    },
+    {
+      "startTime": 1169,
+      "title": "A reference monitor for raising"
+    },
+    {
+      "startTime": 1363,
+      "title": "Goal revelation and human power"
+    },
+    {
+      "startTime": 1554,
+      "title": "Knowledge graph benchmark"
+    },
+    {
+      "startTime": 1649,
+      "title": "Mechanistic interpretability survey"
+    },
+    {
+      "startTime": 1831,
+      "title": "KV cache offloading"
+    },
+    {
+      "startTime": 1992,
+      "title": "Modular retrieval agents"
+    },
+    {
+      "startTime": 2094,
+      "title": "Order from speed"
+    }
+  ]
+}

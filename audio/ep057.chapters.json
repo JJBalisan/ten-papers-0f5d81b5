@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 44,
+      "title": "Benchmarks stop ranking"
+    },
+    {
+      "startTime": 645,
+      "title": "Reasoning that persuades"
+    },
+    {
+      "startTime": 858,
+      "title": "Just governance and safe stop"
+    },
+    {
+      "startTime": 1041,
+      "title": "Agent preventive care"
+    },
+    {
+      "startTime": 1316,
+      "title": "No finite rulebook"
+    },
+    {
+      "startTime": 1502,
+      "title": "Wrong the same way"
+    },
+    {
+      "startTime": 1686,
+      "title": "Inside-outside parsing"
+    },
+    {
+      "startTime": 1820,
+      "title": "Entropy-coded inference"
+    },
+    {
+      "startTime": 1964,
+      "title": "Meta-RL and zero-shot"
+    },
+    {
+      "startTime": 2109,
+      "title": "Memory and consciousness"
+    }
+  ]
+}

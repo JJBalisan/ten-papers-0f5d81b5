@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 52,
+      "title": "Overeagerness audits from real sessions"
+    },
+    {
+      "startTime": 663,
+      "title": "Whose safety"
+    },
+    {
+      "startTime": 936,
+      "title": "Mapping the AI supply chain"
+    },
+    {
+      "startTime": 1161,
+      "title": "Concealment in AI teams"
+    },
+    {
+      "startTime": 1343,
+      "title": "Re-eliciting inoculated behaviour"
+    },
+    {
+      "startTime": 1528,
+      "title": "Scoring ranges for judges"
+    },
+    {
+      "startTime": 1741,
+      "title": "Varied explanations thesis"
+    },
+    {
+      "startTime": 1897,
+      "title": "Cheaper long reasoning"
+    },
+    {
+      "startTime": 2002,
+      "title": "Maintenance work orders"
+    },
+    {
+      "startTime": 2076,
+      "title": "The Lindy effect"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 56,
+      "title": "Tampered ML"
+    },
+    {
+      "startTime": 606,
+      "title": "Trusting a static analyser"
+    },
+    {
+      "startTime": 836,
+      "title": "Steering plugin supply chain"
+    },
+    {
+      "startTime": 1028,
+      "title": "Data governance for agents"
+    },
+    {
+      "startTime": 1184,
+      "title": "Codebook failures"
+    },
+    {
+      "startTime": 1372,
+      "title": "Sparse adapters for circuits"
+    },
+    {
+      "startTime": 1511,
+      "title": "Self-distillation recipe"
+    },
+    {
+      "startTime": 1617,
+      "title": "Mechanical engineering"
+    }
+  ]
+}

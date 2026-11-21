@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 51,
+      "title": "Goodhart in the planner"
+    },
+    {
+      "startTime": 547,
+      "title": "Public climate services and AI"
+    },
+    {
+      "startTime": 700,
+      "title": "Prompt injection by swarm"
+    },
+    {
+      "startTime": 901,
+      "title": "Jailbreaking with images"
+    },
+    {
+      "startTime": 1013,
+      "title": "Routing oracle feedback"
+    },
+    {
+      "startTime": 1131,
+      "title": "User-state reasoning benchmark"
+    },
+    {
+      "startTime": 1260,
+      "title": "Grad-CAM across architectures"
+    },
+    {
+      "startTime": 1343,
+      "title": "Federated LoRA, value only"
+    },
+    {
+      "startTime": 1436,
+      "title": "LLM self-play under data scarcity"
+    },
+    {
+      "startTime": 1530,
+      "title": "Why diverse neurons"
+    }
+  ]
+}

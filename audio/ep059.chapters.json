@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 60,
+      "title": "The lead: auditing X's code"
+    },
+    {
+      "startTime": 715,
+      "title": "Anonymisation under the DMA"
+    },
+    {
+      "startTime": 967,
+      "title": "Synthesis smuggling"
+    },
+    {
+      "startTime": 1129,
+      "title": "Resizing as an attack surface"
+    },
+    {
+      "startTime": 1261,
+      "title": "Debates and parity"
+    },
+    {
+      "startTime": 1347,
+      "title": "Evaluating when users adapt"
+    },
+    {
+      "startTime": 1454,
+      "title": "Concept explanations that cause"
+    },
+    {
+      "startTime": 1545,
+      "title": "Speed to power"
+    },
+    {
+      "startTime": 1637,
+      "title": "Diffusion driving planner"
+    },
+    {
+      "startTime": 1686,
+      "title": "Biometric capacity"
+    }
+  ]
+}

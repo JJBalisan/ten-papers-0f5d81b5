@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 50,
+      "title": "Stopping rule for testing"
+    },
+    {
+      "startTime": 646,
+      "title": "Pluralistic agents for policy input"
+    },
+    {
+      "startTime": 869,
+      "title": "Alignment is not enough"
+    },
+    {
+      "startTime": 1052,
+      "title": "The accuracy approval gap"
+    },
+    {
+      "startTime": 1243,
+      "title": "Safety as a budget"
+    },
+    {
+      "startTime": 1422,
+      "title": "Auditing AI peer reviewers"
+    },
+    {
+      "startTime": 1589,
+      "title": "Representational atoms"
+    },
+    {
+      "startTime": 1736,
+      "title": "The price of proving AI computation"
+    },
+    {
+      "startTime": 1902,
+      "title": "KiteNorm"
+    },
+    {
+      "startTime": 2007,
+      "title": "Decoding images from brain signals"
+    }
+  ]
+}

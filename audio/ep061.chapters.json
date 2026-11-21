@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 41,
+      "title": "Where AI Act compliance breaks"
+    },
+    {
+      "startTime": 665,
+      "title": "Models on extinction risk"
+    },
+    {
+      "startTime": 863,
+      "title": "Jailbreaks that look ordinary"
+    },
+    {
+      "startTime": 1051,
+      "title": "Models that write their own context"
+    },
+    {
+      "startTime": 1183,
+      "title": "Principles at inference time"
+    },
+    {
+      "startTime": 1309,
+      "title": "Benchmarking AI rulemaking feedback"
+    },
+    {
+      "startTime": 1443,
+      "title": "Interpretability on web agents"
+    },
+    {
+      "startTime": 1535,
+      "title": "In-memory attention on edge chips"
+    },
+    {
+      "startTime": 1605,
+      "title": "Augmenting multi-agent data"
+    },
+    {
+      "startTime": 1675,
+      "title": "Representational alignment"
+    }
+  ]
+}

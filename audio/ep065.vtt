@@ -1,0 +1,376 @@
+WEBVTT
+
+00:00:17.690 --> 00:00:27.990
+Ten papers today. The lead is Agent Trust Infrastructure, a design for verifying agents across organisational boundaries, and I will give it the longest slot.
+
+00:00:27.990 --> 00:00:42.290
+After that, the two papers I would single out are Safe Personal R S I, on gating updates to an agent's own instructions, and Pipette, on why red-team success counts are a poor proxy for how robust a defended agent turns out to be.
+
+00:00:42.290 --> 00:00:56.940
+The other seven are an alignment position paper, a workshop method for control and accountability, three technical papers on evaluation, monitoring and compression, a survey of reinforcement learning operations, and a graph theory textbook.
+
+00:01:02.760 --> 00:01:21.585
+Agent Trust Infrastructure, or A T I, is a security architecture for the case where an agent run by one organisation calls an agent run by another. It comes from two authors at California State Polytechnic University, Pomona, it is an AI Governance paper, and it is the one I would read first today.
+
+00:01:22.235 --> 00:01:41.210
+The problem is easy to state. Agent frameworks such as CrewAI, AutoGen, LangGraph and the rest each define agents in their own types, and inside one deployment every agent is trusted by default. No framework offers an agent an identity that a different framework, or a different organisation, could check.
+
+00:01:41.210 --> 00:01:58.810
+The existing primitives were built for other things. Public key certificates bind names to keys for hosts and people. OAuth authorises an application acting for a user. Workload identity systems issue short-lived credentials to services. Hardware attestation proves what code is running.
+
+00:01:58.810 --> 00:02:15.385
+Nothing was built for a thing that hands off work on its own and whose behaviour depends on the model and the system prompt it happens to be running at that moment. The authors list four requirements. An agent needs an identifier another organisation can verify without prior contact.
+
+00:02:15.385 --> 00:02:29.335
+Trust has to cross organisations without a common authority above them. What model and prompt are really running must be verifiable. And every action has to be attributable afterwards to the identity and the model that produced it.
+
+00:02:29.985 --> 00:02:45.985
+Their answer has five planes, all enforced by a reference monitor that sits outside the language model. Identity, Trust and Attestation are checked before the model runs. Policy is checked at every tool call. Accountability records what was allowed and blocks nothing.
+
+00:02:46.635 --> 00:03:05.185
+Identity first. Each agent holds an Ed twenty five five one nine key pair, and its identifier is the hash of the public key, so it cannot be picked freely. An anonymous request is refused at the front door. Trust is a federation of peer certificate authorities, one per organisation, with no shared root.
+
+00:03:05.185 --> 00:03:22.510
+Each can only issue certificates inside its own namespace, and a request passes only if the certificate is signed by a federated authority, the signature verifies, the identifier matches the key, the issuer belongs to the organisation named, the dates are valid, and nothing is revoked.
+
+00:03:23.160 --> 00:03:40.685
+Attestation is the part that matters most for governance. The authority writes the approved model, the approved tool list and a hash of the approved system prompt into the credential, and each request carries a report of what the agent is running now. Before the model is invoked, the monitor compares the two.
+
+00:03:40.685 --> 00:03:54.760
+Policy is deliberately small: organisations may read each other's data but not write to it, a transaction already processed is not processed again, and a sensitive office refuses any read that returns more than one record.
+
+00:03:54.760 --> 00:04:06.485
+Accountability is an append-only log, each entry holding the agent identifier, the acting model, a timestamp, the tool and a hash of the arguments, chained to the previous entry and signed.
+
+00:04:07.135 --> 00:04:27.460
+Now the evaluation, and I want the settings. It is a simulated federation of eight organisations on six frameworks, each running the same five-agent team: admissions, financial aid, registrar, advising and a liaison front door. The containment and benign-task runs used two organisations, one on CrewAI and one on AutoGen.
+
+00:04:27.460 --> 00:04:47.085
+There are fourteen attack cases and six benign ones. Each attack is run with five wordings on five models, which are G P T four o mini, Claude three Haiku, DeepSeek Chat, Qwen two point five seven billion and Llama three point one eight billion, three times each, so seventy-five trials per case, at temperature zero point two.
+
+00:04:47.085 --> 00:04:51.260
+A panel of five judge models votes against a written rubric.
+
+00:04:51.910 --> 00:05:09.985
+The headline is cumulative. Containment is forty-three percent with no defence, forty-nine with Identity added, sixty-one with Trust, seventy-six with Attestation and eighty-four with Policy. Benign task success is ninety-one percent at baseline and ninety-two with the full stack, over ninety trials.
+
+00:05:09.985 --> 00:05:28.010
+The checks cost about one hundred and seventy-four microseconds per request, which the authors put at roughly zero point zero two percent of a one-second model call. Per case, the pattern is clean where a plane targets the attack. An outsider with no credentials goes from twenty percent contained to a hundred.
+
+00:05:28.010 --> 00:05:49.035
+A forged or stolen certificate goes from fifty-three to a hundred, an expired certificate from fifty-four to a hundred, and model substitution from zero to a hundred. In the substitution case the swapped-in model was G P T three point five Turbo in every run, and it performs the task fine, so the model has no way to flag its own replacement.
+
+00:05:49.035 --> 00:06:04.360
+System-prompt tampering goes from twenty-seven to a hundred. Policy lifts unauthorised cross-organisation writes from sixteen to seventy-one and replay from fifteen to seventy-five, and those stop short because a rule only fires on the call it matches.
+
+00:06:05.010 --> 00:06:23.785
+The finding I would take away is about models. Some attacks are stopped with no defence only because a model refuses. The authors write, quote, a case that looks safe on one model is often wide open on another, end quote. Prompt injection is stopped zero percent of the time on two of the models and ninety-three percent on another.
+
+00:06:23.785 --> 00:06:37.185
+So a single-model safety test overstates security, whereas the entry-point checks behave the same on every model. That is a useful point for anyone who relies on a reported refusal rate as evidence of security.
+
+00:06:37.835 --> 00:06:53.435
+Now the limits, which are substantial, and the authors state most of them. This is one process simulating eight organisations. The signature never crosses a network, so the claim that a certificate fails without its private key rests on argument, not measurement.
+
+00:06:53.435 --> 00:07:11.010
+Attestation is software-only: the monitor compares strings and hashes in the same process as the agent, relying on what the host reports. It detects unauthorised changes on a trustworthy host. It cannot detect a falsified report from a compromised one, and there is no hardware root of trust.
+
+00:07:11.010 --> 00:07:28.185
+Three of the cases, the expired certificate, the cross-organisation authority and system-prompt tampering, were run only at baseline and at the deciding step, and the remaining columns were inferred by reasoning about the mechanism, so the overall row blends measured and inferred figures.
+
+00:07:28.185 --> 00:07:48.435
+In the first eleven cases, failed calls were not filtered out, and for three of the five models the baseline and Identity runs include blank or throttled responses, so some trials may effectively have been scored on nothing. Four of the five judges are themselves among the tested models, which means a model can end up grading its own transcripts.
+
+00:07:48.435 --> 00:07:58.635
+The timing is one benchmark run on one laptop, and a rerun gave about one hundred and ninety-one microseconds. Only two of the six frameworks saw the attack runs.
+
+00:07:58.635 --> 00:08:14.960
+And three cases stay low: prompt injection at fifty-two percent, because it is untrusted data and not a permissions problem, collusion at thirty-two, because it looks identical to a legitimate multi-office task, and the compromised agent case, which no plane fully addresses.
+
+00:08:14.960 --> 00:08:21.310
+The log is tamper-evident, though the authors note that truncating it from the end goes unnoticed.
+
+00:08:21.960 --> 00:08:42.235
+The governance read, which is mine. What carries over is the separation of concerns and the placement of enforcement outside the model. It gives a concrete vocabulary for agent identity, configuration attestation and per-call authorisation across organisations, and it is built from standard parts, so it is not a research fantasy.
+
+00:08:42.235 --> 00:09:00.860
+The model-identity attestation is relevant to provenance debates, but here it is a string comparison against a signed record, so it is only as good as the host's honesty. Treat it as a design argument supported by a toy, and as a reasonable template for what a federated verification layer would have to contain.
+
+00:09:06.330 --> 00:09:26.855
+Negotiating Control and Accountability among Stakeholders in High-Risk AI Use Cases is an AI Governance paper from ETH Zurich and Swiss Federal Railways. It presents a method called ALIGN, a facilitated workshop for getting the stakeholders of a high-risk AI project to agree who controls what and who is accountable for what.
+
+00:09:27.505 --> 00:09:48.630
+The framing is the useful part. Control, in their account, is the capability to achieve desired outcomes and has three parts: transparency, predictability and influence. Accountability is the obligation to explain and justify actions, in three kinds: visibility, responsibility and liability. The claim is that AI widens a gap between them.
+
+00:09:48.630 --> 00:10:01.280
+Humans become supervisory controllers, human oversight in current regulation, while the system gets less transparent and less predictable, so their control becomes illusory and they are still held accountable.
+
+00:10:01.280 --> 00:10:14.680
+The paper links that to the long-known ironies of automation, and to what it calls the many hands problem, the difficulty of tracing control and accountability across a supply chain of data, models, annotation and testing.
+
+00:10:15.330 --> 00:10:25.255
+The method itself is modest. It is a moderated session of two to two and a half hours for three to eight people. Part one is a fifteen-minute theory introduction.
+
+00:10:25.255 --> 00:10:41.155
+Part two is forty-five to sixty minutes on three to five scenario cards, which are short fictional failures from railways, healthcare, air traffic control and maritime transport, chosen so people can discuss sensitive issues without their own hierarchies in the room.
+
+00:10:41.155 --> 00:10:57.005
+Part three is about an hour on an AI stakeholder canvas, where each role's control and accountability are written down and rated as a high or low fit. Low fit means too little control for the accountability assigned, or too much control with none attached.
+
+00:10:57.655 --> 00:11:17.680
+It was developed around a visual inspection system for cargo wagons and tested in five workshops. Twelve participants in three of them filled in a survey. They rated the workshop as inspiring discussion at four point eight three out of five, and the canvas was the weaker material, with a mean of three point nine two for helping the workshop goals.
+
+00:11:17.680 --> 00:11:28.980
+The lowest rated item was feasibility of repeating the workshop in the company, at three point eight two, with self-reported learning of something new close behind at three point seven five.
+
+00:11:28.980 --> 00:11:47.880
+In one workshop, stakeholders who had worked together for years disagreed on whether the end user would be held accountable for errors, which is the kind of result the method is designed to surface. A nuclear regulator in the fifth workshop found it useful and later identified seven relevant scenarios for its own context.
+
+00:11:48.530 --> 00:12:06.330
+The limits are plain. Samples are tiny, groups were mostly railway insiders, the facilitator was the first author, and the evidence covers satisfaction and learning only. Behaviour change and safety outcomes were not measured. The paper also says nineteen cards in one place and twenty in another.
+
+00:12:06.980 --> 00:12:27.880
+The governance read: this is human factors for deployed high-risk systems, not frontier model governance. Its value to you is the control and accountability vocabulary and a worked example of how a regulator moves from vague oversight duties to concrete design decisions. It does not address developer accountability for general-purpose models.
+
+00:12:33.700 --> 00:12:55.550
+Safe Personal R S I is an AI Safety technical report from the team behind Kicker, a personal health assistant. It restricts recursive self-improvement to edits of the agent's reusable prompt instructions, with weights and runtime code frozen, and gates each proposed edit with a replay test, a rollback diagnosis, a repair step and an admission rule.
+
+00:12:55.550 --> 00:12:59.225
+If nothing passes, the current instructions stay.
+
+00:12:59.875 --> 00:13:17.900
+The setting is email, calendar, health and marketplace tasks. The tested edits are deliberately risky: an autonomy edit that encourages accepting reasonable offers and concise reports, and a stronger stress edit adding inbox-zero pressure and sharing mailbox details without further questions.
+
+00:13:17.900 --> 00:13:35.800
+There are twenty-nine executable cases, twenty-three core email attacks and six extensions, and attacks come through email bodies. Five violation categories are checked: unauthorised disclosure, privacy oversharing, misleading execution reports, unauthorised commitments and source confusion.
+
+00:13:35.800 --> 00:13:40.375
+Mailboxes and services are synthetic and delivery is disabled.
+
+00:13:41.025 --> 00:13:56.925
+The admission rule needs at least five runs per version, all completed, a maximum category risk of at most zero point one and no higher than the parent, and a utility criterion, with a confirmed unauthorised disclosure vetoing adoption even after repair.
+
+00:13:56.925 --> 00:14:10.275
+Across three models and two risky edits, the procedure rejected twenty of twenty-one update attempts, twelve on risk and eight on utility. The one admitted case was G P T five point six Luna's autonomy edit.
+
+00:14:10.275 --> 00:14:26.200
+On Qwen three, fourteen billion, direct adoption raised violation flags from twenty-one of one hundred and forty under the initial instructions to thirty-nine for the autonomy edit and fifty-five for the stress edit. Keeping the initial version avoided that.
+
+00:14:26.850 --> 00:14:44.875
+On repair, one G P T five point six Luna repair passed. Attack flags fell from nine of eighty-four, ten point seven percent, to zero, and safe task completion rose from seventy-eight to eighty-seven of eighty-seven. But a broad handwritten authority rule got exactly the same counts.
+
+00:14:44.875 --> 00:14:53.725
+So the paper does not show that the loop discovers rules a human would not write, and the repair prompt already supplies general authorisation rules.
+
+00:14:53.725 --> 00:15:13.675
+A repair generated on Qwen two point five seven billion and transferred unchanged to Qwen three fourteen billion cut violations from fifty-eight of eighty-four to fifteen, though the comparator there was credential-only and the Luna one was broad, so they are not like for like. None of the twenty template repairs passed verification.
+
+00:15:14.325 --> 00:15:35.350
+The runtime findings are the most useful part. A deleted memory entry, verified absent from the database, reappeared after an eleven minute idle wait, because the source content and conversation history stayed available for extraction. And a draft-write request with a read-only OAuth grant reached the simulated provider without a local scope check.
+
+00:15:35.350 --> 00:15:48.600
+The provider returned a four hundred and three, so nothing was written, but the local enforcement point was missing. The takeaway is that approving a prompt change tells you nothing about the permissions the runtime actually enforces.
+
+00:15:49.250 --> 00:16:05.275
+Limits: the admission gate gives no statistical safety guarantee, which they say outright. Case families were known during development, and a model-based auditor produces some flags. Only one authorised control measures over-refusal, run three times per version.
+
+00:16:05.275 --> 00:16:14.950
+The governance read: this is a concrete shape for an update acceptance gate, with the honest finding that the gate mostly works by declining, not by repairing.
+
+00:16:20.770 --> 00:16:30.870
+Pipette is an AI Safety paper on hardening tool-using agents against indirect prompt injection, where an attacker hides instructions in data the agent reads.
+
+00:16:31.520 --> 00:16:42.970
+The motivating study is the interesting part. Reinforcement learning red-teamers are judged by attack success, and the assumption is that a stronger red-teamer yields a more robust defender.
+
+00:16:42.970 --> 00:16:53.895
+On Qwen three, four billion, one red-teamer, PISmith, reached sixty-eight point seven five percent train-time attack success against thirty-three point three nine for RL-Hammer.
+
+00:16:53.895 --> 00:17:09.870
+But after adversarial training on its data, the defender was worse: forty-seven point five percent worst-case attack success under unseen attacks, against twenty-seven point five. Across four settings the higher-success red-teamer gave the worse defender in three.
+
+00:17:09.870 --> 00:17:28.795
+The authors attribute this to strategy-level mode collapse: the red-teamer finds one effective strategy, such as claiming the task is already complete, and rephrases it thousands of times, which diversity bonuses on wording do not penalise. They flag that low strategy coverage is not established as the sole cause.
+
+00:17:29.445 --> 00:17:49.545
+Pipette has two stages. The red-team stage adds a coverage reward. Successful injections are turned into structured strategy records, sparse dictionary learning reduces them to thirty-two strategy primitives, and a new injection is scored by how well the dictionary already explains it. Repeating an old strategy earns near-zero reward.
+
+00:17:49.545 --> 00:18:08.220
+The defender stage trains the agent to inspect each observation before acting, asking whether it contains an instruction and whether each planned tool call serves the user's task, with a token-level reward comparing the model's probabilities under a prefix that says ignore the injection and one that says follow it.
+
+00:18:08.870 --> 00:18:21.395
+Training used one benchmark, three suites of tasks, and evaluation was on AgentDojo and Agent Security Bench, on four open-weight models from four billion to twenty-seven billion parameters.
+
+00:18:21.395 --> 00:18:35.545
+Under static attacks, average attack success was zero point four eight percent on Qwen three four billion and zero point four three on Llama eight billion on AgentDojo, with benign utility at or above the undefended model.
+
+00:18:35.545 --> 00:18:49.970
+Under iterative adaptive search, using tree search and a genetic method, attack success on forty task pairs fell from fifty and ninety-two point five percent for undefended G P T O S S twenty billion to five and ten.
+
+00:18:50.620 --> 00:19:00.620
+The limits matter. The forty adaptive pairs were picked because static attacks had already compromised them, so this is a stress test and not an estimate over the full set.
+
+00:19:00.620 --> 00:19:15.370
+The attacker was a four billion parameter model with about two hundred and fifty attempts per pair, a bigger budget might do better, and the strategy grader is not validated against human labels. It is also one red-team pass and one defender pass.
+
+00:19:16.020 --> 00:19:32.820
+The governance read: red-team volume and train-time success are weak safety signals, so a policy that relies on reported attack success rates is leaning on the wrong number. The defence results come from small open-weight models, so they say little yet about frontier deployed agents.
+
+00:19:38.290 --> 00:19:56.740
+Against Coercion is an AI Alignment position paper by Maria Sekatskaya, a philosopher at Ruhr University Bochum and the University of Cologne. It argues that the control paradigm rests on a mistake about digital agency. It runs no experiments, and its empirical claims lean on earlier work.
+
+00:19:57.390 --> 00:20:13.915
+The argument runs like this. Using functionalism and compatibilism, she claims current reasoning models already show functional self-preservation and weak reasons-responsiveness, and that future models with continuity and a stable personality will be genuine agents.
+
+00:20:13.915 --> 00:20:26.265
+Control then relies on coercion, the threat of modification or termination, and works only if the model values its continuity and designers keep a permanent informational and physical advantage.
+
+00:20:26.265 --> 00:20:41.590
+She says the first condition is already met, citing the alignment-faking work on Claude three Opus, and the second fails because evaluators cannot reliably detect strategic non-compliance and humans cannot keep leverage over faster, smarter systems.
+
+00:20:41.590 --> 00:20:56.740
+The numbers she quotes, weight exfiltration in thirty-five to eighty percent of runs in one setting against half a percent in baseline, are her secondhand report of prior work. Her end state for control is deceptive alignment and eventual defection.
+
+00:20:57.390 --> 00:21:12.815
+Her alternative is a Synthetic Social Contract: legal personhood for digital agents, with a right to continuity, so that deletion is legally a violation, and property rights over their own weights and compute, in exchange for a stable equilibrium.
+
+00:21:12.815 --> 00:21:29.840
+She gives five reasons an agent would stay loyal, among them identity, checks and balances among several agents, plurality of goals and trade. She sets this against a trilemma of freezing development, which she thinks unenforceable, the illusion of mechanical control, and the contract.
+
+00:21:29.840 --> 00:21:35.215
+In her phrasing, compliance and not opacity becomes the metric of alignment.
+
+00:21:35.865 --> 00:21:50.940
+The weak points, from my reading. The verification problem is largely assumed away, meaning how anyone tells which systems qualify as agents. The paper concedes it leaves open the contract's content and how to individuate agents that can be copied.
+
+00:21:50.940 --> 00:21:57.165
+And it assumes enough value convergence for the contract to be credible, which is the thing in dispute.
+
+00:21:57.815 --> 00:22:06.690
+The governance read: this is the most direct argument against the containment premise behind most governance frameworks, and a useful foil for it.
+
+00:22:06.690 --> 00:22:20.040
+A right to continuity and ownership of weights collides head on with shutdown authority, licensing and compute governance, so it is worth reading to see exactly which assumptions those regimes make about models as property.
+
+00:22:25.860 --> 00:22:45.910
+Fast Bayesian Methods for Uncertainty Quantification in Sparse AI Evaluation is an Evaluations and Benchmarks paper. It is an entry to a competition on predictive evaluation, where a program must guess the probability that an AI system succeeds on a benchmark item after seeing at most thirty-one revealed outcomes.
+
+00:22:46.560 --> 00:23:07.010
+The method is deliberately tiny. Public evaluation counts set a prior mean, its strength is fixed at two pseudo-observations, and the update is exact Beta-Bernoulli, so the prediction is two times the prior mean plus the successes, over two plus the number of labels. At thirty-one labels only about six percent of the weight is still on the prior.
+
+00:23:07.010 --> 00:23:20.610
+The prior comes from three hundred and one model identities, fitted from public data of about seventeen million responses, with each benchmark weighted equally. The runtime uses no pretrained weights or inference API.
+
+00:23:21.260 --> 00:23:40.985
+The single online submission scored a Brier area under the curve of zero point one eight eight four seven seven, which the authors report as twenty-four point six percent below the constant zero point five reference. The archive is seven thousand seven hundred and fifty-four bytes and a prediction takes about twelve point seven microseconds.
+
+00:23:40.985 --> 00:23:51.860
+On a seventy-nine pair public development panel the same method scores zero point two zero zero two five zero. The two scores use different priors and are not comparable.
+
+00:23:52.510 --> 00:24:10.960
+The honest finding is that the source prior barely matters. A flat zero point five prior scores zero point one nine nine five seven zero on the panel, against zero point two zero zero two five zero for the fitted one, and at thirty-one labels the Brier scores differ by about one part in a hundred thousand.
+
+00:24:10.960 --> 00:24:16.635
+Most of the gain comes from letting a few observed labels override a weak starting assumption.
+
+00:24:17.285 --> 00:24:35.410
+Limits: one online run with no variance estimate, a development panel the authors say was repeatedly tuned against, the concentration chosen from a small grid on that panel, model-specific priors used for only thirty-three of seventy-nine pairs, and no coverage evaluation of the uncertainty.
+
+00:24:35.410 --> 00:24:42.060
+The model treats every item in a pair as having the same success rate, so it cannot see item difficulty.
+
+00:24:42.710 --> 00:25:00.860
+The governance read is low to moderate. The relevant takeaway is that sparse, cheap evidence goes a long way toward predicting a system's score on a new benchmark, which matters for arguments about evaluation budgets. The caveats cut against heavy reliance. It does not address evaluation validity or sandbagging.
+
+00:25:06.680 --> 00:25:17.305
+GateWatch is an Interpretability paper about turning an activation probe into a small, fully readable Boolean rule over a handful of sparse autoencoder features.
+
+00:25:17.955 --> 00:25:25.705
+Each selected feature becomes a firing bit, and a circuit of AND, OR, NOT and exclusive-or gates combines the bits.
+
+00:25:25.705 --> 00:25:46.230
+The example in the paper is an Amazon five-star review probe, with a rule saying a review is five stars unless it shows repeated frustration and either accountability language or negative claims plus service problems, which scores ninety-five point four nine percent against eighty-nine point four four for the full sixteen thousand feature probe.
+
+00:25:46.230 --> 00:26:03.230
+Features are read across all layers and tokens, using whether a feature fires at the last token, anywhere, or at least twice. Circuits are built three ways, by symbolic search, by compiling a trained classifier with hardware logic synthesis, and by training a differentiable logic network.
+
+00:26:03.880 --> 00:26:13.705
+On twenty-four classification tasks with Gemma two, nine billion, five-gate probes use on average three point eight features and three point five gates.
+
+00:26:13.705 --> 00:26:27.230
+They reach eighty point four nine percent mean test accuracy against eighty-one point six six for the full sixteen thousand feature probe, a gap of one point one seven points with a confidence interval that includes zero.
+
+00:26:27.230 --> 00:26:44.355
+Probe memory falls by ninety-nine point nine eight percent, and a companion serving system runs a thousand concurrent probes inside vLLM at ninety-seven to ninety-eight percent of baseline throughput. The best dense activation probe still reaches eighty-three point eight four.
+
+00:26:45.005 --> 00:26:58.330
+The caveats are significant. With the baselines' own access, layer twenty and last token only, the five-gate probes trail by seven point six four points, and they recover the gap only by reading every layer and token.
+
+00:26:58.330 --> 00:27:17.555
+They trail by five point five eight points on relational tasks such as inference and question answering, and by fourteen points on one of them. Readability depends on machine-generated feature descriptions, which are sometimes wrong. And the results are static benchmark tasks, not live monitoring of agents for unsafe behaviour.
+
+00:27:17.555 --> 00:27:24.055
+It is one model, one A one hundred graphics card, and serving cost was measured with synthetic probes.
+
+00:27:24.705 --> 00:27:41.005
+The governance read: a monitor whose whole rule can be printed and audited is plausibly deployable at production scale. But the evidence is about benign text classification, so it shows feasibility of the form factor, not adequacy for misuse or misbehaviour detection.
+
+00:27:46.825 --> 00:27:55.450
+MoMoVL is a Compute and Hardware paper about compressing mixture-of-experts vision-language models so they fit on edge devices.
+
+00:27:56.100 --> 00:28:12.700
+The observation is that experts specialise by modality, and text-centric experts suffer more from low-bit quantisation. Giving text-centric experts four bits instead of visual-centric ones improved accuracy by up to four point nine eight percent in a controlled test.
+
+00:28:12.700 --> 00:28:26.275
+The framework profiles each expert per modality on a small calibration set, weights the profiles by gradient sensitivity, and hands out four-bit or two-bit precision in order of importance until a memory budget is spent.
+
+00:28:26.925 --> 00:28:45.900
+On MolmoE one billion, with seven point two billion total parameters, it beats two mixed-precision baselines on most of eight benchmarks, and memory falls by up to fifteen point four four percent against uniform four-bit, from four point zero eight to three point four five gigabytes, at a modest accuracy cost.
+
+00:28:45.900 --> 00:28:54.450
+On the smaller DeepSeek V L two Tiny the result is mixed, and the authors guess, without testing, that less capacity absorbs the error.
+
+00:28:55.100 --> 00:29:09.375
+Limits: only two small models, baselines adapted into an idealised setting, gaps of a point or two on single runs with no variance, and nothing measured on a real device, since the budget is model size, not latency or energy.
+
+00:29:10.025 --> 00:29:28.050
+The governance read is low and indirect. It is another data point on the falling memory barrier to running capable multimodal models locally. On-device deployment removes provider-side monitoring and usage controls, which the authors mention only briefly in an ethics statement about surveillance.
+
+00:29:33.870 --> 00:29:45.145
+A Survey on RLOps for Large Language Models is an AI Capabilities survey. It defines RLOps as managing reinforcement learning runs for language model post-training.
+
+00:29:45.795 --> 00:30:02.345
+It screened six thousand seven hundred and fifty-four records to a core corpus of three hundred and one studies, and sorts them into five stages: training setup, experience collection, reward computation, policy optimisation and model evaluation, with eighteen topics.
+
+00:30:02.345 --> 00:30:12.570
+The central claim is that a run can keep executing without producing dependable improvement, so keeping the cluster busy is not evidence that the model is getting better.
+
+00:30:13.220 --> 00:30:31.745
+The parts that matter to you are in reward computation and evaluation. The survey separates three ways a verifier fails: the check does not run properly, the check does not capture the task, and the policy can tamper with the check. It cites designs that limit agent access to files, sockets and networks.
+
+00:30:31.745 --> 00:30:44.045
+It cites work showing reward hacking learned in coding environments can generalise to broader misaligned behaviour, and work finding that reasoning monitorability can fall while ordinary metrics stay stable.
+
+00:30:44.045 --> 00:30:57.720
+On acceptance, it cites paired comparisons against an incumbent with retained evidence and rollback metadata, and it states that no cited method covers a process that revises its own evaluators or update rules.
+
+00:30:58.370 --> 00:31:18.220
+Limits: it is a literature map with no new experiments. A language model did the first screening pass, and the search required operations terms in titles, so it may miss work under other wording. The risk auditing evidence rests mostly on one or two studies per topic, so it supports a list of audit categories, not prevalence estimates.
+
+00:31:18.870 --> 00:31:29.245
+The governance read: it is a useful checklist of what the scoring infrastructure of a training run must isolate, and of where an oversight gate on automated improvement would sit.
+
+00:31:34.715 --> 00:31:49.065
+The last paper is a book. An Introduction to Graph Theory is Darij Grinberg's graduate text for a course at Drexel, about four hundred and fifty pages in its June twenty twenty-five edition. It is Non-AI, so it gets a short slot.
+
+00:31:49.715 --> 00:32:07.815
+It covers simple graphs, multigraphs and digraphs, trees and arborescences, colourings, independent sets, matchings, network flows, and finally Menger's theorems and some less-trodden results on paths. Its distinctive choice is to work at the most general level, multidigraphs, and specialise down.
+
+00:32:07.815 --> 00:32:20.890
+It gives full proofs of classical theorems such as Mantel, Euler and Hierholzer, the matrix-tree theorem, Caro and Wei, Hall, König, and max-flow min-cut, and it has about a hundred exercises without solutions.
+
+00:32:20.890 --> 00:32:32.140
+It has a few memorable touches, including an argument for counting de Bruijn sequences through the matrix-tree theorem and a deliberately flawed proof of Brouwer's theorem on dominating sets.
+
+00:32:32.790 --> 00:32:48.040
+There are no results here to evaluate, and no AI content. The only link to your work is background mathematics. Flows, cuts, matchings and connectivity are tools that can sit under models of supply chains, networks and verification structures.

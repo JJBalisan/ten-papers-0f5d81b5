@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 50,
+      "title": "Side effects of value training"
+    },
+    {
+      "startTime": 631,
+      "title": "Vulnerability situations"
+    },
+    {
+      "startTime": 848,
+      "title": "An E U A I Act assistant"
+    },
+    {
+      "startTime": 1014,
+      "title": "Auditing Private Evolution"
+    },
+    {
+      "startTime": 1208,
+      "title": "Private reward models"
+    },
+    {
+      "startTime": 1345,
+      "title": "Process errors in research agents"
+    },
+    {
+      "startTime": 1473,
+      "title": "Metaphor directions"
+    },
+    {
+      "startTime": 1564,
+      "title": "Inference on Apple Silicon"
+    },
+    {
+      "startTime": 1659,
+      "title": "Self-assessment for search agents"
+    },
+    {
+      "startTime": 1746,
+      "title": "Mining temporal logic"
+    }
+  ]
+}
