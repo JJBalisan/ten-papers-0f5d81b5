@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 56,
+      "title": "Replaying agent incidents"
+    },
+    {
+      "startTime": 649,
+      "title": "Video provenance audit"
+    },
+    {
+      "startTime": 852,
+      "title": "Auditing training data"
+    },
+    {
+      "startTime": 1038,
+      "title": "Image editing safety"
+    },
+    {
+      "startTime": 1199,
+      "title": "Stopping rules for sampling"
+    },
+    {
+      "startTime": 1321,
+      "title": "Mapping cyber capability"
+    },
+    {
+      "startTime": 1486,
+      "title": "Geometry of lies"
+    },
+    {
+      "startTime": 1602,
+      "title": "Rented oscillations"
+    },
+    {
+      "startTime": 1723,
+      "title": "A travel planner agent"
+    },
+    {
+      "startTime": 1807,
+      "title": "The nature of intelligence"
+    }
+  ]
+}

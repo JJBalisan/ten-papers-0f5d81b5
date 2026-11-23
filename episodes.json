@@ -427,5 +427,20 @@
     "transcript": "audio/ep065.transcript.html",
     "vtt": "audio/ep065.vtt",
     "cover": "covers/ep065.jpg"
+  },
+  {
+    "no": 66,
+    "date": "2026-11-22",
+    "title": "Replaying agent incidents",
+    "summary": "Lead: Replication of Agentic Security Events: Audit and Investigation (ROGUE-AI). Also: SoK: Assessing the Evolution of LLM Capability in Software Vulnerability Research; Visual Attribution Limits and Graded Provenance Auditing in Commercial Video-Generation APIs.",
+    "file": "audio/ep066.mp3",
+    "bytes": 11550881,
+    "duration": "00:31:31",
+    "music": true,
+    "music_credit": "Music: \u201cTime to Think\u201d by Lee Rosevere, https://freemusicarchive.org/music/lee-rosevere/music-for-podcasts-serious/time-to-think/ licensed CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/); trimmed, faded and mixed with narration.",
+    "chapters": "audio/ep066.chapters.json",
+    "transcript": "audio/ep066.transcript.html",
+    "vtt": "audio/ep066.vtt",
+    "cover": "covers/ep066.jpg"
   }
 ]
