@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 52,
+      "title": "Stripping open-weight guardrails"
+    },
+    {
+      "startTime": 602,
+      "title": "Downstream duties under the AI Act"
+    },
+    {
+      "startTime": 789,
+      "title": "Learning styles and generative AI"
+    },
+    {
+      "startTime": 880,
+      "title": "The price of verifiable explanations"
+    },
+    {
+      "startTime": 1063,
+      "title": "Multi-value alignment by expert merging"
+    },
+    {
+      "startTime": 1230,
+      "title": "Realised versus population reliability"
+    },
+    {
+      "startTime": 1386,
+      "title": "Evaluation awareness in single neurons"
+    },
+    {
+      "startTime": 1571,
+      "title": "Memory design for speculative decoding"
+    },
+    {
+      "startTime": 1717,
+      "title": "Strategy logic for adversarial agents"
+    },
+    {
+      "startTime": 1834,
+      "title": "Hidden common causes"
+    }
+  ]
+}
