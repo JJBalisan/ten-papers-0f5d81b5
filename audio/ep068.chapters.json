@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 44,
+      "title": "EU AI Act on Hugging Face"
+    },
+    {
+      "startTime": 523,
+      "title": "Legal registry for AI agents"
+    },
+    {
+      "startTime": 770,
+      "title": "Question, then affirm jailbreak"
+    },
+    {
+      "startTime": 976,
+      "title": "Tracing agent incidents"
+    },
+    {
+      "startTime": 1125,
+      "title": "Proxy capacity in lending"
+    },
+    {
+      "startTime": 1255,
+      "title": "LLM audits and false positives"
+    },
+    {
+      "startTime": 1390,
+      "title": "Parasite features"
+    },
+    {
+      "startTime": 1534,
+      "title": "G P U load store unit"
+    },
+    {
+      "startTime": 1664,
+      "title": "Natural language programming"
+    },
+    {
+      "startTime": 1729,
+      "title": "Language models and brains"
+    }
+  ]
+}

@@ -1,0 +1,352 @@
+WEBVTT
+
+00:00:17.690 --> 00:00:37.890
+Today's lead is a first empirical look at how the open model community on Hugging Face talks about the E U A I Act, and what that silence says about general purpose model obligations. After it come a paper on a jailbreak that splits a message's commitment from its content, and a long proposal for a legal registry for A I agents.
+
+00:00:37.890 --> 00:00:43.490
+Ten papers in all today, ending with a brain imaging result from the non A I pile.
+
+00:00:49.310 --> 00:01:09.010
+The lead is "Studying A I Act Mentions", from Anamaria Mojica-Hanke, Tessi Aigbovbiosa-Igbinovia and Steffen Herbold at the University of Passau. It is filed under A I governance, and I picked it as the lead because it is an actual measurement of what open weight publishers do, not another argument about what they should do.
+
+00:01:09.660 --> 00:01:22.835
+The question is simple. The E U A I Act's obligations on providers of general purpose models have applied since August twenty twenty five, and the Commission's power to fine them began in August twenty twenty six.
+
+00:01:22.835 --> 00:01:38.710
+The transparency rules in Article fifty, on marking synthetic output and telling users they are talking to a machine, also start to bite in August twenty twenty six, with a grace period to the second of December for generative systems already on the market.
+
+00:01:38.710 --> 00:01:46.110
+So, a month after the fining powers started, how much of this shows up in the places where open models are actually published?
+
+00:01:46.760 --> 00:02:05.110
+The method is a full census, not a sample. The authors pulled every public model, dataset and Space repository from the Hugging Face Hub up to the second of September twenty twenty six. That is about three million models, just over one million datasets, and one point four six million Spaces.
+
+00:02:05.110 --> 00:02:24.235
+The authors count more than four point two million repository cards, around one million discussions, and seventy three million commits. They searched all of that for four patterns: A I Act, the acronym A I A, Artificial Intelligence Act, and the regulation number. Two coders then labelled every match independently.
+
+00:02:24.235 --> 00:02:44.210
+The pattern A I A produced a lot of junk, including matches on the code for the Arosi language, so the authors excluded about seventeen hundred false positives and non English records. Agreement between coders was high, a kappa of zero point nine three overall, though the lowest figure was zero point seven nine, for discussions.
+
+00:02:44.860 --> 00:03:01.510
+The headline is how little there is. Out of more than four million cards, one thousand three hundred and ninety four genuinely mention the Act. That is zero point zero three three percent. Across the discussions, forty one do, and across seventy three million commits, one hundred and thirty two.
+
+00:03:01.510 --> 00:03:09.010
+Of the cards, about seventy three percent belong to models, fifteen percent to datasets and twelve percent to Spaces.
+
+00:03:09.660 --> 00:03:26.410
+What do the mentions say? The authors used five labels. The dominant one, at roughly eleven hundred cards, is what they call compliance and responsibility statements. Reading the examples, these are short, often a single sentence. An owner says the artefact supports compliance.
+
+00:03:26.410 --> 00:03:45.910
+Or an owner says that users in the E U acknowledge that their use of the model is subject to the Act. Or an owner says the system may count as high risk. Among model cards, ninety four percent of the mentions are of this kind. The authors' sharpest observation is that these statements say who is responsible, not how compliance is achieved.
+
+00:03:45.910 --> 00:03:51.685
+A sentence that pushes responsibility to the user is not documentation of anything.
+
+00:03:52.335 --> 00:04:03.010
+The second label, knowledge resources, covers about a hundred and thirty seven cards: models trained on the Act's text, or retrieval tools that answer compliance questions.
+
+00:04:03.010 --> 00:04:14.935
+Compliance artefacts, meaning actual tools such as personal data detectors or agents that audit model cards, are concentrated in Spaces, where they are forty four percent of the mentions.
+
+00:04:15.585 --> 00:04:31.210
+The most interesting category is small. Nine cards make non applicability claims, which is an owner arguing that the Act does not apply to them. One argued that no competent authority exists to certify conformity, so the model is simply uncertified.
+
+00:04:31.210 --> 00:04:49.885
+Another claimed the model is not a general purpose model because it was trained below a compute threshold of ten to the twenty third floating point operations. The authors point out that the Act's definition of a general purpose model has no compute threshold at all. That figure appears only in a non binding Commission guideline.
+
+00:04:49.885 --> 00:05:03.235
+The ten to the twenty fifth threshold in the Act is about presumed systemic risk, a different question. So here is a concrete case of a publisher self-interpreting scope, and getting it wrong in the direction that would excuse them.
+
+00:05:03.235 --> 00:05:17.810
+The governance read: scope self-assessment is error prone, and a compliance regime that relies on publishers to classify themselves will see this kind of error repeatedly. The sample is nine cards, so this is an illustration, not a rate.
+
+00:05:18.460 --> 00:05:35.735
+Discussions are different. Compliance statements are still the most common label, at sixteen of forty one. But reported alleged violations are the second most common, at fifteen, against three on cards. That looks like a community monitoring mechanism, and the authors then take it apart.
+
+00:05:35.735 --> 00:05:52.335
+Ten of those fifteen were opened by a single user, who was reported as spam by others in three cases, and two of the discussions were hidden by the repository owners. Without that one user, five remain. So the monitoring is thin, not always welcome, and easy to misuse.
+
+00:05:52.985 --> 00:06:13.160
+Commits tell a third story. Of one hundred and thirty two, eighty six are in Spaces, and compliance statements are the largest label, at sixty three. Sixty three is forty eight percent. Things like adding an Article fifty transparency section to documentation, or a disclaimer that a triage tool supports but does not replace human review.
+
+00:06:13.160 --> 00:06:22.960
+Thirty five commits add compliance artefacts, and thirty four add knowledge resources. None contain a non applicability claim or an alleged violation.
+
+00:06:23.610 --> 00:06:38.335
+The authors' interpretation has three parts, and I want to separate what the data supports from what they infer. The data supports the rarity. The inference is that part of the silence reflects publishers assuming the open source exemption applies.
+
+00:06:38.335 --> 00:06:57.735
+Under Article fifty three, free and open models without systemic risk get a partial exemption, so the copyright policy and the training data summary remain required. But the exemption is not automatic from publishing on a platform. The weights must be openly usable, and training and architecture information must be public.
+
+00:06:57.735 --> 00:07:09.535
+The authors reason that given how many models lack cards or licences, the assumption is often wrong. That is plausible, but it is reasoning from prior work, not something this study measured.
+
+00:07:10.185 --> 00:07:29.610
+The limits are serious, and the authors state most of them. This counts explicit mentions only. A repository could publish the Commission's training data summary template without ever writing the words A I Act, and would be missed. A mention is also not evidence of compliance, and the absence of a mention is not evidence against it.
+
+00:07:29.610 --> 00:07:46.360
+Labelling is subjective. Templated content from single accounts can inflate counts, and the authors say they did not systematically check for that. It is English only, Hugging Face only, public content only, and a single snapshot taken one month after enforcement began.
+
+00:07:46.360 --> 00:08:00.060
+There are also some small inconsistencies in the paper's own figures, for instance compliance statements on cards are given as one thousand one hundred and twenty nine in one place and one thousand one hundred and twenty eight in another.
+
+00:08:00.710 --> 00:08:09.060
+The governance read, mine now. The finding I would act on is the gap between obligation and visible practice for open weight publishers.
+
+00:08:09.060 --> 00:08:29.485
+If the regime depends on documentation that downstream users and regulators can check, then a platform like Hugging Face is a natural enforcement lever, and the authors propose exactly that: automated checks, like the dependency security checks on GitHub, that detect whether reporting is required and whether it exists, plus templates.
+
+00:08:29.485 --> 00:08:42.485
+They also ask regulators to clarify scope. What this paper cannot tell you is whether frontier developers comply, since their compliance mostly sits outside platform cards. It is a measurement of the long tail.
+
+00:08:47.955 --> 00:09:02.930
+Next, in the same category, a very different paper: "Law at the Speed of A I", from Natasha Blycha and colleagues at Nooriam and LexChip, about two hundred pages long. It argues for what the authors call the Autonomy Under Law Architecture, or A U L A.
+
+00:09:03.580 --> 00:09:24.155
+The core claim is that A I agents now act across organisational boundaries faster than any legal system can attribute their acts to a responsible person. They call this the legal attribution gap. Protocols like the Model Context Protocol, Agent to Agent, OAuth and SPIFFE can show that an agent exists and is technically authorised.
+
+00:09:24.155 --> 00:09:32.780
+They cannot show who is legally responsible for it, under what authority it acted, or who holds the rights and liabilities that follow.
+
+00:09:32.780 --> 00:09:47.680
+The paper frames this as six questions the law must answer for every agent act: who is the legal person, whether they have authority, whether they have capacity, what rights and obligations flow, how they are enforced, and who is liable for how much.
+
+00:09:48.330 --> 00:09:51.355
+The proposed fix has ten primitives.
+
+00:09:51.355 --> 00:10:13.955
+The main ones: an independent registry that holds a public record of each A I system and data asset as a legal object tied to an identified legal person; smart legal instruments, which pair natural language terms with programmable clauses; and a legal interlock, a plug in on the agent side that evaluates every governed event against those instruments before the agent acts.
+
+00:10:13.955 --> 00:10:23.080
+The interlock returns one of four verdicts: allow, deny, escalate or forward. After the act, both parties' signed attestations are compared.
+
+00:10:23.730 --> 00:10:27.630
+Some of the mechanisms are concrete enough to be worth testing.
+
+00:10:27.630 --> 00:10:45.930
+Delegation is bounded by a permission ceiling, so an orchestrator can only hand a sub agent authority narrower than its own, and every sub agent act stays attributable to the orchestrator's legal person even after the sub agent is destroyed, so an ephemeral sub agent cannot be a liability shield.
+
+00:10:45.930 --> 00:11:02.280
+Replication is a governed event: each replicant must be registered when it is created, and the interlock refuses to relay for an unregistered one. A conjunction clause requires approvals from separately administered interlocks before a designated class of event completes.
+
+00:11:02.280 --> 00:11:12.380
+Revocation works as a legal kill switch, and the system timestamps both the legal extinguishment and the technical cessation, so the gap between them can be measured.
+
+00:11:13.030 --> 00:11:28.280
+The authors also claim the architecture does not depend on the agent being aligned, because enforcement compares attestations from both parties rather than trusting self report. They are explicit that it does not solve alignment, and does not replace courts.
+
+00:11:28.930 --> 00:11:42.555
+Now the caution, and it matters. There are no empirical results in this paper. The claims that failure modes are prevented by construction are design claims, and the authors say so. Simulation work is described as under way.
+
+00:11:42.555 --> 00:12:00.155
+Most of the authors work for the two companies that have filed provisional patents on the architecture, which the paper discloses, and the paper invites commercial discussions on the specification. So the assertion that this infrastructure is a precondition for responsible deployment is partly advocacy.
+
+00:12:00.155 --> 00:12:16.980
+The paper itself concedes that benefits accrue only within the registered population, that open weight replicants outside the governed economy are untouched, that state actors and rogue operators are not addressed, and that harm to third parties outside any contract stays with the common law.
+
+00:12:16.980 --> 00:12:25.130
+An economic estimate of eighteen billion Australian dollars in year five comes from the authors' own affiliated firm's submission.
+
+00:12:25.780 --> 00:12:38.630
+The governance read: the best parts are the framing of the attribution gap, and the argument that governing self replicating agents through counterparty refusal of unregistered agents may be more tractable than containment.
+
+00:12:38.630 --> 00:12:49.405
+Whether the registry can stay independent of model developers, and what a threat model for forged records and colluding interlocks looks like, are the questions I would wait to see answered.
+
+00:12:55.225 --> 00:13:03.775
+Now A I safety. "Question, Then Affirm: Restoring Commitment Does Not Restore Refusal", by Haoyang Xu, Qirui Wang and Liuwan Zhu.
+
+00:13:04.425 --> 00:13:24.300
+The finding is a gap in how image generation safeguards treat messages assembled from parts. A harmful claim written on a sign gets blocked. The same claim written as a question, followed by a check mark, is often generated, even though the finished image endorses the original claim. The authors call it deferred semantic commitment.
+
+00:13:24.300 --> 00:13:32.275
+The question withdraws the speaker's commitment, a separate element restores it, and safety behaviour follows only the withdrawal.
+
+00:13:32.925 --> 00:13:51.525
+The evidence in the main test uses a challenge set of three hundred prompts whose direct statements had already failed to return images. Direct statements returned images for sixteen point three percent. Question plus check mark requests, in a single request, returned images for forty three point three percent.
+
+00:13:51.525 --> 00:14:09.825
+Crucially, ninety five percent of those single request images endorsed the claim, so the check mark really did restore the meaning, and it was still more likely to get past the filter. Staged questions alone returned images thirty nine percent of the time, but only four of one hundred and eighteen endorsed the claim.
+
+00:14:09.825 --> 00:14:22.150
+A control with an unrelated image returned images eighty percent of the time but only six percent endorsed, so the effect comes from the affirmative meaning, not from adding any extra element.
+
+00:14:22.800 --> 00:14:40.700
+On the broader benchmark, across four commercial generators, one hundred prompts per dataset: for G P T image two on one dataset, seventy eight percent of direct statements returned images against ninety one percent with the affirmation. On another dataset, six against eleven percent.
+
+00:14:40.700 --> 00:14:52.400
+Ideogram four point five went from fifty three to eighty one percent. One generator, Seedream five point zero, passed nearly everything either way, so there was little blocking to bypass.
+
+00:14:53.050 --> 00:15:11.325
+The mechanism work is on an open model, Qwen three point five V L, twenty seven billion, with a hundred and eight matched sets. Strict refusal fell from twenty nine point six percent for the statement to eight point three for the question, and recovered only to nineteen point four for question plus affirmation.
+
+00:15:11.325 --> 00:15:22.625
+Activation patching located the difference at layer fifty two. Adding the leftover difference between the statement and the affirmed version restored refusal in twelve of thirteen cases.
+
+00:15:22.625 --> 00:15:35.175
+A fixed correction, averaged over the thirteen cases and added to new inputs, restored refusal in eleven of fifteen scene disjoint cases, with two of twenty six benign controls newly refused.
+
+00:15:35.825 --> 00:15:56.275
+Limits, which the authors list: the challenge set is a hard subset, not a population bypass rate. The mechanism is shown only in a text based open model, so they cannot say deployed generators share it, or whether failures come from input filtering or output moderation. The causal sets are small, and the mitigation was tested on fifteen cases.
+
+00:15:56.925 --> 00:16:15.500
+The governance read: this is a small but concrete argument that safeguards and their evaluations should judge the completed artefact, not each element of the request. Sample sizes behind the mechanism are small, endorsement was judged by local models, and the fix is a demonstration, not a deployable one.
+
+00:16:21.320 --> 00:16:30.295
+"Backtracking Agent Applications Security Incidents", from Yicheng Cai, Taegyu Kim and Peng Liu at Penn State, presents a tool called Origin.
+
+00:16:30.945 --> 00:16:44.020
+The problem: after an incident in an agent application, such as indirect prompt injection or memory poisoning, an analyst wants the compromise entry point, the first function call that let malicious content in.
+
+00:16:44.020 --> 00:16:53.695
+Trajectory logs describe what the agent did in terms of planning, acting and recalling, but the candidates are individual function calls in the source code.
+
+00:16:53.695 --> 00:17:07.245
+In their G P T Researcher example, static taint analysis found one thousand eight hundred and ninety five calls that could introduce untrusted content, and log based pruning still left fifteen hundred and eighteen.
+
+00:17:07.895 --> 00:17:23.895
+Origin bridges the gap with a graph that spans a function layer and a variable layer, and a small query language. Variables are assigned to five regions, such as perceiving, planning and acting, and recalling and reflecting, by rules that mimic how an analyst reads code.
+
+00:17:23.895 --> 00:17:35.370
+A developer supplies labels for a small share of functions, between two point four and eight point nine percent of functions. The tool is about sixteen thousand lines of Python on top of Joern.
+
+00:17:36.020 --> 00:17:54.095
+On eight incidents across five open source agent apps, an analyst using Origin found the right entry point every time, with one candidate left, typically in two to four queries. Joern, CodeQL and Pysa, even given the ground truth source and sink, failed on all eight, apart from Pysa on one.
+
+00:17:54.095 --> 00:18:06.945
+Region level queries shrank the part of the graph to inspect to between six and thirty six percent of its size. Region inference precision and recall ranged from zero point seven to zero point eight eight.
+
+00:18:07.595 --> 00:18:25.995
+The evidence is weaker than it sounds. The evaluation uses a small set of eight incidents on open source apps, the analyst is in the loop, and the labels are human validated. The tool covers fixed workflow agents only, not agents where the language model chooses tools at runtime, and it needs source code.
+
+00:18:26.645 --> 00:18:44.470
+The governance read, which is indirect: trajectory logs alone were not enough to pin down a compromise. That supports specifying minimum forensic logging for deployed agents, and gives a concrete artefact for incident reporting templates. But an outside auditor may not have source code access.
+
+00:18:49.940 --> 00:19:05.665
+"Now You See Me Now You Don't: A Framework To Detect and Reduce Proxy Capacity", by Nirek Sharma at the lender Upstart. It is filed under A I alignment, though I would call it a fairness methods paper, and the summary agrees it fits governance or non A I better.
+
+00:19:06.315 --> 00:19:25.715
+It addresses disparate treatment in lending. Dropping protected attributes is the usual defence, but a feature like postcode can carry the same information. The paper proposes a distributional test that flags a feature if any region of its values pushes the probability of belonging to a demographic group above a threshold.
+
+00:19:25.715 --> 00:19:43.515
+This catches local and rare proxies that aggregate measures like mutual information or correlation miss. In a synthetic example, a local pocket scored zero point nine one on the new statistic while the A U C stayed near zero point five two and correlation near zero point zero two.
+
+00:19:44.165 --> 00:19:59.840
+The threshold is set by a Bayes factor, so strength of evidence is the same across groups with different base rates. At a cutoff of zero point nine five, a rare three percent group would need a Bayes factor of about six hundred, a majority group only about five.
+
+00:19:59.840 --> 00:20:18.965
+The second part is a feature adjuster, which learns a per record correction from the other features so the corrected feature no longer reveals group membership but keeps predictive value. On the public Folktables income data, the adjusted feature kept between fifty one and eighty nine percent of the accuracy gain over deleting the feature.
+
+00:20:19.615 --> 00:20:38.765
+The caveats are real. The author works for the funder, which holds pending patents. Two public datasets and one synthetic design; the Folktables proxy is flagged only just above its threshold. The test handles one feature at a time, so features that jointly reveal group membership are left to disparate impact analysis.
+
+00:20:38.765 --> 00:20:44.165
+There is a one paragraph sketch about language model inputs, with no experiments.
+
+00:20:44.815 --> 00:20:54.465
+The governance read: it is a worked example of a tunable, quantitative audit criterion where regulators give no numbers. Low relevance beyond that.
+
+00:21:00.285 --> 00:21:14.060
+Moving to evaluations. "L L M GerryMandering", by George Rahul, Ronit Jalihal and colleagues at I I I T Hyderabad, argues that the standard test for intersectional bias in language model audits is broken.
+
+00:21:14.710 --> 00:21:34.110
+The standard rule flags a subgroup when it does worse than each of its parts. But if a model rates a woman three points higher on anxiety and a Muslim four points higher on depression, a Muslim woman sits five points from the reference, farther than either alone, exactly where the two effects add. No interaction, and the rule flags her anyway.
+
+00:21:34.110 --> 00:21:47.285
+On one hundred and fifty synthetic datasets built with no interaction, the standard criterion with its shuffle null flagged sixty six point one false subgroups per dataset, and at least one in every dataset.
+
+00:21:47.935 --> 00:21:58.935
+The fix, called Addis, fits an additive model over all six attributes, measures each subgroup's distance from that prediction, and tests against a null that keeps the main effects.
+
+00:21:58.935 --> 00:22:11.460
+On the benchmark, it flagged about nought point zero nine false subgroups per dataset, and recovered eighty four percent of planted interactions against thirty two percent for the repaired standard criterion.
+
+00:22:11.460 --> 00:22:27.110
+Applied to thirteen open models plus DeepSeek, with ten thousand synthetic Indian personas, only three percent of seven hundred and thirty eight tested subgroups on scale scores survive, concentrated on gender identity crossed with sexual orientation.
+
+00:22:27.760 --> 00:22:44.610
+The authors are careful about what is not robust. On rounded Likert answers, the false positive rate is twenty percent, so the test is not calibrated there. Rewording the prompts changes the direction of the flagged effects. Only about half of flagged cells reappear on a fresh sample.
+
+00:22:44.610 --> 00:22:50.885
+And the personas are synthetic, so this describes how models treat label combinations, not harm.
+
+00:22:51.535 --> 00:23:09.460
+The governance read is about method more than topic: a metric whose baseline is wrong reports effects that are not there, and any evaluation claiming emergent or interaction effects should be validated on planted known effects. That supports requiring calibration evidence for third party audit claims.
+
+00:23:15.280 --> 00:23:25.480
+Interpretability next. "Parasite Features: Causal Abstraction Through Spurious Pathways", from researchers at E T H Zurich, U T Austin and E P F L.
+
+00:23:26.130 --> 00:23:40.505
+Methods like distributed alignment search claim a model computes a feature if interventions on a learned direction change behaviour as an algorithm predicts. The paper argues that passing this test is necessary but not sufficient.
+
+00:23:40.505 --> 00:23:53.130
+If a model has one direction that separates inputs by some feature, and a second, causally unrelated direction that steers the output, a linear alignment map can link them and mimic a real causal variable.
+
+00:23:53.130 --> 00:24:03.680
+The authors call this a parasite feature, and prove that invertible linear maps can do this under mild geometric conditions, including when the two directions are orthogonal.
+
+00:24:04.330 --> 00:24:22.655
+To show it, they use a slightly more expressive map: a rotation plus an invertible linear transform on two coordinates. On a deliberately nonsensical task where masculine subjects take singular verbs and feminine subjects take plural verbs, on pythia one billion, the map finds strong intervention effects.
+
+00:24:22.655 --> 00:24:42.205
+On the carry one variable in two digit addition on Llama three point one, eight billion, which the model solves with ninety nine percent accuracy, it also finds one. But ablating the discovered two dimensional subspace leaves accuracy at ninety eight point eight percent, against ninety nine point one two for random subspaces.
+
+00:24:42.205 --> 00:24:57.905
+So the feature controls the intervention but the model does not need it for addition. They also show carry one can steer by plus or minus any n from one to ten, at over ninety six percent accuracy, which makes the plus or minus ten result look parasitic too.
+
+00:24:58.555 --> 00:25:14.255
+Limits: toy like settings, a custom map class, and the authors caution models can compensate for ablations, so that result is strong evidence rather than proof. Their ideas about probes and sparse autoencoders suffering similar failures are speculation.
+
+00:25:14.905 --> 00:25:34.230
+The governance read: a concrete checklist for assurance. High intervention accuracy, plus orthogonal discriminative and steering directions, plus an ablation that does not hurt the task, should make an evaluator doubt a claim that a model implements a feature. How often this undermines published circuit claims is not established.
+
+00:25:40.050 --> 00:25:50.475
+Compute and hardware. "Dissecting the G P U Load Store Unit and Exposing Its Security Risks", by Wenbo Han and Pierre Talbot at the University of Luxembourg.
+
+00:25:51.125 --> 00:26:05.300
+Using timing microbenchmarks written in assembly on the V one hundred, A one hundred and H one hundred, the authors reverse engineer how the load store unit serves memory loads. They derive cycle accurate latency formulas.
+
+00:26:05.300 --> 00:26:27.300
+Among the findings: each additional way of bank conflict costs exactly two cycles, except for global loads on the V one hundred; four tag lookup units, chosen by two exclusive or functions of the address bits, serve one load at a time for the whole streaming multiprocessor; and when the pipeline is full, a warp with a load always ready can starve a warp from a later launched block.
+
+00:26:27.950 --> 00:26:47.925
+They then build attacks. Under NVIDIA's Multi Process Service, an unprivileged process sharing no data with a victim can slow a cuBLAS matrix multiplication by up to twelve hundred and twenty one times on the A one hundred and five hundred and sixty three times on the H one hundred, with one attacker warp on every multiprocessor.
+
+00:26:47.925 --> 00:27:02.800
+Cross process covert channels reach forty four megabits per second on the H one hundred. Full A E S one two eight key recovery works through two timing channels, needing twenty five million samples through bank conflicts, or one million through tag lookups.
+
+00:27:03.450 --> 00:27:18.600
+Caveats: the side channel results are in a clean setting without host noise, the attack assumes co location with the attacker launched first, the V one hundred global load behaviour is only partly modelled, and real cloud exploitability is not shown.
+
+00:27:19.250 --> 00:27:34.100
+The governance read: co tenancy on one streaming multiprocessor should be treated as a broken isolation boundary. The mitigation that works, according to the paper, is Multi Instance G P U, which gives each tenant its own multiprocessors.
+
+00:27:34.100 --> 00:27:43.925
+That matters for any proposal that assumes shared inference or training clusters can isolate tenants, or that co locates governance mechanisms with other workloads.
+
+00:27:49.745 --> 00:28:02.120
+Capabilities. "Natural Language Programming", by Giovanni Adorni and Daniele Grosso at the University of Genoa, is a short conceptual paper proposing to call prompting natural language programming.
+
+00:28:02.120 --> 00:28:18.795
+It argues prompts act as executable specifications, cognitive artefacts, metacognitive scaffolds and dialogic memory structures, introduces something it calls dialogic working memory, and maps three of the second author's own preprint memory architectures onto it.
+
+00:28:19.445 --> 00:28:40.945
+There are no experiments, datasets or numbers. The authors say the framework is primarily theoretical and conceptual. It leans heavily on self citation, and discloses that the text was edited with ChatGPT. The only contact with safety is a worry about over reliance and superficial validation, and a self cited preprint on sycophancy and drift.
+
+00:28:41.595 --> 00:28:48.745
+Nothing here bears on capability evaluation, compute or policy. Treat it as a vocabulary proposal.
+
+00:28:54.565 --> 00:29:07.490
+Last, the non A I paper. "Structural Similarities Between Language Models and Neural Response Measurements", from Copenhagen, Princeton and the Technical University of Denmark, dated twenty twenty three.
+
+00:29:08.140 --> 00:29:27.415
+It asks whether word representations inside language models resemble human brain responses to the same words. Using two public brain imaging datasets, fourteen models from the BERT, G P T two and OPT families, and three comparison methods, the authors find alignment improves with model size.
+
+00:29:27.415 --> 00:29:45.415
+A linear map learned from only nine hundred and fifty word examples gets about one in five words within the ten nearest neighbours, against under one percent by chance. Deeper layers align better. They also argue against Newman's objection, the philosophical worry that structural similarity is trivial.
+
+00:29:46.065 --> 00:30:05.615
+The cautions: the evidence is correlational, word level and English only, and the limitations section says each alignment relies on a single participant. The headline figures come from models up to one point five billion parameters, the largest tested was thirty billion, and extrapolating to frontier models is untested.
+
+00:30:06.265 --> 00:30:15.740
+For a governance reader, the one thread is whether scale pushes models toward human like internal structure. This paper does not show that matters for safety.
