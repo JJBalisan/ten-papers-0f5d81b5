@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 67,
+      "title": "Interrogation protocols for AI control"
+    },
+    {
+      "startTime": 605,
+      "title": "Deviant machines"
+    },
+    {
+      "startTime": 979,
+      "title": "Airlock sandboxing"
+    },
+    {
+      "startTime": 1166,
+      "title": "Validation-seeking goals"
+    },
+    {
+      "startTime": 1300,
+      "title": "Sparse Hodge preference optimisation"
+    },
+    {
+      "startTime": 1429,
+      "title": "Judge error in agent evaluation"
+    },
+    {
+      "startTime": 1559,
+      "title": "Limited-parameter finetuning"
+    },
+    {
+      "startTime": 1679,
+      "title": "Layer pruning compensation"
+    },
+    {
+      "startTime": 1773,
+      "title": "Mixture-of-experts CLIP"
+    },
+    {
+      "startTime": 1851,
+      "title": "Economics of AR and VR"
+    }
+  ]
+}

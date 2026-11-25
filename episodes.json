@@ -436,5 +436,20 @@
     "transcript": "audio/ep068.transcript.html",
     "vtt": "audio/ep068.vtt",
     "cover": "covers/ep068.jpg"
+  },
+  {
+    "no": 69,
+    "date": "2026-11-25",
+    "title": "Questions before answers",
+    "summary": "Lead: Interrogation Protocols for AI Control. Also: Deviant Machines: Innovation, Containment, and the Prevention of Autonomous Misalignment; Airlock: Robust Sandboxing and Governance of Rogue Agents.",
+    "file": "audio/ep069.mp3",
+    "bytes": 11886876,
+    "duration": "00:32:27",
+    "music": true,
+    "music_credit": "Music: \u201cTime to Think\u201d by Lee Rosevere, https://freemusicarchive.org/music/lee-rosevere/music-for-podcasts-serious/time-to-think/ licensed CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/); trimmed, faded and mixed with narration.",
+    "chapters": "audio/ep069.chapters.json",
+    "transcript": "audio/ep069.transcript.html",
+    "vtt": "audio/ep069.vtt",
+    "cover": "covers/ep069.jpg"
   }
 ]
