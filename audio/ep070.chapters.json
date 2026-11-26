@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 69,
+      "title": "Marketplace scam evaluation"
+    },
+    {
+      "startTime": 595,
+      "title": "Model specs"
+    },
+    {
+      "startTime": 902,
+      "title": "Gender bias and trust"
+    },
+    {
+      "startTime": 1086,
+      "title": "Sampling jailbreaks"
+    },
+    {
+      "startTime": 1296,
+      "title": "Reward basis decomposition"
+    },
+    {
+      "startTime": 1479,
+      "title": "Auditing LLM judges"
+    },
+    {
+      "startTime": 1659,
+      "title": "Social bias neurons"
+    },
+    {
+      "startTime": 1823,
+      "title": "Draft calibration"
+    },
+    {
+      "startTime": 1949,
+      "title": "Research verification agents"
+    },
+    {
+      "startTime": 2045,
+      "title": "Distilling Bayesian priors"
+    }
+  ]
+}
