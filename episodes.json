@@ -442,5 +442,20 @@
     "transcript": "audio/ep070.transcript.html",
     "vtt": "audio/ep070.vtt",
     "cover": "covers/ep070.jpg"
+  },
+  {
+    "no": 71,
+    "date": "2026-11-27",
+    "title": "Latent handoffs break safety",
+    "summary": "Lead: Latent-in-the-Middle: On the Security of Cross-Model Latent Communication in Multi-Agent Systems. Also: RightDiff: Learning Generative Reward Models to Judge by the Right Differences; Too Smart for Its Own Good? Cognitive Fidelity and Competence Leakage in LLM Simulations of Young Learners.",
+    "file": "audio/ep071.mp3",
+    "bytes": 10703938,
+    "duration": "00:29:10",
+    "music": true,
+    "music_credit": "Music: \u201cTime to Think\u201d by Lee Rosevere, https://freemusicarchive.org/music/lee-rosevere/music-for-podcasts-serious/time-to-think/ licensed CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/); trimmed, faded and mixed with narration.",
+    "chapters": "audio/ep071.chapters.json",
+    "transcript": "audio/ep071.transcript.html",
+    "vtt": "audio/ep071.vtt",
+    "cover": "covers/ep071.jpg"
   }
 ]

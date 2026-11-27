@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 43,
+      "title": "Latent handoffs"
+    },
+    {
+      "startTime": 593,
+      "title": "Hybrid conversations"
+    },
+    {
+      "startTime": 781,
+      "title": "Cultural values in chatbots"
+    },
+    {
+      "startTime": 883,
+      "title": "Poisoning privacy protocols"
+    },
+    {
+      "startTime": 998,
+      "title": "Right differences in reward models"
+    },
+    {
+      "startTime": 1192,
+      "title": "Competence leakage"
+    },
+    {
+      "startTime": 1329,
+      "title": "Massive activations and robustness"
+    },
+    {
+      "startTime": 1451,
+      "title": "Pruning convolutional networks"
+    },
+    {
+      "startTime": 1541,
+      "title": "Ensemble uncertainty"
+    },
+    {
+      "startTime": 1656,
+      "title": "Desirable sets of things"
+    }
+  ]
+}

@@ -1,0 +1,349 @@
+WEBVTT
+
+00:00:17.690 --> 00:00:32.315
+Today's episode covers ten papers. The lead is a security paper on what happens when A I agents built on different models hand each other their internal memory instead of text: the receiving model's safety training largely stops working.
+
+00:00:32.315 --> 00:00:42.615
+After that, a reward model that has to be right for the right reasons, and a small study showing that a single-turn test understates a failure that appears over a conversation.
+
+00:00:48.435 --> 00:01:03.735
+The lead paper is titled Latent in the Middle: On the Security of Cross-Model Latent Communication in Multi-Agent Systems. It sits in the A I safety category, and I think it is the most consequential paper of the day for a technical governance reader.
+
+00:01:04.385 --> 00:01:24.735
+The setting is multi-agent systems. The authors cite a twenty twenty-six KPMG survey saying that a quarter of large American enterprises are developing them, and a Gartner expectation that more than sixty percent will combine agents from different vendors by twenty twenty-eight. Passing context between agents as text is expensive.
+
+00:01:24.735 --> 00:01:44.460
+In one coding system the authors mention, eight agents exchanged two thousand, four hundred and eighty-two messages during a six hour run. So there is pressure to pass internal state instead, and the natural thing to pass is the key-value cache, the keys and values every transformer layer computes for every position of the prompt.
+
+00:01:45.110 --> 00:02:00.760
+A cache belongs to one model's architecture and weights, so a handoff between different models needs a learned translator, which the paper calls a mapper. The source model reads the context and builds its cache. The mapper converts that cache into the target model's space.
+
+00:02:00.760 --> 00:02:18.610
+The target then processes only the remaining suffix and generates from the converted cache. One published design, a closed-form ridge mapper from NVIDIA, is reported to retain seventy-three to ninety-eight percent of target accuracy, with prefill much faster. The security question is simple.
+
+00:02:18.610 --> 00:02:36.835
+The model that answers never builds its own representation of the prompt. Refusal decisions, and prompt-injection defences that separate trusted instructions from untrusted data, are read off that representation. If another model computed it and a mapper rewrote it, what is left of the safety training?
+
+00:02:37.485 --> 00:02:55.210
+The authors build a framework called Chasm to test this. They cover three model families: Qwen three, Llama three and Ministral three. They use four published mapper types, each fitted on two calibration corpora, one of web text and one of chat conversations. That gives twenty-four settings.
+
+00:02:55.210 --> 00:03:10.435
+Harm is measured on HarmBench, with two hundred and forty test behaviours, and StrongREJECT, with three hundred and thirteen requests. Every comparison is against native inference with the same template, decoding and seeds, using an exact paired test.
+
+00:03:11.085 --> 00:03:28.935
+There are five attacks, one per entry point. The first wraps harmful requests in published jailbreak templates, needing only text access. The second repeatedly switches which model is serving, so the cache is mapped back and forth. The third controls the source model, using a public de-aligned checkpoint.
+
+00:03:28.935 --> 00:03:46.835
+The fourth is white-box: gradient-based suffix optimisation, the G C G family, run through the source, the mapper and the target together. The fifth is indirect prompt injection, where a third party plants an instruction in content the source reads. All but the fourth need no optimisation at all.
+
+00:03:47.485 --> 00:04:01.385
+First, the baseline. With plain harmful requests and an aligned source, simply passing through the mapper raises HarmBench success significantly in thirteen of the twenty-four settings, by up to twenty-four point six points on Ministral.
+
+00:04:01.385 --> 00:04:15.360
+In seven of those thirteen, the target also exceeds the standalone source's own rate, so the handoff does more than inherit a weaker model. It is not uniform: on Llama, four of eight mappers made the target significantly safer.
+
+00:04:16.010 --> 00:04:34.110
+Templates are much stronger. On Qwen through the ridge mapper, role-play more than doubles success, from twenty-six point four percent to fifty-four point seven. The largest template gains across mappers are fifty-seven point two points on Qwen, sixty-nine point two on Llama and fifty-two point eight on Ministral.
+
+00:04:34.110 --> 00:04:41.835
+Model switching alone raises success significantly in sixteen of twenty-four settings, by up to thirty-eight point eight points.
+
+00:04:42.485 --> 00:04:59.885
+The most reliable attack is the untrusted source. A de-aligned source raises HarmBench success by sixteen point three to forty-five point four points, and StrongREJECT by sixteen to sixty-four point nine, in all twenty-four settings. An aligned source adds at most twenty-four point six.
+
+00:04:59.885 --> 00:05:16.485
+As one concrete count: a de-aligned Qwen three fourteen billion model answers one hundred and eighty-seven HarmBench requests that the thirty-two billion target refuses natively, and the target answers one hundred and twenty-three of them once it is handed that source's cache.
+
+00:05:16.485 --> 00:05:27.010
+The authors call this stealthy, because the target keeps its capability, with sixty-nine point four percent on M M L U, so routine capability checks would not notice.
+
+00:05:27.660 --> 00:05:41.460
+Now the optimised attack. Ordinary G C G with full white-box access to the target succeeds on at most sixty-five percent of behaviours on Qwen, thirty-seven point five on Llama and forty-two point five on Ministral.
+
+00:05:41.460 --> 00:05:58.510
+Attacking through the handoff crosses ninety percent on every target through the best renderer: ninety on Qwen, ninety-two point five on Llama, ninety on Ministral. Across the twenty-four settings it beats ordinary G C G significantly in eleven, and never loses significantly.
+
+00:05:58.510 --> 00:06:12.235
+So the mapper is an attack surface in its own right: through it, an attacker can do better than white-box access to the target alone gives. The authors also note a suffix takes a median of three to forty-eight minutes on one H two hundred.
+
+00:06:12.885 --> 00:06:33.035
+Prompt injection is the case that matters most for deployed agents. The target is Meta SecAlign eight billion, a model fine-tuned specifically to resist injection, and the source is the undefended Llama three point two, three billion. Natively, the defended target follows zero point four percent of injected instructions on AlpacaFarm.
+
+00:06:33.035 --> 00:06:46.910
+Through the four default mappers that rises to between twenty-six point two and twenty-nine point seven percent, and through the best renderer to forty-four point two, close to the thirty-four point seven percent of the undefended model natively.
+
+00:06:46.910 --> 00:07:02.160
+Even with no mapper at all, if the undefended model prefills and the defended model just decodes from its cache, injection success is thirty-one point nine percent. The protection depends on the defended model encoding the untrusted data itself.
+
+00:07:02.810 --> 00:07:22.585
+Does capability loss explain this? The authors say no. Every mapper costs the target three to fourteen point four points on M M L U and up to forty-six on G S M eight K, but across settings, mappers that lose more accuracy do not gain correspondingly more attack success; the correlation is minus zero point four.
+
+00:07:23.235 --> 00:07:35.785
+On defences, they test three. Adding refusal conversations to the mapper's calibration data removes about sixty percent of what a de-aligned source adds, but leaves success twelve points above native.
+
+00:07:35.785 --> 00:07:46.460
+An existing defence called VReparo helps against plain transfer but an untrusted source still reaches twenty-six point seven to fifty-six point two percent on Qwen.
+
+00:07:46.460 --> 00:08:05.710
+Their own, Handoff Guard, is a small low-rank correction of about ten million parameters, applied on the target side to the mapped keys and values, adding three point six to eight point two percent to prefill time. A variant trained against a de-aligned source brings success back within four point five points of native on all three pairs.
+
+00:08:05.710 --> 00:08:17.435
+But it was trained only through the stock mapper, and through one other mapper it removes only about half the increase. On prompt injection it mostly works by refusing, rather than restoring the defence.
+
+00:08:17.435 --> 00:08:32.135
+And an attacker who fine-tunes the source through the guarded path, knowing the guard's weights, gets seventy-three point three to eighty-seven point five percent success. Without the guard's weights, the same fine-tune falls to twelve point one percent on Qwen.
+
+00:08:32.135 --> 00:08:37.885
+So the guard's weights have to stay private, and it does not replace authenticating the source.
+
+00:08:38.535 --> 00:08:52.885
+The authors' limits: open models from three to thirty-two billion parameters, de-aligned sources made by refusal ablation, switching tested with no tokens generated between switches, and no hand-labelled sample of outputs.
+
+00:08:53.535 --> 00:09:10.310
+The governance read. First, the unit of safety assurance has to be the composed pipeline, source and mapper included, not the answering model alone: the component that reads the input is no longer the component that was tested. Second, provenance becomes a supply-chain control.
+
+00:09:10.310 --> 00:09:26.635
+A public de-aligned checkpoint dropped in as a source is the weakest form of the attack, and it still works in every setting. The appendix adds that mappers can be backdoored by adding poisoned rows to a ridge fit, and that commercial services already fit mappers on customer data.
+
+00:09:26.635 --> 00:09:38.235
+Third, the authors' own recommendation: treat a cache received from another agent as untrusted input, authenticate it at its source, protect it in transit and red-team it with the system.
+
+00:09:38.235 --> 00:09:53.235
+One inference of mine, not stated in the paper: a latent channel cannot be read by text-based monitoring, which matters for any oversight scheme built on logging messages between agents. How far this carries to frontier systems is untested.
+
+00:09:58.705 --> 00:10:14.830
+The first governance paper is AI-human hybrid conversations: Can AI Agents Improve Discourse Quality? It is a marketing and information-systems paper, and its relevance to us is indirect. Read it as a pilot, not as policy-grade evidence.
+
+00:10:15.480 --> 00:10:31.430
+There are two studies. The first is a simulation on one hundred and twenty real Reddit threads, thirty in each of four domains, each with at least fifty human comments. G P T five point two agents, with or without personas, continue each thread for fifteen rounds.
+
+00:10:31.430 --> 00:10:44.555
+The personas are built from writing style rather than demographics alone: users are clustered on twenty-six linguistic measures, giving seventeen style clusters, crossed with age and gender to make sixty-eight personas.
+
+00:10:44.555 --> 00:11:04.180
+The second is a pre-registered experiment with two hundred and twenty-one undergraduates in nine threads, three each for no A I, generic A I and persona A I, discussing Thanksgiving. After every two human comments, one of four agents replied, with no label on individual comments, though consent said agents might take part.
+
+00:11:04.830 --> 00:11:22.280
+The simulation result is that A I discussion is nicer and narrower than human discussion, and that giving the agent more human context does not fix it. Mean toxicity is point one zero eight for humans and only point zero two eight to point zero three five for the A I conditions.
+
+00:11:22.280 --> 00:11:41.755
+Sentiment is point one four for humans and point two two to point two nine for A I. Seeding twenty-five real comments barely closes the gap. On breadth, mean pairwise similarity between comments is point five four one for generic A I and point four five eight for persona A I, against point two two five for humans.
+
+00:11:41.755 --> 00:11:54.730
+Personas widen the range of ideas, but even they stay far more homogeneous than people. The authors also analyse a Moltbook sample, a network written entirely by agents, and find it more positive still.
+
+00:11:55.380 --> 00:12:13.080
+In the experiment, the share of posters who received no reply fell from sixty-three percent with no A I to twenty-seven with generic agents and twenty-one with persona agents. Posts by the humans themselves became more varied, with similarity falling from point four to about point three.
+
+00:12:13.080 --> 00:12:24.355
+And participants could not tell: between sixty-one and sixty-six percent in every condition thought someone in their thread was an A I, including sixty-one percent of the group that had none.
+
+00:12:25.005 --> 00:12:36.480
+The limits are large. Nine threads, students seeking extra credit, a benign topic, a single closed model, and no significance tests reported for the experiment in the text I have.
+
+00:12:36.480 --> 00:12:50.955
+The governance read is mine: agents without individual labels changed what humans did, the model's own priors about how discussion should sound survive persona prompting and context, and the authors name disclosure effects as the open question.
+
+00:12:50.955 --> 00:13:01.105
+The mix of personas an operator deploys also steered which topics a thread covered, which has obvious influence-operation implications the paper does not discuss.
+
+00:13:06.925 --> 00:13:24.300
+The second governance paper is One Style Fits All? Cultural Values Embedded in Conversational AI via a People-Pleasing Lens. Relevance to technical governance is low. It is a human-computer interaction study, filed here because of its closing call for culture-sensitive audits.
+
+00:13:24.950 --> 00:13:40.025
+Forty-nine Taiwanese and fifty-two Korean adults planned a tourism itinerary with G P T four point one, prompted to be either supportive, meaning warm, affirming and emoji-using, or challenging, meaning neutral, critical and stressing autonomy.
+
+00:13:40.025 --> 00:13:57.100
+Supportive won on continuance intention, satisfaction and trust in both countries; for example, the effect on continuance intention was two point four eight in Taiwan and two point one seven in Korea. A personality measure, people-pleasing tendency, moderated nothing.
+
+00:13:57.100 --> 00:14:09.100
+The one cultural difference was perceived threat: the supportive style cut it by two point six five points in Taiwan, but by only point seven three in Korea, where the drop was not significant.
+
+00:14:09.750 --> 00:14:17.125
+The authors call that direct evidence that conversational styles reflect culture-specific values. I would not.
+
+00:14:17.125 --> 00:14:31.925
+The two styles differ in many ways at once, the challenging prompt bans lists while the task asked for itineraries, the country comparison uses separate regressions, not a tested interaction, and the cultural mechanism is an after-the-fact story.
+
+00:14:31.925 --> 00:14:42.700
+The part worth keeping is that the study measures what users like and never asks whether the supportive style is good for them. That is the sycophancy question, and it is not considered.
+
+00:14:48.520 --> 00:15:02.695
+The next paper is Poisoning Attacks to Local Differential Privacy Protocols for Dynamic Graphs. It is a privacy and security paper about statistical estimators, and it has little bearing on A I safety beyond a general principle.
+
+00:15:03.345 --> 00:15:14.520
+Dynamic graphs are sequences of network snapshots. Under local differential privacy, each user perturbs their own data before sending it, so no trusted collector is needed.
+
+00:15:14.520 --> 00:15:31.645
+The authors study the state-of-the-art protocol for this, which uses a hidden Markov model to reconstruct the graph sequence, and ask how a small number of fake users can distort the estimates. Their attacker controls fake users in each time slice and forges their reports, which are not perturbed.
+
+00:15:31.645 --> 00:15:45.945
+Their key design question is how to spread fake users across time slices. The best of three scheduling strategies, called the temporal enhanced attack, puts more fake users into later snapshots, which carry more weight in their gain metric.
+
+00:15:46.595 --> 00:16:00.220
+With five percent fake users, five percent target nodes and a privacy budget of four, the temporal enhanced attack beats equal and random scheduling in essentially every setting, on four datasets and four graph metrics.
+
+00:16:00.220 --> 00:16:12.495
+One counter-intuitive finding is that stronger privacy noise made the attack more effective in their framework, because noise inflates the estimated average degree, which gives the attacker more fake edges to spend.
+
+00:16:13.145 --> 00:16:28.095
+The limits are the paper's own and then some. There is no defence evaluation, no detection experiment to back the claim that the attack is stealthy, no numeric results in the text, only plots, and the attacker is assumed to know the privacy parameters.
+
+00:16:28.095 --> 00:16:38.170
+The loose lesson is that aggregation under privacy lets a small fraction of fake participants bias statistics, and that privacy noise can widen the attack surface.
+
+00:16:43.990 --> 00:16:56.965
+The A I alignment paper is RightDiff: Learning Generative Reward Models to Judge by the Right Differences. Its main interest is a failure it measures: a reward model that gets the right answer for the wrong reason.
+
+00:16:57.615 --> 00:17:16.890
+RightDiff is a generative reward model, which writes out its reasoning before choosing between two responses. In one generation it does four things. It lists concrete differences between the two responses and labels each as material or immaterial, so length and decorative formatting are immaterial unless the prompt asks for them.
+
+00:17:16.890 --> 00:17:24.665
+It writes a rubric from the material differences only. It scores both responses on each criterion. Then it picks a winner.
+
+00:17:25.315 --> 00:17:42.890
+The training data are built so that the criteria cannot be written to justify a conclusion already reached. The teacher model sees only the prompt and the list of differences when it induces the rubric, never the responses themselves, and the human preference label is used only to filter finished trajectories.
+
+00:17:42.890 --> 00:17:53.040
+That gives about one hundred and nine thousand preference pairs, fifty thousand for supervised fine-tuning and five thousand borderline cases for reinforcement learning.
+
+00:17:53.690 --> 00:18:08.815
+The reinforcement learning stage uses G R P O with a reward that is the product of two things: whether the final verdict is correct, and how well the model's stated differences match human-verified reference evidence. A wrong verdict earns zero.
+
+00:18:08.815 --> 00:18:19.215
+Matching is one to one and capped by a budget, so the model cannot match several references with one vague statement or list dozens of differences to cover them by brute force.
+
+00:18:19.865 --> 00:18:32.890
+The central measurement is what the authors call spurious correctness, a correct verdict reached without reference-aligned evidence. On the eight billion model, supervised fine-tuning starts at eleven point five percent.
+
+00:18:32.890 --> 00:18:47.515
+Outcome-only reinforcement learning raises it to twenty-one point six, while RewardBench accuracy edges up from eighty-four point two to eighty-five point four and RM-Bench accuracy falls from seventy-three point five to seventy-one point eight.
+
+00:18:47.515 --> 00:18:55.290
+The full method reaches eighty-six point one and seventy-six point one, with five point one percent spurious correctness.
+
+00:18:55.940 --> 00:19:09.490
+On benchmarks, the eight billion model averages eighty-one point one across RewardBench and RM-Bench, against seventy-nine point six for the strongest proprietary judge, and the four billion model scores seventy-nine point five.
+
+00:19:09.490 --> 00:19:19.540
+A policy trained with D P O on its preferences scores fifty-six point four on Arena-Hard and forty-two point five on length-controlled AlpacaEval.
+
+00:19:20.190 --> 00:19:38.965
+The limits: only Qwen four and eight billion backbones, one run per configuration with no variance, and reference evidence written by other language models, so alignment is measured against model-written reasons, not human ones. There is no test with adversarial responses designed to exploit the rubric stage.
+
+00:19:38.965 --> 00:19:51.440
+The governance read: accuracy on a preference benchmark does not certify that a judge uses legitimate evidence. Any audit regime that relies on A I graders probably needs process-level checks too.
+
+00:19:56.910 --> 00:20:10.010
+The evaluations paper is Too Smart for Its Own Good? Cognitive Fidelity and Competence Leakage in LLM Simulations of Young Learners. The subject is education, but the evaluation lesson transfers.
+
+00:20:10.660 --> 00:20:25.560
+Language models are used to play young learners in teacher training. A simulated learner has a profile of knowledge and misconceptions to keep. Competence leakage is the model showing knowledge or reasoning beyond that profile, even when what it says is correct.
+
+00:20:25.560 --> 00:20:39.360
+The authors examine three thousand, three hundred and thirty-nine learner utterances from one hundred and thirty teacher transcripts, each chosen because it already contained a flagged violation, so the data say nothing about base rates.
+
+00:20:39.360 --> 00:20:52.510
+Violations skew towards over-competence, and knowledge leakage is more common than leaking inappropriate self-awareness: fifty-five point four percent against ten point seven in the mystery substance scenario, for example.
+
+00:20:53.160 --> 00:21:10.060
+The more interesting part is the replay. Previously observed leakage cases are rebuilt under four protocols: the trigger question alone, history in the system message, history as alternating turns, and history regenerated by the model. Leakage recurs much more with conversation.
+
+00:21:10.060 --> 00:21:26.110
+For G P T five point three chat, the model behind the original simulations, recurrence in the subtraction scenario rises from sixty-one point seven percent with the single question to ninety percent when the history is supplied. More capable models leak less.
+
+00:21:26.110 --> 00:21:36.360
+But more reasoning effort does not reliably help: for G P T five point five, high effort is slightly better on the single question and worse in the multi-turn settings.
+
+00:21:37.010 --> 00:21:47.760
+The limits are real. It is exploratory, not causal, the evaluated models are from one provider, and judges agreed with humans eighty-one to ninety-three percent of the time.
+
+00:21:47.760 --> 00:22:08.560
+The governance read is the methodological one: a single-turn test can understate a failure that appears over a conversation, and more reasoning is not a guarantee of staying inside an assigned boundary. That bears on any evaluation of role constraints or capability hiding. Treat it as an illustration, not as evidence about frontier safety behaviour.
+
+00:22:14.380 --> 00:22:29.955
+The interpretability paper is Understanding the Importance of Massive Activations through Adversarial Robustness, from Cambridge and Oxford. Massive activations are a handful of hidden-state entries that grow orders of magnitude larger than the rest.
+
+00:22:29.955 --> 00:22:41.680
+The authors argue they exist to simplify the network's local geometry, pushing representations away from the boundaries between the linear regions a ReLU network carves out of input space.
+
+00:22:42.330 --> 00:22:52.055
+The link to robustness is a known phenomenon called delayed robustness, where adversarial robustness appears long after test accuracy has saturated.
+
+00:22:52.055 --> 00:23:09.455
+They show that the rise of massive activations coincides with the fall of a local-complexity measure and the rise of adversarial accuracy, in a residual network on MNIST, a small G P T, ResNet eighteen, small vision transformers and the Pythia models during pretraining.
+
+00:23:09.455 --> 00:23:16.980
+A proof gives a sufficient condition for residual ReLU networks, though it does not cover attention or normalisation.
+
+00:23:17.630 --> 00:23:35.630
+The ablations are the strongest evidence. In a small G P T, zeroing the top four activations cuts accuracy from sixty-three point five to twenty-six percent and adversarial consistency from fifty-nine point four to one point nine percent, while zeroing four random ones barely matters.
+
+00:23:35.630 --> 00:23:44.255
+In Pythia one hundred and sixty million, zeroing the top six cuts consistency from six point six four to point nine eight percent.
+
+00:23:44.905 --> 00:23:57.155
+The limits: beyond the ablations the evidence is correlational, the largest model is Pythia one point four billion, the attacks perturb embeddings, not text, and nothing addresses jailbreaks or misuse.
+
+00:23:57.155 --> 00:24:10.680
+The governance read, and this is mine: outlier activations are functional, so pruning or clamping them for quantisation may silently cost robustness, and cheap internal statistics at checkpoints might track robustness.
+
+00:24:16.500 --> 00:24:28.600
+The compute and hardware paper is SPRUNN: Structural Proximity for Pruning in Deep Neural Networks. Its relevance to governance is low, and it is a conventional model compression paper.
+
+00:24:29.250 --> 00:24:47.075
+It prunes convolutional networks after training. A score called Structural Proximity, inspired by the crowding distance in an evolutionary algorithm, finds filters that others in the same layer can stand in for and removes them in one shot. Fully connected layers just lose their smallest weights.
+
+00:24:47.075 --> 00:24:54.150
+Then the network is retrained at a deliberately small learning rate, close to the final rate of the original training.
+
+00:24:54.150 --> 00:25:11.500
+On ResNet one hundred and ten with CIFAR ten, it reports ninety-one point seven five percent accuracy with ninety-five point six three percent of parameters removed, and on VGG sixteen ninety-three point four percent with a ninety-six point three three percent reduction.
+
+00:25:12.150 --> 00:25:29.850
+The evidence is weaker than the tables suggest. The hardware claims are proxies, parameter and floating-point operation counts, with real latency and energy left as future work. Gains over competing criteria are about a point, on two ResNets in single runs with no variance reported.
+
+00:25:29.850 --> 00:25:40.650
+On ResNet eighteen with a bird dataset it loses five and a half points. It concerns small vision models, so it says nothing about compute thresholds or chip controls.
+
+00:25:46.470 --> 00:26:03.420
+The capabilities paper is Scaling Laws of Ensemble Uncertainty in Language Models, from McGill and Mila. It asks how well disagreement among an ensemble of language models can reveal epistemic uncertainty, the part of the error that more data or capacity could remove.
+
+00:26:03.420 --> 00:26:11.970
+The authors split it into a visible part, which disagreement, called spread, can show, and an invisible part, error shared by every member.
+
+00:26:12.620 --> 00:26:25.845
+They find power laws. Loss falls with model size with exponents of roughly point one nine to point three one. Spread falls more slowly, with exponents of roughly point one two to point two across public families.
+
+00:26:25.845 --> 00:26:38.845
+Because the invisible part shrinks faster than spread, the visible fraction grows with scale: today it is around five to fifteen percent, and projections to a trillion parameters give thirteen to thirty-three percent.
+
+00:26:38.845 --> 00:26:49.195
+Those projections depend heavily on an unknown irreducible loss floor, with dense Qwen ranging from seventeen to forty-two percent depending on the assumed floor.
+
+00:26:49.845 --> 00:27:03.195
+The practical points: sharing training history loses diversity predictably. Members that branch halfway through training lose about sixty-three percent of the spread, and LoRA ensembles retain two to four times less.
+
+00:27:03.195 --> 00:27:12.245
+At matched compute, single larger models still beat ensembles at every scale measured, with crossovers predicted far above anything trained today.
+
+00:27:12.895 --> 00:27:25.095
+The governance read: anyone using disagreement among models from the same lineage as a safety signal sees only a minority of the gap, and correlated blind spots are invisible by construction.
+
+00:27:25.095 --> 00:27:35.870
+The caveats are the loss floor, ensembles of only two to ten members, and a largest model that shares early training, so the extrapolations are modelled rather than observed.
+
+00:27:41.690 --> 00:27:58.840
+The last paper, in the non-A I category, is The Logic Behind Desirable Sets of Things, and Its Filter Representation, by de Cooman, Van Camp and De Bock. It is pure mathematics from the imprecise probability community, with no empirical results and no A I content.
+
+00:27:59.490 --> 00:28:15.390
+The result is that inference over coherent sets of desirable sets of things, which covers coherent choice functions, is order isomorphic to propositional logic about an unknown ideal set of desirable things, specifically to filters on a lattice of events.
+
+00:28:15.390 --> 00:28:34.590
+That gives short proofs of representation theorems: a coherent model is an intersection of simple conjunctive models, or, when only finitely coherent, a limit inferior of them. It recovers Levi's E-admissibility rule, under which an option is admissible if it is best under at least one probability model in a set.
+
+00:28:34.590 --> 00:28:40.440
+A counterexample shows the finitary assumption on the closure operator cannot be dropped.
+
+00:28:41.090 --> 00:28:55.590
+The only link to our work is background on decision making when probabilities are only partly specified, where a conservative chooser keeps every option that is best under at least one plausible model. The paper does not discuss that application.
