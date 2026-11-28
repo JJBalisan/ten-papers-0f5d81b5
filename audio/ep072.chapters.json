@@ -1,0 +1,49 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 42,
+      "title": "Monitor evaluations and attack policies"
+    },
+    {
+      "startTime": 687,
+      "title": "Digital sovereignty"
+    },
+    {
+      "startTime": 855,
+      "title": "Gamification and player data"
+    },
+    {
+      "startTime": 978,
+      "title": "Repairing distilled models"
+    },
+    {
+      "startTime": 1133,
+      "title": "Best-of-N steering and reward hacking"
+    },
+    {
+      "startTime": 1296,
+      "title": "Auditing unlearning"
+    },
+    {
+      "startTime": 1480,
+      "title": "Model diffing for backdoors"
+    },
+    {
+      "startTime": 1653,
+      "title": "Zero trust for HPC agents"
+    },
+    {
+      "startTime": 1798,
+      "title": "Insider attacks on multi-agent debate"
+    },
+    {
+      "startTime": 1948,
+      "title": "Reduced-order financial dynamics"
+    }
+  ]
+}

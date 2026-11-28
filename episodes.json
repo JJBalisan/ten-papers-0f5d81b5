@@ -443,5 +443,20 @@
     "transcript": "audio/ep071.transcript.html",
     "vtt": "audio/ep071.vtt",
     "cover": "covers/ep071.jpg"
+  },
+  {
+    "no": 72,
+    "date": "2026-11-28",
+    "title": "Monitor evaluations and attack policies",
+    "summary": "Lead: Attack policy selection can mislead monitor evaluators. Also: Reading fine-tuning diffs through lenses, model diffing for backdoor detection; Deletion you can check, auditing language model unlearning.",
+    "file": "audio/ep072.mp3",
+    "bytes": 12476771,
+    "duration": "00:34:05",
+    "music": true,
+    "music_credit": "Music: \u201cTime to Think\u201d by Lee Rosevere, https://freemusicarchive.org/music/lee-rosevere/music-for-podcasts-serious/time-to-think/ licensed CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/); trimmed, faded and mixed with narration.",
+    "chapters": "audio/ep072.chapters.json",
+    "transcript": "audio/ep072.transcript.html",
+    "vtt": "audio/ep072.vtt",
+    "cover": "covers/ep072.jpg"
   }
 ]
